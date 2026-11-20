@@ -12,9 +12,9 @@ $meses = @{ enero = 1; febrero = 2; marzo = 3; abril = 4; mayo = 5; junio = 6; j
 $datos = [ordered]@{}
 (Get-Content $archivo -Raw | ConvertFrom-Json).PSObject.Properties | ForEach-Object { $datos[$_.Name] = [decimal]$_.Value }
 
-# Cada fila de la tabla: <td>Agosto2026</td><td>$ 1.982.518,19</td>...
+# Cada fila de la tabla: <td>Agosto/2026</td><td>$ 1.982.518,19</td>... (antes venia sin barra: Agosto2026)
 $html = (Invoke-WebRequest $url -UseBasicParsing -TimeoutSec 60).Content
-$filas = [regex]::Matches($html, '<td[^>]*>\s*(\p{L}+)\s*(\d{4})\s*</td>\s*<td[^>]*>\s*\$\s*([\d\.]+,\d{2})\s*</td>')
+$filas = [regex]::Matches($html, '<td[^>]*>\s*(\p{L}+)[\s/\-]*(\d{4})\s*</td>\s*<td[^>]*>\s*\$\s*([\d\.]+,\d{1,2})\s*</td>')
 if ($filas.Count -eq 0) { throw 'No se encontro la tabla del RIPTE en la pagina oficial. Revisar si cambio el formato.' }
 
 $cambios = @()
