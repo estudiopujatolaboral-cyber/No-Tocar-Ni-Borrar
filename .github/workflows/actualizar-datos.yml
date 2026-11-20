@@ -27,7 +27,7 @@ jobs:
   actualizar:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Leer el RIPTE de la página oficial
         shell: pwsh
