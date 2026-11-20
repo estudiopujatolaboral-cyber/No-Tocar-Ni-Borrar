@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Novedades del Estudio José A. Quacquarini y Asoc.: las últimas publicaciones del estudio en Instagram.">
+  <link rel="canonical" href="https://estudioquacquarini.com.ar/novedades.html">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Estudio José A. Quacquarini y Asoc.">
+  <meta property="og:title" content="Novedades | Estudio José A. Quacquarini y Asoc.">
+  <meta property="og:description" content="Novedades del Estudio José A. Quacquarini y Asoc.: las últimas publicaciones del estudio en Instagram.">
+  <meta property="og:url" content="https://estudioquacquarini.com.ar/novedades.html">
+  <meta property="og:image" content="https://estudioquacquarini.com.ar/img/logo.png">
+  <meta property="og:image:alt" content="Logo del Estudio José A. Quacquarini y Asoc.">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" type="image/png" href="img/logo.png">
+  <title>Novedades | Estudio José A. Quacquarini y Asoc.</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <script src="js/tema.js"></script>
+  <style>
+
+    /* Página Novedades: publicaciones de Instagram */
+    .texto { color:var(--muted); max-width:900px; }
+    .publicaciones { display:grid; grid-template-columns:repeat(3, 1fr); gap:22px; margin:26px 0 30px; }
+    .publicacion { border:1px solid var(--line); background:#fff; display:flex; flex-direction:column; transition:transform .2s, box-shadow .2s; }
+    .publicacion:hover { transform:translateY(-4px); box-shadow:0 14px 30px rgba(40,40,25,.07); }
+    .publicacion .foto { position:relative; display:block; aspect-ratio:1 / 1; overflow:hidden; background:var(--cream); }
+    .publicacion .foto img { display:block; width:100%; height:100%; object-fit:cover; }
+    .publicacion .tipo { position:absolute; top:10px; right:10px; padding:3px 9px; border-radius:3px; background:rgba(39,41,32,.78); color:#fff; font-size:.72rem; font-weight:bold; }
+    .publicacion .cuerpo { padding:16px 18px 18px; display:flex; flex-direction:column; flex:1; }
+    .publicacion .fecha { color:var(--olive-dark); font-size:.78rem; font-weight:bold; text-transform:uppercase; letter-spacing:.08em; }
+    .publicacion p { color:var(--muted); font-size:.92rem; margin:6px 0 16px; flex:1; white-space:pre-line; display:-webkit-box; -webkit-line-clamp:6; -webkit-box-orient:vertical; overflow:hidden; }
+    .btn-ig { align-self:flex-start; display:inline-block; padding:7px 16px; border-radius:3px; background:var(--olive-dark); color:#fff !important; font-weight:bold; font-size:.88rem; text-decoration:none; }
+    .btn-ig:hover, .btn-ig:focus-visible { background:var(--olive); }
+    .sin-publicaciones { background:var(--cream); border-left:4px solid var(--gold); padding:22px 26px; margin:26px 0 30px; }
+    .sin-publicaciones p { margin:0 0 14px; color:var(--muted); }
+    .seguinos { display:flex; align-items:center; justify-content:space-between; gap:18px; flex-wrap:wrap; border-top:1px solid var(--line); padding-top:22px; margin-bottom:16px; }
+    .seguinos p { margin:0; color:var(--muted); }
+    @media (max-width: 900px) { .publicaciones { grid-template-columns:repeat(2, 1fr); } }
+    @media (max-width: 600px) { .publicaciones { grid-template-columns:1fr; } }
+    .page-hero { min-height: 300px; }
+    .page-hero .hero-inner { padding: 60px 22px; }
+    .nav-dropdown > .nav-dropdown-trigger[aria-current="page"], nav > a[aria-current="page"] { color: var(--olive); }
+    .wrap { max-width:var(--max); margin:auto; padding:50px 22px 10px; }
+    .wrap h2 { font:500 1.9rem Georgia,serif; margin:0 0 18px; }
+    .wrap a { color:var(--olive-dark); }
+    h3.sub { font-size:1rem; text-align:center; margin:30px 0 8px; color:var(--ink); }
+    .resumen { background:var(--cream); border-left:4px solid var(--gold); padding:20px 24px; }
+    .resumen h3 { margin:0 0 8px; text-transform:uppercase; font-size:1rem; }
+    .resumen p { margin:0; }
+    .tabla-wrap { overflow-x:auto; border:1px solid var(--line); margin:12px 0 8px; }
+    table { border-collapse:collapse; width:100%; min-width:950px; font-size:.86rem; }
+    th { background:#efeddc; color:var(--olive-dark); text-align:left; padding:10px; font-size:.8rem; }
+    td { padding:9px 10px; border-top:1px solid var(--line); white-space:nowrap; font-variant-numeric:tabular-nums; }
+    tbody tr:nth-child(even) td { background:#fbfaf5; }
+    td.anio, td.var { font-weight:bold; }
+    td.sd { color:var(--muted); }
+    .fuente { font-size:.8rem; color:var(--muted); margin:0 0 36px; }
+    .chart-box { border:1px solid var(--line); padding:14px; height:420px; position:relative; margin-bottom:10px; }
+    .aviso { font-size:.82rem; color:var(--muted); }
+    .nota-tabla { font-size:.8rem; color:var(--muted); margin:0 0 8px; }
+    .sin-datos { display:grid; place-items:center; height:100%; text-align:center; color:var(--muted); }
+    main { padding-bottom:40px; }
+    .back-to-top { position: fixed; right: 26px; bottom: 26px; z-index: 30; width: 45px; height: 45px; display: grid; place-items: center; border-radius: 3px; background: var(--olive-dark); color: #fff; font-size: 1.2rem; text-decoration: none; opacity: 0; visibility: hidden; transition: .2s; }
+    .back-to-top.show { opacity: 1; visibility: visible; }
+    .back-to-top:hover { background: var(--olive); }
+    @media (max-width: 600px) {
+      .page-hero { min-height: 240px; }
+      .page-hero .hero-inner { padding: 45px 20px; }
+      .chart-box { height:320px; }
+      .back-to-top { right: 16px; bottom: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="topbar-info">
+        <strong>Estudio Contable José A. Quacquarini y Asoc.</strong>
+      </div>
+      <div class="topbar-icons" aria-label="Datos de contacto">
+        <div class="phone-menu">
+          <button class="phone-trigger" type="button" aria-label="Elegir un teléfono" aria-expanded="false" aria-controls="phone-dropdown">
+            <img src="img/icono-telefono.png" alt="Teléfono" title="Elegir teléfono para WhatsApp">
+          </button>
+          <div class="phone-dropdown" id="phone-dropdown" hidden>
+            <span class="phone-dropdown-title">Contactanos por WhatsApp</span>
+            <a href="https://wa.me/5493464697225" target="_blank" rel="noopener noreferrer">+54 9 3464 69-7225 <small>(Estudio Pujato)</small></a>
+            <a href="https://wa.me/543464553622" target="_blank" rel="noopener noreferrer">+54 3464 55 3622 <small>(Estudio Rosario)</small></a>
+          </div>
+        </div>
+        <a class="email-link" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=contacto@estudioquacquarini.com.ar" target="_blank" rel="noopener noreferrer" aria-label="Escribir un correo al estudio">
+                  <img class="email-icon" src="img/icono-correo.png" alt="Correo electrónico" title="Correo electrónico">
+        </a>
+        <a class="instagram-link" href="https://www.instagram.com/estudioquacquarini?exln=Z20ycTY2a3ZybGp0" target="_blank" rel="noopener noreferrer" aria-label="Visitar Instagram del estudio" title="Instagram del estudio">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+            <circle cx="17.5" cy="6.7" r="1.2" fill="currentColor"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <header>
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="Inicio - Estudio José A. Quacquarini y Asociados">
+        <img src="img/logo.png" width="67" height="67" alt="Logo del Estudio José A. Quacquarini y Asociados">
+        <span class="brand-name">
+          <strong>Estudio José A. Quacquarini y Asoc.</strong>
+          <span>Estudio Contable</span>
+        </span>
+      </a>
+      <button class="menu-toggle" aria-expanded="false" aria-controls="main-nav">☰ Menú</button>
+      <nav id="main-nav" aria-label="Navegación principal">
+        <a href="index.html">Inicio</a>
+        <div class="nav-dropdown" id="estudio-nav-dropdown">
+          <a class="nav-dropdown-trigger" href="estudio.html" aria-haspopup="true" aria-expanded="false">El Estudio <span aria-hidden="true"></span></a>
+          <div class="nav-dropdown-menu" aria-label="Secciones de El Estudio">
+            <a href="estudio.html">El Estudio</a>
+            <a href="estudio-opcion-2.html">¿Qué nos diferencia?</a>
+            <a href="documentos/folleto-quacquarini.pdf" target="_blank" rel="noopener noreferrer">Folleto Institucional</a>
+            <a href="estudio-opcion-4.html">Unite a Estudio Contable José A. Quacquarini y Asoc.</a>
+            <a href="novedades.html">Novedades</a>
+          </div>
+        </div>
+        <div class="nav-dropdown" id="servicios-nav-dropdown">
+          <a class="nav-dropdown-trigger" href="servicios.html" aria-haspopup="true" aria-expanded="false">Servicios <span aria-hidden="true"></span></a>
+          <div class="nav-dropdown-menu" aria-label="Opciones de Servicios">
+            <a href="servicios.html">Servicios</a>
+            <a href="servicios-opcion-2.html">¿Necesitás un crédito para tu empresa?</a>
+            <a href="servicios-opcion-3.html">¿Por qué contratarnos?</a>
+          </div>
+        </div>
+        <a href="novedades.html" aria-current="page">Novedades</a>
+        <div class="nav-dropdown" id="datos-nav-dropdown">
+          <a class="nav-dropdown-trigger" href="datos-utiles.html" aria-haspopup="true" aria-expanded="false">Datos Útiles <span aria-hidden="true"></span></a>
+          <div class="nav-dropdown-menu" aria-label="Opciones de Datos Útiles">
+            <a href="datos-utiles.html">Datos Útiles</a>
+            <div class="nav-submenu">
+              <a class="nav-submenu-trigger" role="button" tabindex="0" style="cursor:pointer" aria-haspopup="true" aria-expanded="false">Indicadores económicos</a>
+              <div class="nav-flyout" aria-label="Indicadores económicos">
+                <a href="datos-inflacion.html">Inflación</a>
+                <a href="datos-dolar.html">Cotización del dólar</a>
+                <a href="datos-salarios-ripte.html">Índice de salarios + Índice RIPTE</a>
+                <a href="datos-salario-minimo.html">Salario mínimo, vital y móvil</a>
+                <a href="datos-comparacion-indices.html">Comparación Índices</a>
+              </div>
+            </div>
+            <div class="nav-submenu">
+              <a class="nav-submenu-trigger" role="button" tabindex="0" style="cursor:pointer" aria-haspopup="true" aria-expanded="false">Vencimientos</a>
+              <div class="nav-flyout" aria-label="Vencimientos">
+                <a href="vencimientos-autonomos.html">Autónomos</a>
+                <a href="vencimientos-monotributo.html">Monotributo</a>
+                <a href="vencimientos-iva.html">IVA | Libro IVA Digital</a>
+                <a href="vencimientos-convenio-multilateral.html">Convenio Multilateral | Ingresos Brutos</a>
+                <a href="vencimientos-servicio-domestico.html">Cargas Sociales | Servicio Doméstico</a>
+                <a href="vencimientos-relacion-dependencia.html">Cargas Sociales | Relación de Dependencia</a>
+                <a href="vencimientos-ganancias-humanas.html">Ganancias | Personas Humanas</a>
+                <a href="vencimientos-ganancias-juridicas.html">Ganancias | Personas Jurídicas</a>
+                <a href="vencimientos-retenciones-sicore.html">Retenciones | SICORE</a>
+              </div>
+            </div>
+            <a href="datos-feriados.html">Feriados</a>
+            <a href="datos-categorias-monotributo.html">Categorías de Monotributo</a>
+            <a href="datos-tabla-autonomos.html">Tabla de Autónomos</a>
+            <a href="datos-tabla-ganancias.html">Tabla Ganancias, Deducciones y Retenciones</a>
+            <a href="datos-tabla-bienes-personales.html">Tabla Bienes Personales</a>
+            <a href="datos-intereses-afip.html">Intereses ARCA</a>
+            <a href="datos-regimen-iibb.html">Rég. Simpl. IIBB Santa Fe</a>
+            <a href="datos-leyes-resoluciones.html">Leyes y Resoluciones</a>
+            <a href="datos-glosario.html">Glosario</a>
+          </div>
+        </div>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero page-hero" id="inicio">
+      <div class="hero-inner">
+        <span class="eyebrow">Estudio contable · Desde 1998</span>
+        <h1>Novedades</h1>
+        <p>Novedades, recordatorios y contenidos del estudio, tal como los publicamos en nuestra cuenta de Instagram.</p>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <p class="texto">Estas son las últimas publicaciones de <a href="https://www.instagram.com/estudioquacquarini/" target="_blank" rel="noopener noreferrer">@estudioquacquarini</a>. La página se actualiza sola todos los días: cada publicación nueva en Instagram aparece aquí al día siguiente.</p>
+
+      <div class="publicaciones" id="publicaciones"></div>
+
+      <div class="sin-publicaciones" id="sin-publicaciones" hidden>
+        <p>Por el momento no hay publicaciones para mostrar en esta página. Podés ver todas nuestras novedades directamente en Instagram.</p>
+        <a class="btn-ig" href="https://www.instagram.com/estudioquacquarini/" target="_blank" rel="noopener noreferrer">Ir a @estudioquacquarini</a>
+      </div>
+
+      <div class="seguinos">
+        <p>¿Querés enterarte primero? Seguinos en Instagram.</p>
+        <a class="btn-ig" href="https://www.instagram.com/estudioquacquarini/" target="_blank" rel="noopener noreferrer">Seguir a @estudioquacquarini</a>
+      </div>
+      <p class="nota-tabla" id="actualizado"></p>
+      <p class="aviso">Las publicaciones son informativas. Para analizar tu caso particular, <a href="index.html#contacto">consultanos</a>.</p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="img/logo.png" alt="" width="48" height="48" loading="lazy" decoding="async">
+        <div><strong>Estudio José A. Quacquarini y Asoc.</strong><span>Trayectoria profesional desde 1998</span></div>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Inicio</a><a href="estudio.html">El Estudio</a><a href="servicios.html">Servicios</a><a href="contacto.html">Contacto</a>
+      </div>
+      <div class="copyright">© <span id="year">2026</span> Estudio José A. Quacquarini y Asoc.</div>
+    </div>
+  </footer>
+
+  <a class="back-to-top" id="back-to-top" href="#inicio" aria-label="Volver arriba">↑</a>
+
+  <script>
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('#main-nav');
+    toggle.addEventListener('click', () => {
+      const opened = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(opened));
+    });
+    nav.querySelectorAll('a:not(.nav-dropdown-trigger):not(.nav-submenu-trigger)').forEach(link => link.addEventListener('click', () => {
+      nav.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }));
+    const dropdowns = [
+      document.querySelector('#estudio-nav-dropdown'),
+      document.querySelector('#servicios-nav-dropdown'),
+      document.querySelector('#datos-nav-dropdown')
+    ];
+    dropdowns.forEach((dropdown) => {
+      const trigger = dropdown.querySelector('.nav-dropdown-trigger');
+      trigger.addEventListener('click', (event) => {
+        // En pantallas táctiles, el primer toque abre el menú; el siguiente sigue el enlace principal.
+        if (window.matchMedia('(max-width: 900px)').matches && !dropdown.classList.contains('open')) {
+          event.preventDefault();
+          dropdown.classList.add('open');
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+    document.addEventListener('click', (event) => {
+      dropdowns.forEach((dropdown) => {
+        if (!dropdown.contains(event.target)) {
+          dropdown.classList.remove('open');
+          dropdown.querySelector('.nav-dropdown-trigger').setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+    document.querySelectorAll('.nav-submenu').forEach((submenu) => {
+      const trigger = submenu.querySelector('.nav-submenu-trigger');
+      trigger.addEventListener('click', (event) => {
+        // En pantallas táctiles, el primer toque abre el submenú; el siguiente sigue el enlace.
+        if (window.matchMedia('(max-width: 900px)').matches && !submenu.classList.contains('open')) {
+          event.preventDefault();
+          submenu.classList.add('open');
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+    document.querySelector('#year').textContent = new Date().getFullYear();
+    const phoneTrigger = document.querySelector('.phone-trigger');
+    const phoneDropdown = document.querySelector('#phone-dropdown');
+    phoneTrigger.addEventListener('click', (event) => {
+      event.stopPropagation();
+      const opening = phoneDropdown.hidden;
+      phoneDropdown.hidden = !opening;
+      phoneTrigger.setAttribute('aria-expanded', String(opening));
+    });
+    document.addEventListener('click', (event) => {
+      if (!event.target.closest('.phone-menu')) {
+        phoneDropdown.hidden = true;
+        phoneTrigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !phoneDropdown.hidden) {
+        phoneDropdown.hidden = true;
+        phoneTrigger.setAttribute('aria-expanded', 'false');
+        phoneTrigger.focus();
+      }
+    });
+    const backToTop = document.querySelector('#back-to-top');
+    window.addEventListener('scroll', () => backToTop.classList.toggle('show', window.scrollY > 300));
+  </script>
+  <script src="datos/instagram.js"></script>
+  <script>
+    // Arma una tarjeta por cada publicación de datos/instagram.js, que genera todos los días
+    // scripts/actualizar-instagram.ps1 a partir de la cuenta del estudio.
+    (function () {
+      const ig = (window.DATOS || {}).instagram || {};
+      const publicaciones = ig.publicaciones || [];
+      const lista = document.querySelector('#publicaciones');
+      const tipos = { VIDEO: 'Video', CAROUSEL_ALBUM: 'Varias fotos' };
+      if (!publicaciones.length) {
+        document.querySelector('#sin-publicaciones').hidden = false;
+        return;
+      }
+      publicaciones.forEach((p) => {
+        const tarjeta = document.createElement('article');
+        tarjeta.className = 'publicacion';
+
+        const foto = document.createElement('a');
+        foto.className = 'foto';
+        foto.href = p.link;
+        foto.target = '_blank';
+        foto.rel = 'noopener noreferrer';
+        const img = document.createElement('img');
+        img.src = p.imagen;
+        img.alt = 'Publicación del estudio en Instagram';
+        img.loading = 'lazy';
+        foto.appendChild(img);
+        if (tipos[p.tipo]) {
+          const tipo = document.createElement('span');
+          tipo.className = 'tipo';
+          tipo.textContent = tipos[p.tipo];
+          foto.appendChild(tipo);
+        }
+
+        const cuerpo = document.createElement('div');
+        cuerpo.className = 'cuerpo';
+        const fecha = document.createElement('span');
+        fecha.className = 'fecha';
+        fecha.textContent = new Date(p.fecha).toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' });
+        const texto = document.createElement('p');
+        // Se quitan los hashtags que suelen ir al final del texto.
+        texto.textContent = (p.texto || '').replace(/(\s*#[\p{L}\p{N}_]+)+\s*$/u, '').trim();
+        const ver = document.createElement('a');
+        ver.className = 'btn-ig';
+        ver.href = p.link;
+        ver.target = '_blank';
+        ver.rel = 'noopener noreferrer';
+        ver.textContent = 'Ver en Instagram';
+        cuerpo.append(fecha, texto, ver);
+
+        tarjeta.append(foto, cuerpo);
+        lista.appendChild(tarjeta);
+      });
+      if (ig.actualizado) {
+        document.querySelector('#actualizado').textContent = 'Actualizado el ' + new Date(ig.actualizado).toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' }) + '.';
+      }
+    })();
+  </script>
+</body>
+</html>

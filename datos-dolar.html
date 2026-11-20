@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Cotización del dólar oficial y blue al cierre de cada mes, variaciones interanuales y brecha. Estudio José A. Quacquarini y Asoc.">
+  <link rel="canonical" href="https://estudioquacquarini.com.ar/datos-dolar.html">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Estudio José A. Quacquarini y Asoc.">
+  <meta property="og:title" content="Cotización del dólar | Estudio José A. Quacquarini y Asoc.">
+  <meta property="og:description" content="Cotización del dólar oficial y blue al cierre de cada mes, variaciones interanuales y brecha. Estudio José A. Quacquarini y Asoc.">
+  <meta property="og:url" content="https://estudioquacquarini.com.ar/datos-dolar.html">
+  <meta property="og:image" content="https://estudioquacquarini.com.ar/img/logo.png">
+  <meta property="og:image:alt" content="Logo del Estudio José A. Quacquarini y Asoc.">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" type="image/png" href="img/logo.png">
+  <title>Cotización del dólar | Estudio José A. Quacquarini y Asoc.</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="css/estilos.css">
+  <script src="js/tema.js"></script>
+  <style>
+
+    /* Página Cotización del dólar */
+    .page-hero { min-height: 300px; }
+    .page-hero .hero-inner { padding: 60px 22px; }
+    .nav-dropdown > .nav-dropdown-trigger[aria-current="page"] { color: var(--olive); }
+    .wrap { max-width:var(--max); margin:auto; padding:50px 22px 10px; }
+    .wrap h2 { font:500 1.9rem Georgia,serif; margin:0 0 18px; }
+    .wrap a { color:var(--olive-dark); }
+    h3.sub { font-size:1rem; text-align:center; margin:30px 0 8px; color:var(--ink); }
+    .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; }
+    .card { border:1px solid var(--line); border-top:3px solid var(--gold); padding:16px 18px; background:#fff; }
+    .card h4 { margin:0 0 8px; font-family:Georgia,serif; color:var(--olive-dark); font-size:1.1rem; }
+    .row { display:flex; justify-content:space-between; color:var(--muted); }
+    .row strong { color:var(--ink); }
+    .resumen { background:var(--cream); border-left:4px solid var(--gold); padding:20px 24px; }
+    .resumen h3 { margin:0 0 8px; text-transform:uppercase; font-size:1rem; }
+    .resumen ul { margin:12px 0 0; padding-left:20px; }
+    .tabla-wrap { overflow-x:auto; border:1px solid var(--line); margin-bottom:8px; }
+    table { border-collapse:collapse; width:100%; min-width:950px; font-size:.86rem; }
+    th { background:#efeddc; color:var(--olive-dark); text-align:left; padding:10px; font-size:.8rem; }
+    td { padding:9px 10px; border-top:1px solid var(--line); white-space:nowrap; }
+    tbody tr:nth-child(even) td { background:#fbfaf5; }
+    td.anio, td.var { font-weight:bold; }
+    .fuente { font-size:.8rem; color:var(--muted); margin:0 0 36px; }
+    .chart-box { border:1px solid var(--line); padding:14px; height:420px; position:relative; margin-bottom:10px; }
+    .aviso { font-size:.82rem; color:var(--muted); }
+    main { padding-bottom:40px; }
+    .back-to-top { position: fixed; right: 26px; bottom: 26px; z-index: 30; width: 45px; height: 45px; display: grid; place-items: center; border-radius: 3px; background: var(--olive-dark); color: #fff; font-size: 1.2rem; text-decoration: none; opacity: 0; visibility: hidden; transition: .2s; }
+    .back-to-top.show { opacity: 1; visibility: visible; }
+    .back-to-top:hover { background: var(--olive); }
+    @media (max-width: 600px) {
+      .page-hero { min-height: 240px; }
+      .page-hero .hero-inner { padding: 45px 20px; }
+      .chart-box { height:320px; }
+      .back-to-top { right: 16px; bottom: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="topbar-info">
+        <strong>Estudio Contable José A. Quacquarini y Asoc.</strong>
+      </div>
+      <div class="topbar-icons" aria-label="Datos de contacto">
+        <div class="phone-menu">
+          <button class="phone-trigger" type="button" aria-label="Elegir un teléfono" aria-expanded="false" aria-controls="phone-dropdown">
+            <img src="img/icono-telefono.png" alt="Teléfono" title="Elegir teléfono para WhatsApp">
+          </button>
+          <div class="phone-dropdown" id="phone-dropdown" hidden>
+            <span class="phone-dropdown-title">Contactanos por WhatsApp</span>
+            <a href="https://wa.me/5493464697225" target="_blank" rel="noopener noreferrer">+54 9 3464 69-7225 <small>(Estudio Pujato)</small></a>
+            <a href="https://wa.me/543464553622" target="_blank" rel="noopener noreferrer">+54 3464 55 3622 <small>(Estudio Rosario)</small></a>
+          </div>
+        </div>
+        <a class="email-link" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=contacto@estudioquacquarini.com.ar" target="_blank" rel="noopener noreferrer" aria-label="Escribir un correo al estudio">
+                  <img class="email-icon" src="img/icono-correo.png" alt="Correo electrónico" title="Correo electrónico">
+        </a>
+        <a class="instagram-link" href="https://www.instagram.com/estudioquacquarini?exln=Z20ycTY2a3ZybGp0" target="_blank" rel="noopener noreferrer" aria-label="Visitar Instagram del estudio" title="Instagram del estudio">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+            <circle cx="17.5" cy="6.7" r="1.2" fill="currentColor"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <header>
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="Inicio - Estudio José A. Quacquarini y Asociados">
+        <img src="img/logo.png" width="67" height="67" alt="Logo del Estudio José A. Quacquarini y Asociados">
+        <span class="brand-name">
+          <strong>Estudio José A. Quacquarini y Asoc.</strong>
+          <span>Estudio Contable</span>
+        </span>
+      </a>
+      <button class="menu-toggle" aria-expanded="false" aria-controls="main-nav">☰ Menú</button>
+      <nav id="main-nav" aria-label="Navegación principal">
+        <a href="index.html">Inicio</a>
+        <div class="nav-dropdown" id="estudio-nav-dropdown">
+          <a class="nav-dropdown-trigger" href="estudio.html" aria-haspopup="true" aria-expanded="false">El Estudio <span aria-hidden="true"></span></a>
+          <div class="nav-dropdown-menu" aria-label="Secciones de El Estudio">
+            <a href="estudio.html">El Estudio</a>
+            <a href="estudio-opcion-2.html">¿Qué nos diferencia?</a>
+            <a href="documentos/folleto-quacquarini.pdf" target="_blank" rel="noopener noreferrer">Folleto Institucional</a>
+            <a href="estudio-opcion-4.html">Unite a Estudio Contable José A. Quacquarini y Asoc.</a>
+            <a href="novedades.html">Novedades</a>
+          </div>
+        </div>
+        <div class="nav-dropdown" id="servicios-nav-dropdown">
+          <a class="nav-dropdown-trigger" href="servicios.html" aria-haspopup="true" aria-expanded="false">Servicios <span aria-hidden="true"></span></a>
+          <div class="nav-dropdown-menu" aria-label="Opciones de Servicios">
+            <a href="servicios.html">Servicios</a>
+            <a href="servicios-opcion-2.html">¿Necesitás un crédito para tu empresa?</a>
+            <a href="servicios-opcion-3.html">¿Por qué contratarnos?</a>
+          </div>
+        </div>
+        <a href="novedades.html">Novedades</a>
+        <div class="nav-dropdown" id="datos-nav-dropdown">
+          <a class="nav-dropdown-trigger" href="datos-utiles.html" aria-current="page" aria-haspopup="true" aria-expanded="false">Datos Útiles <span aria-hidden="true"></span></a>
+          <div class="nav-dropdown-menu" aria-label="Opciones de Datos Útiles">
+            <a href="datos-utiles.html">Datos Útiles</a>
+            <div class="nav-submenu">
+              <a class="nav-submenu-trigger" role="button" tabindex="0" style="cursor:pointer" aria-haspopup="true" aria-expanded="false">Indicadores económicos</a>
+              <div class="nav-flyout" aria-label="Indicadores económicos">
+                <a href="datos-inflacion.html">Inflación</a>
+                <a href="datos-dolar.html">Cotización del dólar</a>
+                <a href="datos-salarios-ripte.html">Índice de salarios + Índice RIPTE</a>
+                <a href="datos-salario-minimo.html">Salario mínimo, vital y móvil</a>
+                <a href="datos-comparacion-indices.html">Comparación Índices</a>
+              </div>
+            </div>
+            <div class="nav-submenu">
+              <a class="nav-submenu-trigger" role="button" tabindex="0" style="cursor:pointer" aria-haspopup="true" aria-expanded="false">Vencimientos</a>
+              <div class="nav-flyout" aria-label="Vencimientos">
+                <a href="vencimientos-autonomos.html">Autónomos</a>
+                <a href="vencimientos-monotributo.html">Monotributo</a>
+                <a href="vencimientos-iva.html">IVA | Libro IVA Digital</a>
+                <a href="vencimientos-convenio-multilateral.html">Convenio Multilateral | Ingresos Brutos</a>
+                <a href="vencimientos-servicio-domestico.html">Cargas Sociales | Servicio Doméstico</a>
+                <a href="vencimientos-relacion-dependencia.html">Cargas Sociales | Relación de Dependencia</a>
+                <a href="vencimientos-ganancias-humanas.html">Ganancias | Personas Humanas</a>
+                <a href="vencimientos-ganancias-juridicas.html">Ganancias | Personas Jurídicas</a>
+                <a href="vencimientos-retenciones-sicore.html">Retenciones | SICORE</a>
+              </div>
+            </div>
+            <a href="datos-feriados.html">Feriados</a>
+            <a href="datos-categorias-monotributo.html">Categorías de Monotributo</a>
+            <a href="datos-tabla-autonomos.html">Tabla de Autónomos</a>
+            <a href="datos-tabla-ganancias.html">Tabla Ganancias, Deducciones y Retenciones</a>
+            <a href="datos-tabla-bienes-personales.html">Tabla Bienes Personales</a>
+            <a href="datos-intereses-afip.html">Intereses ARCA</a>
+            <a href="datos-regimen-iibb.html">Rég. Simpl. IIBB Santa Fe</a>
+            <a href="datos-leyes-resoluciones.html">Leyes y Resoluciones</a>
+            <a href="datos-glosario.html">Glosario</a>
+          </div>
+        </div>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero page-hero" id="inicio">
+      <div class="hero-inner">
+        <span class="eyebrow">Estudio contable · Desde 1998</span>
+        <h1>Cotización del dólar</h1>
+        <p>Cotizaciones del dólar actualizadas automáticamente.</p>
+      </div>
+    </section>
+
+    <!-- Cotización del día -->
+    <div class="wrap">
+      <h2>Cotización del día</h2>
+      <div class="cards" id="cards"><div class="card">Cargando…</div></div>
+      <p class="aviso" id="cards-nota"></p>
+    </div>
+
+    <!-- Cierres mensuales -->
+    <div class="wrap">
+      <h2>Dólar al cierre de cada mes</h2>
+      <div class="resumen" id="resumen">Cargando datos históricos…</div>
+
+      <h3 class="sub">Cotización del dólar oficial compra al cierre de cada mes</h3>
+      <div class="tabla-wrap"><table>
+        <thead><tr><th></th><th>Variación anual<br>(según último mes del año)</th><th>ENE</th><th>FEB</th><th>MAR</th><th>ABR</th><th>MAY</th><th>JUN</th><th>JUL</th><th>AGO</th><th>SEP</th><th>OCT</th><th>NOV</th><th>DIC</th></tr></thead>
+        <tbody id="tabla-oficial"></tbody>
+      </table></div>
+      <p class="fuente">Fuente: <a href="https://argentinadatos.com" target="_blank" rel="noopener">ArgentinaDatos</a> (cotización oficial).</p>
+
+      <h3 class="sub">Cotización del dólar blue compra al cierre de cada mes</h3>
+      <div class="tabla-wrap"><table>
+        <thead><tr><th></th><th>Variación anual<br>(según último mes del año)</th><th>ENE</th><th>FEB</th><th>MAR</th><th>ABR</th><th>MAY</th><th>JUN</th><th>JUL</th><th>AGO</th><th>SEP</th><th>OCT</th><th>NOV</th><th>DIC</th></tr></thead>
+        <tbody id="tabla-blue"></tbody>
+      </table></div>
+      <p class="fuente">Fuente: <a href="https://argentinadatos.com" target="_blank" rel="noopener">ArgentinaDatos</a> (cotización informal).</p>
+
+      <h3 class="sub">Variación interanual del dólar compra oficial e informal al cierre de cada mes</h3>
+      <div class="chart-box"><canvas id="g-interanual"></canvas></div>
+
+      <h3 class="sub">Cotización histórica del dólar compra al cierre de cada mes</h3>
+      <div class="chart-box"><canvas id="g-historico"></canvas></div>
+
+      <h3 class="sub">Cotización del dólar compra al cierre de cada mes · últimos 3 años</h3>
+      <div class="chart-box"><canvas id="g-3anios"></canvas></div>
+
+      <h3 class="sub">Brecha entre el dólar compra oficial e informal al cierre de cada mes</h3>
+      <div class="chart-box"><canvas id="g-brecha"></canvas></div>
+      <p class="fuente">Fuente: <a href="https://argentinadatos.com" target="_blank" rel="noopener">ArgentinaDatos</a>. Elaboración propia.</p>
+
+      <p class="aviso">Valores de referencia con fines informativos. Para valuaciones contables e impositivas utilizar las cotizaciones oficiales del BNA o BCRA según corresponda.</p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="img/logo.png" alt="" width="48" height="48" loading="lazy" decoding="async">
+        <div><strong>Estudio José A. Quacquarini y Asoc.</strong><span>Trayectoria profesional desde 1998</span></div>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Inicio</a><a href="estudio.html">El Estudio</a><a href="servicios.html">Servicios</a><a href="contacto.html">Contacto</a>
+      </div>
+      <div class="copyright">© <span id="year">2026</span> Estudio José A. Quacquarini y Asoc.</div>
+    </div>
+  </footer>
+
+  <a class="back-to-top" id="back-to-top" href="#inicio" aria-label="Volver arriba">↑</a>
+
+  <script>
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('#main-nav');
+    toggle.addEventListener('click', () => {
+      const opened = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(opened));
+    });
+    nav.querySelectorAll('a:not(.nav-dropdown-trigger):not(.nav-submenu-trigger)').forEach(link => link.addEventListener('click', () => {
+      nav.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }));
+    const dropdowns = [
+      document.querySelector('#estudio-nav-dropdown'),
+      document.querySelector('#servicios-nav-dropdown'),
+      document.querySelector('#datos-nav-dropdown')
+    ];
+    dropdowns.forEach((dropdown) => {
+      const trigger = dropdown.querySelector('.nav-dropdown-trigger');
+      trigger.addEventListener('click', (event) => {
+        // En pantallas táctiles, el primer toque abre el menú; el siguiente sigue el enlace principal.
+        if (window.matchMedia('(max-width: 900px)').matches && !dropdown.classList.contains('open')) {
+          event.preventDefault();
+          dropdown.classList.add('open');
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+    document.addEventListener('click', (event) => {
+      dropdowns.forEach((dropdown) => {
+        if (!dropdown.contains(event.target)) {
+          dropdown.classList.remove('open');
+          dropdown.querySelector('.nav-dropdown-trigger').setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+    document.querySelectorAll('.nav-submenu').forEach((submenu) => {
+      const trigger = submenu.querySelector('.nav-submenu-trigger');
+      trigger.addEventListener('click', (event) => {
+        // En pantallas táctiles, el primer toque abre el submenú; el siguiente sigue el enlace.
+        if (window.matchMedia('(max-width: 900px)').matches && !submenu.classList.contains('open')) {
+          event.preventDefault();
+          submenu.classList.add('open');
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+    document.querySelector('#year').textContent = new Date().getFullYear();
+    const phoneTrigger = document.querySelector('.phone-trigger');
+    const phoneDropdown = document.querySelector('#phone-dropdown');
+    phoneTrigger.addEventListener('click', (event) => {
+      event.stopPropagation();
+      const opening = phoneDropdown.hidden;
+      phoneDropdown.hidden = !opening;
+      phoneTrigger.setAttribute('aria-expanded', String(opening));
+    });
+    document.addEventListener('click', (event) => {
+      if (!event.target.closest('.phone-menu')) {
+        phoneDropdown.hidden = true;
+        phoneTrigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !phoneDropdown.hidden) {
+        phoneDropdown.hidden = true;
+        phoneTrigger.setAttribute('aria-expanded', 'false');
+        phoneTrigger.focus();
+      }
+    });
+    const backToTop = document.querySelector('#back-to-top');
+    window.addEventListener('scroll', () => backToTop.classList.toggle('show', window.scrollY > 300));
+  </script>
+  <script>
+    const MESES = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+    const MESES_L = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+    const C_OFI = '#8f8d3c', C_BLUE = '#3f6e8c';
+    const pesos = v => v == null ? '' : '$' + v.toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    const pct = v => v == null ? '' : (v * 100).toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '%';
+    const restarMeses = (k, n) => {
+      let y = +k.slice(0, 4), m = +k.slice(5, 7) - n;
+      while (m < 1) { m += 12; y--; }
+      return `${y}-${String(m).padStart(2, '0')}`;
+    };
+    const etiqueta = k => MESES[+k.slice(5, 7) - 1] + '-' + k.slice(2, 4);
+
+    /* ---------- Cotización del día (DolarApi) ---------- */
+    const TIPOS = { oficial: 'Oficial', blue: 'Blue', bolsa: 'MEP (Bolsa)', contadoconliqui: 'Contado con liqui', mayorista: 'Mayorista', tarjeta: 'Tarjeta' };
+    fetch('https://dolarapi.com/v1/dolares').then(r => r.json()).then(datos => {
+      const cont = document.getElementById('cards');
+      cont.innerHTML = datos.filter(d => TIPOS[d.casa]).map(d => `
+        <div class="card"><h4>${TIPOS[d.casa]}</h4>
+          <div class="row"><span>Compra</span><strong>${d.compra == null ? '—' : pesos(d.compra)}</strong></div>
+          <div class="row"><span>Venta</span><strong>${pesos(d.venta)}</strong></div>
+        </div>`).join('');
+      document.getElementById('cards-nota').innerHTML =
+        'Última actualización: ' + new Date(datos[0].fechaActualizacion).toLocaleString('es-AR') + '. Fuente: <a href="https://dolarapi.com" target="_blank" rel="noopener">DolarApi.com</a>.';
+    }).catch(() => { document.getElementById('cards').innerHTML = '<div class="card">No se pudo cargar la cotización del día.</div>'; });
+
+    /* ---------- Histórico: cierre de cada mes (ArgentinaDatos) ---------- */
+    async function cierresMensuales(casa) {
+      const r = await fetch(`https://api.argentinadatos.com/v1/cotizaciones/dolares/${casa}`);
+      const datos = await r.json();
+      const hoy = new Date();
+      const mesEnCurso = `${hoy.getFullYear()}-${String(hoy.getMonth() + 1).padStart(2, '0')}`;
+      datos.sort((a, b) => a.fecha.localeCompare(b.fecha));
+      const cierres = {};
+      for (const d of datos) {
+        const k = d.fecha.slice(0, 7);
+        if (k < '2011-01' || k >= mesEnCurso || d.compra == null) continue; // solo meses ya cerrados
+        cierres[k] = d.compra; // queda el último día hábil del mes
+      }
+      return cierres;
+    }
+    const interanual = (c, k) => (c[k] && c[restarMeses(k, 12)]) ? c[k] / c[restarMeses(k, 12)] - 1 : null;
+
+    function armarTabla(c, idTbody) {
+      const anios = [...new Set(Object.keys(c).map(k => k.slice(0, 4)))].sort().reverse();
+      document.getElementById(idTbody).innerHTML = anios.map(a => {
+        const delAnio = Object.keys(c).filter(k => k.startsWith(a)).sort();
+        const variacion = interanual(c, delAnio[delAnio.length - 1]);
+        const celdas = MESES.map((_, i) => `<td>${pesos(c[`${a}-${String(i + 1).padStart(2, '0')}`])}</td>`).join('');
+        return `<tr><td class="anio">${a}</td><td class="var">${pct(variacion)}</td>${celdas}</tr>`;
+      }).join('');
+    }
+
+    function grafico(id, tipo, labels, series, esPorcentaje) {
+      new Chart(document.getElementById(id), {
+        type: tipo,
+        data: { labels, datasets: series.map(s => ({
+          label: s.nombre, data: s.datos, borderColor: s.color, backgroundColor: s.color,
+          borderWidth: tipo === 'line' ? 2 : 0, pointRadius: 0, tension: .15, spanGaps: true
+        })) },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          interaction: { mode: 'index', intersect: false },
+          plugins: {
+            legend: { position: 'bottom' },
+            tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: ${esPorcentaje ? pct(ctx.raw) : pesos(ctx.raw)}` } }
+          },
+          scales: {
+            x: { ticks: { maxRotation: 45, autoSkip: true, maxTicksLimit: 24 } },
+            y: { ticks: { callback: v => esPorcentaje ? Math.round(v * 100) + '%' : '$' + v.toLocaleString('es-AR') } }
+          }
+        }
+      });
+    }
+
+    Promise.all([cierresMensuales('oficial'), cierresMensuales('blue')]).then(([ofi, blue]) => {
+      const meses = Object.keys(ofi).sort();
+      const ult = meses[meses.length - 1], ant = restarMeses(ult, 1);
+      const nombreMes = MESES_L[+ult.slice(5, 7) - 1];
+      const vOfiMes = ofi[ult] / ofi[ant] - 1, vBlueMes = blue[ult] / blue[ant] - 1;
+      const vOfiAnual = interanual(ofi, ult), vBlueAnual = interanual(blue, ult);
+      const brecha = blue[ult] / ofi[ult] - 1;
+
+      document.getElementById('resumen').innerHTML = `
+        <h3>${nombreMes} ${ult.slice(0, 4)}</h3>
+        El dólar oficial compra cerró ${nombreMes} en <strong>${pesos(ofi[ult])}</strong>
+        (${pct(vOfiMes)} respecto del mes anterior y ${pct(vOfiAnual)} interanual), mientras que el dólar blue compra
+        cerró en <strong>${pesos(blue[ult])}</strong> (${pct(vBlueMes)} respecto del mes anterior y ${pct(vBlueAnual)} interanual).
+        <ul>
+          <li>Variación interanual del oficial: <strong>${pct(vOfiAnual)}</strong></li>
+          <li>Variación interanual del blue: <strong>${pct(vBlueAnual)}</strong></li>
+          <li>Brecha entre ambos: <strong>${pct(brecha)}</strong></li>
+        </ul>`;
+
+      armarTabla(ofi, 'tabla-oficial');
+      armarTabla(blue, 'tabla-blue');
+
+      const labels = meses.map(etiqueta);
+      grafico('g-interanual', 'line', labels, [
+        { nombre: 'Dólar oficial · var. interanual', datos: meses.map(k => interanual(ofi, k)), color: C_OFI },
+        { nombre: 'Dólar blue · var. interanual', datos: meses.map(k => interanual(blue, k)), color: C_BLUE }
+      ], true);
+      grafico('g-historico', 'line', labels, [
+        { nombre: 'Dólar oficial compra', datos: meses.map(k => ofi[k]), color: C_OFI },
+        { nombre: 'Dólar blue compra', datos: meses.map(k => blue[k] ?? null), color: C_BLUE }
+      ], false);
+      const ult36 = meses.slice(-36);
+      grafico('g-3anios', 'line', ult36.map(etiqueta), [
+        { nombre: 'Dólar oficial compra', datos: ult36.map(k => ofi[k]), color: C_OFI },
+        { nombre: 'Dólar blue compra', datos: ult36.map(k => blue[k] ?? null), color: C_BLUE }
+      ], false);
+      grafico('g-brecha', 'bar', labels, [
+        { nombre: 'Brecha oficial vs. blue', datos: meses.map(k => blue[k] ? blue[k] / ofi[k] - 1 : null), color: C_BLUE }
+      ], true);
+    }).catch(() => {
+      document.getElementById('resumen').textContent = 'No se pudieron cargar los datos históricos en este momento. Intentá nuevamente más tarde.';
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Glosario de términos contables, impositivos y económicos: ARCA, CUIT, IVA, crédito y débito fiscal, monotributo, anticipos y más. Estudio José A. Quacquarini y Asoc.">
+  <link rel="canonical" href="https://estudioquacquarini.com.ar/datos-glosario.html">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Estudio José A. Quacquarini y Asoc.">
+  <meta property="og:title" content="Glosario | Estudio José A. Quacquarini y Asoc.">
+  <meta property="og:description" content="Glosario de términos contables, impositivos y económicos: ARCA, CUIT, IVA, crédito y débito fiscal, monotributo, anticipos y más. Estudio José A. Quacquarini y Asoc.">
+  <meta property="og:url" content="https://estudioquacquarini.com.ar/datos-glosario.html">
+  <meta property="og:image" content="https://estudioquacquarini.com.ar/img/logo.png">
+  <meta property="og:image:alt" content="Logo del Estudio José A. Quacquarini y Asoc.">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" type="image/png" href="img/logo.png">
+  <title>Glosario | Estudio José A. Quacquarini y Asoc.</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <script src="js/tema.js"></script>
+  <style>
+
+    /* Página Glosario */
+    .buscador { display:block; max-width:520px; margin:0 0 18px; }
+    .buscador span { display:block; font-weight:bold; font-size:.9rem; margin-bottom:6px; }
+    .buscador input { width:100%; padding:11px 14px; border:1px solid var(--line); border-radius:3px; font:inherit; background:var(--cream); }
+    .buscador input:focus { outline:2px solid var(--gold); background:#fff; }
+    .letras { display:flex; flex-wrap:wrap; gap:6px; margin:0 0 26px; }
+    .letras a { display:inline-grid; place-items:center; min-width:36px; height:36px; padding:0 8px; border:1px solid var(--line); border-radius:3px; text-decoration:none; font-weight:bold; color:var(--olive-dark); }
+    .letras a:hover, .letras a:focus-visible { background:var(--olive-dark); color:#fff; }
+    .letras a.abrev { font-weight:normal; }
+    .grupo { margin-bottom:10px; }
+    .letra, .titulo-seccion { font:500 1.6rem Georgia,serif; color:var(--olive-dark); border-bottom:2px solid var(--gold); padding-bottom:4px; margin:26px 0 8px; scroll-margin-top:120px; }
+    .termino { padding:12px 0; border-bottom:1px solid var(--line); scroll-margin-top:120px; }
+    .termino dt { font-weight:bold; margin-bottom:3px; }
+    .termino dd { margin:0; color:var(--muted); }
+    .termino:target { background:#f1eed6; }
+    .abreviaturas .termino { display:grid; grid-template-columns:140px 1fr; gap:12px; padding:8px 0; }
+    .abreviaturas .termino dt { margin:0; }
+    .sin-resultados { color:var(--muted); font-style:italic; }
+    @media (max-width: 600px) { .abreviaturas .termino { grid-template-columns:90px 1fr; } }
+    .tabla-venc table { min-width:560px; }
+    .tabla-venc th[colspan] { text-align:center; }
+    tbody tr.pasado td { color:var(--muted); }
+    tbody tr.proximo td { background:#f1eed6; font-weight:bold; }
+    .mas-venc { columns:2; column-gap:40px; padding-left:20px; margin:0 0 18px; }
+    .mas-venc li { margin:4px 0; break-inside:avoid; }
+    .consulta { font-weight:bold; }
+    @media (max-width: 600px) { .mas-venc { columns:1; } }
+    .page-hero { min-height: 300px; }
+    .page-hero .hero-inner { padding: 60px 22px; }
+    .nav-dropdown > .nav-dropdown-trigger[aria-current="page"] { color: var(--olive); }
+    .wrap { max-width:var(--max); margin:auto; padding:50px 22px 10px; }
+    .wrap h2 { font:500 1.9rem Georgia,serif; margin:0 0 18px; }
+    .wrap a { color:var(--olive-dark); }
+    h3.sub { font-size:1rem; text-align:center; margin:30px 0 8px; color:var(--ink); }
+    .resumen { background:var(--cream); border-left:4px solid var(--gold); padding:20px 24px; }
+    .resumen h3 { margin:0 0 8px; text-transform:uppercase; font-size:1rem; }
+    .resumen p { margin:0; }
+    .tabla-wrap { overflow-x:auto; border:1px solid var(--line); margin:12px 0 8px; }
+    table { border-collapse:collapse; width:100%; min-width:950px; font-size:.86rem; }
+    th { background:#efeddc; color:var(--olive-dark); text-align:left; padding:10px; font-size:.8rem; }
+    td { padding:9px 10px; border-top:1px solid var(--line); white-space:nowrap; font-variant-numeric:tabular-nums; }
+    tbody tr:nth-child(even) td { background:#fbfaf5; }
+    td.anio, td.var { font-weight:bold; }
+    td.sd { color:var(--muted); }
+    .fuente { font-size:.8rem; color:var(--muted); margin:0 0 36px; }
+    .chart-box { border:1px solid var(--line); padding:14px; height:420px; position:relative; margin-bottom:10px; }
+    .aviso { font-size:.82rem; color:var(--muted); }
+    .nota-tabla { font-size:.8rem; color:var(--muted); margin:0 0 8px; }
+    .sin-datos { display:grid; place-items:center; height:100%; text-align:center; color:var(--muted); }
+    main { padding-bottom:40px; }
+    .back-to-top { position: fixed; right: 26px; bottom: 26px; z-index: 30; width: 45px; height: 45px; display: grid; place-items: center; border-radius: 3px; background: var(--olive-dark); color: #fff; font-size: 1.2rem; text-decoration: none; opacity: 0; visibility: hidden; transition: .2s; }
+    .back-to-top.show { opacity: 1; visibility: visible; }
+    .back-to-top:hover { background: var(--olive); }
+    @media (max-width: 600px) {
+      .page-hero { min-height: 240px; }
+      .page-hero .hero-inner { padding: 45px 20px; }
+      .chart-box { height:320px; }
+      .back-to-top { right: 16px; bottom: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="topbar-info">
+        <strong>Estudio Contable José A. Quacquarini y Asoc.</strong>
+      </div>
+      <div class="topbar-icons" aria-label="Datos de contacto">
+        <div class="phone-menu">
+          <button class="phone-trigger" type="button" aria-label="Elegir un teléfono" aria-expanded="false" aria-controls="phone-dropdown">
+            <img src="img/icono-telefono.png" alt="Teléfono" title="Elegir teléfono para WhatsApp">
+          </button>
+          <div class="phone-dropdown" id="phone-dropdown" hidden>
+            <span class="phone-dropdown-title">Contactanos por WhatsApp</span>
+            <a href="https://wa.me/5493464697225" target="_blank" rel="noopener noreferrer">+54 9 3464 69-7225 <small>(Estudio Pujato)</small></a>
+            <a href="https://wa.me/543464553622" target="_blank" rel="noopener noreferrer">+54 3464 55 3622 <small>(Estudio Rosario)</small></a>
+          </div>
+        </div>
+        <a class="email-link" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=contacto@estudioquacquarini.com.ar" target="_blank" rel="noopener noreferrer" aria-label="Escribir un correo al estudio">
+                  <img class="email-icon" src="img/icono-correo.png" alt="Correo electrónico" title="Correo electrónico">
+        </a>
+        <a class="instagram-link" href="https://www.instagram.com/estudioquacquarini?exln=Z20ycTY2a3ZybGp0" target="_blank" rel="noopener noreferrer" aria-label="Visitar Instagram del estudio" title="Instagram del estudio">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+            <circle cx="17.5" cy="6.7" r="1.2" fill="currentColor"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <header>
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="Inicio - Estudio José A. Quacquarini y Asociados">
+        <img src="img/logo.png" width="67" height="67" alt="Logo del Estudio José A. Quacquarini y Asociados">
+        <span class="brand-name">
+          <strong>Estudio José A. Quacquarini y Asoc.</strong>
+          <span>Estudio Contable</span>
+        </span>
+      </a>
+      <button class="menu-toggle" aria-expanded="false" aria-controls="main-nav">☰ Menú</button>
+      <nav id="main-nav" aria-label="Navegación principal">
+        <a href="index.html">Inicio</a>
+        <div class="nav-dropdown" id="estudio-nav-dropdown">
+          <a class="nav-dropdown-trigger" href="estudio.html" aria-haspopup="true" aria-expanded="false">El Estudio <span aria-hidden="true"></span></a>
+          <div class="nav-dropdown-menu" aria-label="Secciones de El Estudio">
+            <a href="estudio.html">El Estudio</a>
+            <a href="estudio-opcion-2.html">¿Qué nos diferencia?</a>
+            <a href="documentos/folleto-quacquarini.pdf" target="_blank" rel="noopener noreferrer">Folleto Institucional</a>
+            <a href="estudio-opcion-4.html">Unite a Estudio Contable José A. Quacquarini y Asoc.</a>
+            <a href="novedades.html">Novedades</a>
+          </div>
+        </div>
+        <div class="nav-dropdown" id="servicios-nav-dropdown">
+          <a class="nav-dropdown-trigger" href="servicios.html" aria-haspopup="true" aria-expanded="false">Servicios <span aria-hidden="true"></span></a>
+          <div class="nav-dropdown-menu" aria-label="Opciones de Servicios">
+            <a href="servicios.html">Servicios</a>
+            <a href="servicios-opcion-2.html">¿Necesitás un crédito para tu empresa?</a>
+            <a href="servicios-opcion-3.html">¿Por qué contratarnos?</a>
+          </div>
+        </div>
+        <a href="novedades.html">Novedades</a>
+        <div class="nav-dropdown" id="datos-nav-dropdown">
+          <a class="nav-dropdown-trigger" href="datos-utiles.html" aria-current="page" aria-haspopup="true" aria-expanded="false">Datos Útiles <span aria-hidden="true"></span></a>
+          <div class="nav-dropdown-menu" aria-label="Opciones de Datos Útiles">
+            <a href="datos-utiles.html">Datos Útiles</a>
+            <div class="nav-submenu">
+              <a class="nav-submenu-trigger" role="button" tabindex="0" style="cursor:pointer" aria-haspopup="true" aria-expanded="false">Indicadores económicos</a>
+              <div class="nav-flyout" aria-label="Indicadores económicos">
+                <a href="datos-inflacion.html">Inflación</a>
+                <a href="datos-dolar.html">Cotización del dólar</a>
+                <a href="datos-salarios-ripte.html">Índice de salarios + Índice RIPTE</a>
+                <a href="datos-salario-minimo.html">Salario mínimo, vital y móvil</a>
+                <a href="datos-comparacion-indices.html">Comparación Índices</a>
+              </div>
+            </div>
+            <div class="nav-submenu">
+              <a class="nav-submenu-trigger" role="button" tabindex="0" style="cursor:pointer" aria-haspopup="true" aria-expanded="false">Vencimientos</a>
+              <div class="nav-flyout" aria-label="Vencimientos">
+                <a href="vencimientos-autonomos.html">Autónomos</a>
+                <a href="vencimientos-monotributo.html">Monotributo</a>
+                <a href="vencimientos-iva.html">IVA | Libro IVA Digital</a>
+                <a href="vencimientos-convenio-multilateral.html">Convenio Multilateral | Ingresos Brutos</a>
+                <a href="vencimientos-servicio-domestico.html">Cargas Sociales | Servicio Doméstico</a>
+                <a href="vencimientos-relacion-dependencia.html">Cargas Sociales | Relación de Dependencia</a>
+                <a href="vencimientos-ganancias-humanas.html">Ganancias | Personas Humanas</a>
+                <a href="vencimientos-ganancias-juridicas.html">Ganancias | Personas Jurídicas</a>
+                <a href="vencimientos-retenciones-sicore.html">Retenciones | SICORE</a>
+              </div>
+            </div>
+            <a href="datos-feriados.html">Feriados</a>
+            <a href="datos-categorias-monotributo.html">Categorías de Monotributo</a>
+            <a href="datos-tabla-autonomos.html">Tabla de Autónomos</a>
+            <a href="datos-tabla-ganancias.html">Tabla Ganancias, Deducciones y Retenciones</a>
+            <a href="datos-tabla-bienes-personales.html">Tabla Bienes Personales</a>
+            <a href="datos-intereses-afip.html">Intereses ARCA</a>
+            <a href="datos-regimen-iibb.html">Rég. Simpl. IIBB Santa Fe</a>
+            <a href="datos-leyes-resoluciones.html">Leyes y Resoluciones</a>
+            <a href="datos-glosario.html">Glosario</a>
+          </div>
+        </div>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero page-hero" id="inicio">
+      <div class="hero-inner">
+        <span class="eyebrow">Estudio contable · Desde 1998</span>
+        <h1>Glosario</h1>
+        <p>Términos contables, impositivos y económicos de uso frecuente, explicados en pocas palabras.</p>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <label class="buscador" for="buscar">
+        <span>Buscar un término</span>
+        <input type="search" id="buscar" placeholder="Por ejemplo: crédito fiscal, CUIT, anticipo…" autocomplete="off">
+      </label>
+      <nav class="letras" id="letras" aria-label="Índice alfabético"></nav>
+      <p class="sin-resultados" id="sin-resultados" hidden>No encontramos ningún término con esa búsqueda.</p>
+
+      <div id="terminos"></div>
+
+      <h2 id="abreviaturas" class="titulo-seccion">Abreviaturas</h2>
+      <dl class="abreviaturas" id="lista-abreviaturas"></dl>
+
+      <p class="aviso">Definiciones de referencia, con fines informativos. Para analizar un caso concreto, <a href="index.html#contacto">consultanos</a>.</p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="img/logo.png" alt="" width="48" height="48" loading="lazy" decoding="async">
+        <div><strong>Estudio José A. Quacquarini y Asoc.</strong><span>Trayectoria profesional desde 1998</span></div>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Inicio</a><a href="estudio.html">El Estudio</a><a href="servicios.html">Servicios</a><a href="contacto.html">Contacto</a>
+      </div>
+      <div class="copyright">© <span id="year">2026</span> Estudio José A. Quacquarini y Asoc.</div>
+    </div>
+  </footer>
+
+  <a class="back-to-top" id="back-to-top" href="#inicio" aria-label="Volver arriba">↑</a>
+
+  <script>
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('#main-nav');
+    toggle.addEventListener('click', () => {
+      const opened = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(opened));
+    });
+    nav.querySelectorAll('a:not(.nav-dropdown-trigger):not(.nav-submenu-trigger)').forEach(link => link.addEventListener('click', () => {
+      nav.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }));
+    const dropdowns = [
+      document.querySelector('#estudio-nav-dropdown'),
+      document.querySelector('#servicios-nav-dropdown'),
+      document.querySelector('#datos-nav-dropdown')
+    ];
+    dropdowns.forEach((dropdown) => {
+      const trigger = dropdown.querySelector('.nav-dropdown-trigger');
+      trigger.addEventListener('click', (event) => {
+        // En pantallas táctiles, el primer toque abre el menú; el siguiente sigue el enlace principal.
+        if (window.matchMedia('(max-width: 900px)').matches && !dropdown.classList.contains('open')) {
+          event.preventDefault();
+          dropdown.classList.add('open');
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+    document.addEventListener('click', (event) => {
+      dropdowns.forEach((dropdown) => {
+        if (!dropdown.contains(event.target)) {
+          dropdown.classList.remove('open');
+          dropdown.querySelector('.nav-dropdown-trigger').setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+    document.querySelectorAll('.nav-submenu').forEach((submenu) => {
+      const trigger = submenu.querySelector('.nav-submenu-trigger');
+      trigger.addEventListener('click', (event) => {
+        // En pantallas táctiles, el primer toque abre el submenú; el siguiente sigue el enlace.
+        if (window.matchMedia('(max-width: 900px)').matches && !submenu.classList.contains('open')) {
+          event.preventDefault();
+          submenu.classList.add('open');
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+    document.querySelector('#year').textContent = new Date().getFullYear();
+    const phoneTrigger = document.querySelector('.phone-trigger');
+    const phoneDropdown = document.querySelector('#phone-dropdown');
+    phoneTrigger.addEventListener('click', (event) => {
+      event.stopPropagation();
+      const opening = phoneDropdown.hidden;
+      phoneDropdown.hidden = !opening;
+      phoneTrigger.setAttribute('aria-expanded', String(opening));
+    });
+    document.addEventListener('click', (event) => {
+      if (!event.target.closest('.phone-menu')) {
+        phoneDropdown.hidden = true;
+        phoneTrigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !phoneDropdown.hidden) {
+        phoneDropdown.hidden = true;
+        phoneTrigger.setAttribute('aria-expanded', 'false');
+        phoneTrigger.focus();
+      }
+    });
+    const backToTop = document.querySelector('#back-to-top');
+    window.addEventListener('scroll', () => backToTop.classList.toggle('show', window.scrollY > 300));
+  </script>
+  <script>
+    /* ---------- Términos ----------
+       t: término; d: definición; ver: enlace opcional a una página del sitio. */
+    const TERMINOS = [
+      { t: 'AFIP', d: 'Administración Federal de Ingresos Públicos. Fue el organismo nacional de recaudación hasta octubre de 2024, cuando fue reemplazado por ARCA.', ver: ['#termino-arca', 'Ver ARCA'] },
+      { t: 'Agencia', d: 'Dependencia de ARCA a la que está asignado cada contribuyente según su domicilio fiscal, donde realiza los trámites presenciales.' },
+      { t: 'Agente de percepción', d: 'Persona o empresa designada por el fisco que, al vender o cobrar, suma al precio un importe a cuenta de un impuesto del cliente y luego lo deposita a nombre de este.' },
+      { t: 'Agente de retención', d: 'Persona o empresa designada por el fisco que, al pagar, descuenta una parte del importe a cuenta de un impuesto del beneficiario y la deposita a nombre de este.' },
+      { t: 'Amortización', d: 'Reparto del costo de un bien de uso o de un activo intangible a lo largo de su vida útil, reconociendo en cada ejercicio la parte consumida. En un préstamo, es la devolución gradual del capital.' },
+      { t: 'ANSES', d: 'Administración Nacional de la Seguridad Social. Otorga y paga las prestaciones de la seguridad social: jubilaciones y pensiones, asignaciones familiares, prestación por desempleo, entre otras. También asigna el CUIL.' },
+      { t: 'Anticipo', d: 'Pago a cuenta de un impuesto anual que se hace antes del vencimiento de la declaración jurada. Suele calcularse sobre el impuesto determinado el año anterior.', ver: ['vencimientos-ganancias-humanas.html', 'Ver vencimientos de anticipos'] },
+      { t: 'ARCA', d: 'Agencia de Recaudación y Control Aduanero. Es el organismo nacional que aplica, recauda y fiscaliza los impuestos, los recursos de la seguridad social y los tributos aduaneros. Reemplazó a la AFIP en 2024 y está integrada por la DGI, la DGA y la DGRSS.' },
+      { t: 'Base imponible', d: 'Monto sobre el que se aplica la alícuota de un impuesto para calcular cuánto hay que pagar.' },
+      { t: 'Bienes Personales, impuesto sobre los', d: 'Impuesto nacional anual que grava los bienes de las personas humanas y sucesiones indivisas al 31 de diciembre, cuando su valor supera el mínimo no imponible.', ver: ['datos-tabla-bienes-personales.html', 'Ver tabla de Bienes Personales'] },
+      { t: 'Cargas sociales', d: 'Aportes del trabajador y contribuciones del empleador que se calculan sobre las remuneraciones y financian la seguridad social: jubilación, obra social, PAMI, asignaciones familiares y fondo de empleo, además de la ART.', ver: ['vencimientos-relacion-dependencia.html', 'Ver vencimientos'] },
+      { t: 'Cash flow', d: 'Flujo de fondos: las entradas y salidas de dinero de una empresa o proyecto en un período.' },
+      { t: 'Clave fiscal', d: 'Contraseña personal que otorga ARCA para operar en sus servicios por internet. Tiene distintos niveles de seguridad según los trámites que habilita.' },
+      { t: 'Commodity', d: 'Producto básico y sin diferenciación, como la soja, el trigo, el petróleo o el oro, que se comercia en grandes volúmenes y cotiza en mercados internacionales.' },
+      { t: 'Comprobante', d: 'Documento que respalda una operación: factura, recibo, nota de crédito o de débito, remito, entre otros.' },
+      { t: 'Contribuciones', d: 'En materia laboral, importes a cargo del empleador destinados a la seguridad social, calculados sobre los sueldos de sus trabajadores. Se diferencian de los aportes, que se descuentan del sueldo del trabajador.' },
+      { t: 'Contribuyente', d: 'Persona humana, sucesión indivisa o sociedad obligada a pagar un tributo por realizar la actividad u operación que la ley grava.' },
+      { t: 'Contribuyente potencial', d: 'Quien realiza actividades alcanzadas por un impuesto pero todavía no está inscripto en él.' },
+      { t: 'Crédito fiscal', d: 'En el IVA, el impuesto que se paga en las compras y que se descuenta del débito fiscal para calcular el saldo a pagar.' },
+      { t: 'CUIL', d: 'Código Único de Identificación Laboral. Lo asigna ANSES a los trabajadores en relación de dependencia y a quienes reciben prestaciones de la seguridad social.' },
+      { t: 'CUIT', d: 'Clave Única de Identificación Tributaria. La asigna ARCA e identifica a cada contribuyente. Su último dígito define muchas fechas de vencimiento.' },
+      { t: 'Débito fiscal', d: 'En el IVA, el impuesto que se factura en las ventas. Se le resta el crédito fiscal para calcular el saldo a pagar.' },
+      { t: 'Declaración jurada', d: 'Presentación en la que el contribuyente informa sus datos y determina el impuesto, afirmando bajo juramento que son verdaderos.' },
+      { t: 'Deducciones', d: 'Importes que la ley permite restar para llegar a la ganancia sujeta a impuesto: gastos necesarios, cargas de familia, ganancia no imponible y deducción especial, entre otros.', ver: ['datos-tabla-ganancias.html', 'Ver tabla de Ganancias'] },
+      { t: 'Depreciación', d: 'Pérdida de valor de un bien por el uso, el desgaste o la obsolescencia. Contablemente se reconoce mediante la amortización.' },
+      { t: 'Devaluación', d: 'Pérdida de valor de la moneda local frente a otras monedas, que se refleja en una suba del tipo de cambio.' },
+      { t: 'DGA (Dirección General de Aduanas)', d: 'Área de ARCA que controla el ingreso y egreso de mercaderías del país y recauda los tributos del comercio exterior.' },
+      { t: 'DGI (Dirección General Impositiva)', d: 'Área de ARCA que aplica, recauda y fiscaliza los impuestos nacionales, como Ganancias, IVA y Bienes Personales.' },
+      { t: 'DGRSS (Dirección General de los Recursos de la Seguridad Social)', d: 'Área de ARCA que controla y recauda los aportes y contribuciones de la seguridad social.' },
+      { t: 'Dividendo', d: 'Parte de las ganancias de una sociedad que se distribuye entre sus accionistas o socios.' },
+      { t: 'Domicilio fiscal', d: 'Domicilio que el contribuyente declara ante el fisco y donde se le pueden hacer notificaciones. El domicilio fiscal electrónico es el buzón digital de ARCA, donde las notificaciones tienen la misma validez que en papel.' },
+      { t: 'EBITDA', d: 'Resultado antes de intereses, impuestos, depreciaciones y amortizaciones. Se usa para medir la ganancia que genera la actividad principal de una empresa.' },
+      { t: 'Estados contables', d: 'Informes que muestran la situación patrimonial, económica y financiera de una empresa a una fecha: estado de situación patrimonial, estado de resultados, estado de evolución del patrimonio neto y estado de flujo de efectivo, con sus notas y anexos.' },
+      { t: 'Estado de evolución del patrimonio neto', d: 'Estado contable que muestra cómo cambió el patrimonio neto durante el ejercicio: aportes de los socios, resultados del período, distribución de dividendos y reservas.' },
+      { t: 'Estado de flujo de efectivo', d: 'Estado contable que muestra cómo variaron el efectivo y sus equivalentes durante el ejercicio, separando las actividades operativas, de inversión y de financiación.' },
+      { t: 'Estado de resultados', d: 'Estado contable que muestra los ingresos, los gastos y el resultado (ganancia o pérdida) del ejercicio.' },
+      { t: 'Estado de situación patrimonial', d: 'Estado contable, conocido también como balance general, que muestra el activo, el pasivo y el patrimonio neto de una empresa a una fecha determinada.' },
+      { t: 'Estanflación', d: 'Situación económica en la que conviven el estancamiento de la actividad y una inflación alta.' },
+      { t: 'Exención', d: 'Dispensa que da la ley para no pagar un impuesto a determinadas personas u operaciones, aunque realicen la actividad gravada.' },
+      { t: 'Exportador', d: 'Quien vende bienes o servicios al exterior. Para hacerlo debe estar inscripto en el registro de importadores y exportadores.' },
+      { t: 'Factura', d: 'Comprobante que documenta la venta de bienes o la prestación de servicios. Su letra (A, B, C, E o M) depende de la situación frente al IVA de quien la emite y de quien la recibe.' },
+      { t: 'Factura electrónica', d: 'Factura emitida por medios electrónicos y autorizada por ARCA mediante un Código de Autorización Electrónico (CAE). Tiene el mismo valor que la factura en papel.' },
+      { t: 'Fideicomiso', d: 'Contrato por el cual una persona (fiduciante) transmite bienes a otra (fiduciario), que los administra en beneficio de quien se designe (beneficiario) y los entrega al finalizar el plazo o la condición pactada (fideicomisario). Lo regula el Código Civil y Comercial.' },
+      { t: 'Fiscalización', d: 'Control que realiza el fisco para verificar que los contribuyentes cumplan sus obligaciones tributarias.' },
+      { t: 'Ganancia mínima presunta, impuesto a la', d: 'Impuesto nacional que gravaba los activos de las empresas. Está derogado para los ejercicios iniciados desde el 1 de enero de 2019.' },
+      { t: 'Ganancias, impuesto a las', d: 'Impuesto nacional que grava las rentas obtenidas por personas humanas, sucesiones indivisas y sociedades.', ver: ['datos-tabla-ganancias.html', 'Ver tabla de Ganancias'] },
+      { t: 'Importador', d: 'Quien compra bienes o servicios del exterior para ingresarlos al país. Debe estar inscripto en el registro de importadores y exportadores.' },
+      { t: 'Impuesto', d: 'Tributo que se paga al Estado sin recibir a cambio una contraprestación directa.' },
+      { t: 'Impuesto al valor agregado (IVA)', d: 'Impuesto nacional que grava el valor que se agrega en cada etapa de la producción y comercialización. Cada responsable paga la diferencia entre el débito fiscal de sus ventas y el crédito fiscal de sus compras.', ver: ['vencimientos-iva.html', 'Ver vencimientos de IVA'] },
+      { t: 'Impuesto directo', d: 'Impuesto que grava manifestaciones directas de capacidad contributiva, como la renta o el patrimonio, y recae sobre quien la tiene. Por ejemplo, Ganancias.' },
+      { t: 'Impuesto indirecto', d: 'Impuesto que grava el consumo y que puede trasladarse al precio, de modo que lo termina soportando el consumidor. Por ejemplo, el IVA.' },
+      { t: 'Impuesto progresivo', d: 'Impuesto cuya alícuota aumenta a medida que crece la base imponible.' },
+      { t: 'Impuesto regresivo', d: 'Impuesto que pesa proporcionalmente más sobre quienes tienen menos ingresos.' },
+      { t: 'Ingresos brutos, impuesto sobre los', d: 'Impuesto provincial que grava el ejercicio habitual de actividades a título oneroso, sobre los ingresos obtenidos. Quien actúa en varias provincias tributa por el Convenio Multilateral.', ver: ['vencimientos-convenio-multilateral.html', 'Ver vencimientos de Convenio Multilateral'] },
+      { t: 'Interés punitorio', d: 'Interés que se suma cuando el fisco debe iniciar un juicio de ejecución fiscal para cobrar una deuda.' },
+      { t: 'Interés resarcitorio', d: 'Interés que se paga cuando un impuesto se ingresa después de su vencimiento.', ver: ['datos-intereses-afip.html', 'Ver tasas de interés de ARCA'] },
+      { t: 'Leasing', d: 'Contrato por el cual una parte entrega a otra el uso de un bien a cambio de un canon periódico, con la opción de comprarlo al final.' },
+      { t: 'Liquidez', d: 'Capacidad de una empresa o persona para afrontar sus deudas de corto plazo con los recursos que tiene disponibles o puede convertir rápidamente en dinero.' },
+      { t: 'Mínimo no imponible', d: 'Monto hasta el cual un impuesto no se paga: solo se tributa por lo que lo supera.' },
+      { t: 'Monotributo', d: 'Régimen Simplificado para Pequeños Contribuyentes. Reemplaza el IVA y Ganancias por un pago mensual fijo, que incluye además los aportes jubilatorios y la obra social, según la categoría.', ver: ['datos-categorias-monotributo.html', 'Ver categorías de Monotributo'] },
+      { t: 'Mora', d: 'Atraso en el cumplimiento de una obligación. En los impuestos, genera intereses desde el vencimiento.' },
+      { t: 'Moratoria', d: 'Régimen especial que permite regularizar deudas vencidas, generalmente con reducción de intereses o multas y en cuotas.' },
+      { t: 'Nota de crédito', d: 'Comprobante que anula total o parcialmente una factura o reconoce un descuento o devolución, y reduce lo que debe el cliente.' },
+      { t: 'Nota de débito', d: 'Comprobante que aumenta el importe de una factura ya emitida, por ejemplo por intereses o ajustes de precio.' },
+      { t: 'Notificación', d: 'Comunicación formal del fisco al contribuyente. Hoy se realiza principalmente en el domicilio fiscal electrónico.' },
+      { t: 'Percepción', d: 'Importe que un agente de percepción cobra a su cliente, junto con el precio, a cuenta de un impuesto del cliente.' },
+      { t: 'Plan de negocios', d: 'Documento que describe un proyecto o empresa: qué ofrece, a quién, cómo se financia y qué resultados se esperan.' },
+      { t: 'Prórroga', d: 'Extensión del plazo para presentar una declaración o pagar un impuesto, dispuesta por el fisco.' },
+      { t: 'Recategorización', d: 'En el Monotributo, revisión semestral de la categoría según los ingresos y demás parámetros de los últimos 12 meses.', ver: ['vencimientos-monotributo.html', 'Ver vencimientos de Monotributo'] },
+      { t: 'Recesión', d: 'Caída de la actividad económica sostenida durante al menos dos trimestres seguidos.' },
+      { t: 'Recibo', d: 'Comprobante que acredita que se recibió un pago.' },
+      { t: 'Rectificativa', d: 'Declaración jurada que reemplaza a una presentada antes, para corregir errores u omisiones.' },
+      { t: 'Remito', d: 'Comprobante que acompaña el traslado o la entrega de mercaderías.' },
+      { t: 'Rentas', d: 'Nombre con que se conoce a los organismos tributarios provinciales. En Santa Fe es la API (Administración Provincial de Impuestos).' },
+      { t: 'Retención', d: 'Importe que un agente de retención descuenta al pagar, a cuenta de un impuesto de quien cobra.', ver: ['vencimientos-retenciones-sicore.html', 'Ver vencimientos de SICORE'] },
+      { t: 'Saldo de libre disponibilidad', d: 'Saldo a favor en un impuesto que el contribuyente puede usar para pagar otros impuestos, transferir o pedir su devolución.' },
+      { t: 'Seguridad social', d: 'Sistema que protege a las personas frente a la vejez, la enfermedad, el desempleo y otras contingencias, mediante jubilaciones, obra social, asignaciones y otras prestaciones.' },
+      { t: 'Subsidio', d: 'Ayuda económica que otorga el Estado para reducir el precio de un bien o servicio o para sostener una actividad.' },
+      { t: 'Tipo de cambio', d: 'Precio de una moneda extranjera expresado en moneda local; por ejemplo, cuántos pesos hay que pagar por un dólar.', ver: ['datos-dolar.html', 'Ver cotización del dólar'] },
+      { t: 'Tributo', d: 'Prestación en dinero que el Estado exige por ley. Incluye los impuestos, las tasas y las contribuciones especiales.' },
+      { t: 'Utilidad', d: 'Ganancia que resulta de restar a los ingresos los costos y gastos de un período.' }
+    ];
+
+    const ABREVIATURAS = [
+      ['AFIP', 'Administración Federal de Ingresos Públicos (hoy ARCA)'],
+      ['API', 'Administración Provincial de Impuestos (Santa Fe)'],
+      ['ARCA', 'Agencia de Recaudación y Control Aduanero'],
+      ['CAE', 'Código de Autorización Electrónico'],
+      ['CDI', 'Clave de Identificación'],
+      ['CM', 'Convenio Multilateral'],
+      ['CTA. CTE.', 'Cuenta corriente'],
+      ['CUIL', 'Código Único de Identificación Laboral'],
+      ['CUIT', 'Clave Única de Identificación Tributaria'],
+      ['DDJJ', 'Declaración jurada'],
+      ['DFE', 'Domicilio fiscal electrónico'],
+      ['DGA', 'Dirección General de Aduanas'],
+      ['DGI', 'Dirección General Impositiva'],
+      ['DGRSS', 'Dirección General de los Recursos de la Seguridad Social'],
+      ['EE.CC.', 'Estados contables'],
+      ['EE.RR.', 'Estado de resultados'],
+      ['IIBB', 'Ingresos brutos'],
+      ['IPC', 'Índice de precios al consumidor', 'datos-inflacion.html'],
+      ['IVA', 'Impuesto al valor agregado', 'vencimientos-iva.html'],
+      ['MT', 'Monotributo', 'datos-categorias-monotributo.html'],
+      ['PBI', 'Producto bruto interno'],
+      ['PFP', 'Plan de facilidades de pago'],
+      ['RIPTE', 'Remuneración imponible promedio de los trabajadores estables', 'datos-salarios-ripte.html'],
+      ['SICORE', 'Sistema de Control de Retenciones', 'vencimientos-retenciones-sicore.html'],
+      ['SIFERE', 'Sistema Federal de Recaudación (Convenio Multilateral)', 'vencimientos-convenio-multilateral.html'],
+      ['SMVM', 'Salario mínimo, vital y móvil', 'datos-salario-minimo.html'],
+      ['UIF', 'Unidad de Información Financiera']
+    ];
+
+    /* ---------- Armado ---------- */
+    const sinAcentos = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+    const letraDe = t => sinAcentos(t)[0].toUpperCase();
+    const ancla = t => 'termino-' + sinAcentos(t).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    const escapar = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+    const terminos = [...TERMINOS].sort((a, b) => sinAcentos(a.t).localeCompare(sinAcentos(b.t)));
+    // El ancla de ARCA es fija porque AFIP la enlaza.
+    const anclaDe = x => x.t === 'ARCA' ? 'termino-arca' : ancla(x.t);
+    const letras = [...new Set(terminos.map(x => letraDe(x.t)))];
+
+    document.getElementById('terminos').innerHTML = letras.map(l => `
+      <section class="grupo" data-letra="${l}">
+        <h2 class="letra" id="letra-${l}">${l}</h2>
+        <dl>${terminos.filter(x => letraDe(x.t) === l).map(x => `
+          <div class="termino" id="${anclaDe(x)}" data-busqueda="${escapar(sinAcentos(x.t + ' ' + x.d))}">
+            <dt>${escapar(x.t)}</dt>
+            <dd>${escapar(x.d)}${x.ver ? ` <a href="${x.ver[0]}">${escapar(x.ver[1])} →</a>` : ''}</dd>
+          </div>`).join('')}
+        </dl>
+      </section>`).join('');
+    document.getElementById('letras').innerHTML = letras.map(l => `<a href="#letra-${l}">${l}</a>`).join('') + '<a href="#abreviaturas" class="abrev">Abreviaturas</a>';
+    document.getElementById('lista-abreviaturas').innerHTML = ABREVIATURAS.map(([sigla, nombre, enlace]) => `
+      <div class="termino" data-busqueda="${escapar(sinAcentos(sigla + ' ' + nombre))}">
+        <dt>${escapar(sigla)}</dt>
+        <dd>${enlace ? `<a href="${enlace}">${escapar(nombre)}</a>` : escapar(nombre)}</dd>
+      </div>`).join('');
+
+    /* ---------- Buscador ---------- */
+    // Filtra por término o por texto de la definición, sin importar acentos ni mayúsculas.
+    document.getElementById('buscar').addEventListener('input', e => {
+      const q = sinAcentos(e.target.value.trim());
+      let visibles = 0;
+      document.querySelectorAll('.termino').forEach(el => {
+        const ok = !q || el.dataset.busqueda.includes(q);
+        el.hidden = !ok;
+        if (ok) visibles++;
+      });
+      document.querySelectorAll('.grupo').forEach(g => { g.hidden = !g.querySelector('.termino:not([hidden])'); });
+      const abrev = !!document.querySelector('#lista-abreviaturas .termino:not([hidden])');
+      document.getElementById('abreviaturas').hidden = !abrev;
+      document.getElementById('lista-abreviaturas').hidden = !abrev;
+      document.getElementById('letras').hidden = !!q;
+      document.getElementById('sin-resultados').hidden = visibles > 0;
+    });
+  </script>
+</body>
+</html>

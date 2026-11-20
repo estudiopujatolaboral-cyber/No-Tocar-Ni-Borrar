@@ -1,0 +1,60 @@
+window.DATOS = window.DATOS || {};
+window.DATOS["iibb-santafe"] = {
+    "fuente":  "https://www.santafe.gob.ar/index.php/web/content/view/full/211373/(subtema)/102284",
+    "vigente":  {
+                    "periodo":  "Segundo Semestre 2026",
+                    "resolucion":  "0117/2026",
+                    "tope":  126610838.75,
+                    "categorias":  [
+                                       {
+                                           "categoria":  1,
+                                           "desde":  0,
+                                           "hasta":  12009410.45,
+                                           "cuota":  12269
+                                       },
+                                       {
+                                           "categoria":  2,
+                                           "desde":  12009410.46,
+                                           "hasta":  24670494.31,
+                                           "cuota":  25122
+                                       },
+                                       {
+                                           "categoria":  3,
+                                           "desde":  24670494.32,
+                                           "hasta":  36028231.33,
+                                           "cuota":  42882
+                                       },
+                                       {
+                                           "categoria":  4,
+                                           "desde":  36028231.34,
+                                           "hasta":  45151659.41,
+                                           "cuota":  61344
+                                       },
+                                       {
+                                           "categoria":  5,
+                                           "desde":  45151659.42,
+                                           "hasta":  81924660.37,
+                                           "cuota":  82376
+                                       },
+                                       {
+                                           "categoria":  6,
+                                           "desde":  81924660.38,
+                                           "hasta":  91699761.90,
+                                           "cuota":  134373
+                                       },
+                                       {
+                                           "categoria":  7,
+                                           "desde":  91699761.91,
+                                           "hasta":  105012519.20,
+                                           "cuota":  186953
+                                       },
+                                       {
+                                           "categoria":  8,
+                                           "desde":  105012519.21,
+                                           "hasta":  126610838.75,
+                                           "cuota":  237197
+                                       }
+                                   ]
+                },
+    "anterior":  null
+};

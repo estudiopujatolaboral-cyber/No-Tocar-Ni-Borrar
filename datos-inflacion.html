@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Inflación mensual e interanual desde 2011, comparada con el dólar oficial y blue. Estudio José A. Quacquarini y Asoc.">
+  <link rel="canonical" href="https://estudioquacquarini.com.ar/datos-inflacion.html">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Estudio José A. Quacquarini y Asoc.">
+  <meta property="og:title" content="Inflación | Estudio José A. Quacquarini y Asoc.">
+  <meta property="og:description" content="Inflación mensual e interanual desde 2011, comparada con el dólar oficial y blue. Estudio José A. Quacquarini y Asoc.">
+  <meta property="og:url" content="https://estudioquacquarini.com.ar/datos-inflacion.html">
+  <meta property="og:image" content="https://estudioquacquarini.com.ar/img/logo.png">
+  <meta property="og:image:alt" content="Logo del Estudio José A. Quacquarini y Asoc.">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" type="image/png" href="img/logo.png">
+  <title>Inflación | Estudio José A. Quacquarini y Asoc.</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="css/estilos.css">
+  <script src="js/tema.js"></script>
+  <style>
+
+    /* Página Inflación */
+    .page-hero { min-height: 300px; }
+    .page-hero .hero-inner { padding: 60px 22px; }
+    .nav-dropdown > .nav-dropdown-trigger[aria-current="page"] { color: var(--olive); }
+    .wrap { max-width:var(--max); margin:auto; padding:50px 22px 10px; }
+    .wrap h2 { font:500 1.9rem Georgia,serif; margin:0 0 18px; }
+    .wrap a { color:var(--olive-dark); }
+    h3.sub { font-size:1rem; text-align:center; margin:30px 0 8px; color:var(--ink); }
+    .resumen { background:var(--cream); border-left:4px solid var(--gold); padding:20px 24px; }
+    .resumen h3 { margin:0 0 8px; text-transform:uppercase; font-size:1rem; }
+    .resumen p { margin:0; }
+    .tabla-wrap { overflow-x:auto; border:1px solid var(--line); margin:12px 0 8px; }
+    table { border-collapse:collapse; width:100%; min-width:950px; font-size:.86rem; }
+    th { background:#efeddc; color:var(--olive-dark); text-align:left; padding:10px; font-size:.8rem; }
+    td { padding:9px 10px; border-top:1px solid var(--line); white-space:nowrap; font-variant-numeric:tabular-nums; }
+    tbody tr:nth-child(even) td { background:#fbfaf5; }
+    td.anio, td.var { font-weight:bold; }
+    td.sd { color:var(--muted); }
+    .fuente { font-size:.8rem; color:var(--muted); margin:0 0 36px; }
+    .chart-box { border:1px solid var(--line); padding:14px; height:420px; position:relative; margin-bottom:10px; }
+    .aviso { font-size:.82rem; color:var(--muted); }
+    .nota-tabla { font-size:.8rem; color:var(--muted); margin:0 0 8px; }
+    .sin-datos { display:grid; place-items:center; height:100%; text-align:center; color:var(--muted); }
+    main { padding-bottom:40px; }
+    .back-to-top { position: fixed; right: 26px; bottom: 26px; z-index: 30; width: 45px; height: 45px; display: grid; place-items: center; border-radius: 3px; background: var(--olive-dark); color: #fff; font-size: 1.2rem; text-decoration: none; opacity: 0; visibility: hidden; transition: .2s; }
+    .back-to-top.show { opacity: 1; visibility: visible; }
+    .back-to-top:hover { background: var(--olive); }
+    @media (max-width: 600px) {
+      .page-hero { min-height: 240px; }
+      .page-hero .hero-inner { padding: 45px 20px; }
+      .chart-box { height:320px; }
+      .back-to-top { right: 16px; bottom: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="topbar-info">
+        <strong>Estudio Contable José A. Quacquarini y Asoc.</strong>
+      </div>
+      <div class="topbar-icons" aria-label="Datos de contacto">
+        <div class="phone-menu">
+          <button class="phone-trigger" type="button" aria-label="Elegir un teléfono" aria-expanded="false" aria-controls="phone-dropdown">
+            <img src="img/icono-telefono.png" alt="Teléfono" title="Elegir teléfono para WhatsApp">
+          </button>
+          <div class="phone-dropdown" id="phone-dropdown" hidden>
+            <span class="phone-dropdown-title">Contactanos por WhatsApp</span>
+            <a href="https://wa.me/5493464697225" target="_blank" rel="noopener noreferrer">+54 9 3464 69-7225 <small>(Estudio Pujato)</small></a>
+            <a href="https://wa.me/543464553622" target="_blank" rel="noopener noreferrer">+54 3464 55 3622 <small>(Estudio Rosario)</small></a>
+          </div>
+        </div>
+        <a class="email-link" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=contacto@estudioquacquarini.com.ar" target="_blank" rel="noopener noreferrer" aria-label="Escribir un correo al estudio">
+                  <img class="email-icon" src="img/icono-correo.png" alt="Correo electrónico" title="Correo electrónico">
+        </a>
+        <a class="instagram-link" href="https://www.instagram.com/estudioquacquarini?exln=Z20ycTY2a3ZybGp0" target="_blank" rel="noopener noreferrer" aria-label="Visitar Instagram del estudio" title="Instagram del estudio">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+            <circle cx="17.5" cy="6.7" r="1.2" fill="currentColor"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <header>
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="Inicio - Estudio José A. Quacquarini y Asociados">
+        <img src="img/logo.png" width="67" height="67" alt="Logo del Estudio José A. Quacquarini y Asociados">
+        <span class="brand-name">
+          <strong>Estudio José A. Quacquarini y Asoc.</strong>
+          <span>Estudio Contable</span>
+        </span>
+      </a>
+      <button class="menu-toggle" aria-expanded="false" aria-controls="main-nav">☰ Menú</button>
+      <nav id="main-nav" aria-label="Navegación principal">
+        <a href="index.html">Inicio</a>
+        <div class="nav-dropdown" id="estudio-nav-dropdown">
+          <a class="nav-dropdown-trigger" href="estudio.html" aria-haspopup="true" aria-expanded="false">El Estudio <span aria-hidden="true"></span></a>
+          <div class="nav-dropdown-menu" aria-label="Secciones de El Estudio">
+            <a href="estudio.html">El Estudio</a>
+            <a href="estudio-opcion-2.html">¿Qué nos diferencia?</a>
+            <a href="documentos/folleto-quacquarini.pdf" target="_blank" rel="noopener noreferrer">Folleto Institucional</a>
+            <a href="estudio-opcion-4.html">Unite a Estudio Contable José A. Quacquarini y Asoc.</a>
+            <a href="novedades.html">Novedades</a>
+          </div>
+        </div>
+        <div class="nav-dropdown" id="servicios-nav-dropdown">
+          <a class="nav-dropdown-trigger" href="servicios.html" aria-haspopup="true" aria-expanded="false">Servicios <span aria-hidden="true"></span></a>
+          <div class="nav-dropdown-menu" aria-label="Opciones de Servicios">
+            <a href="servicios.html">Servicios</a>
+            <a href="servicios-opcion-2.html">¿Necesitás un crédito para tu empresa?</a>
+            <a href="servicios-opcion-3.html">¿Por qué contratarnos?</a>
+          </div>
+        </div>
+        <a href="novedades.html">Novedades</a>
+        <div class="nav-dropdown" id="datos-nav-dropdown">
+          <a class="nav-dropdown-trigger" href="datos-utiles.html" aria-current="page" aria-haspopup="true" aria-expanded="false">Datos Útiles <span aria-hidden="true"></span></a>
+          <div class="nav-dropdown-menu" aria-label="Opciones de Datos Útiles">
+            <a href="datos-utiles.html">Datos Útiles</a>
+            <div class="nav-submenu">
+              <a class="nav-submenu-trigger" role="button" tabindex="0" style="cursor:pointer" aria-haspopup="true" aria-expanded="false">Indicadores económicos</a>
+              <div class="nav-flyout" aria-label="Indicadores económicos">
+                <a href="datos-inflacion.html">Inflación</a>
+                <a href="datos-dolar.html">Cotización del dólar</a>
+                <a href="datos-salarios-ripte.html">Índice de salarios + Índice RIPTE</a>
+                <a href="datos-salario-minimo.html">Salario mínimo, vital y móvil</a>
+                <a href="datos-comparacion-indices.html">Comparación Índices</a>
+              </div>
+            </div>
+            <div class="nav-submenu">
+              <a class="nav-submenu-trigger" role="button" tabindex="0" style="cursor:pointer" aria-haspopup="true" aria-expanded="false">Vencimientos</a>
+              <div class="nav-flyout" aria-label="Vencimientos">
+                <a href="vencimientos-autonomos.html">Autónomos</a>
+                <a href="vencimientos-monotributo.html">Monotributo</a>
+                <a href="vencimientos-iva.html">IVA | Libro IVA Digital</a>
+                <a href="vencimientos-convenio-multilateral.html">Convenio Multilateral | Ingresos Brutos</a>
+                <a href="vencimientos-servicio-domestico.html">Cargas Sociales | Servicio Doméstico</a>
+                <a href="vencimientos-relacion-dependencia.html">Cargas Sociales | Relación de Dependencia</a>
+                <a href="vencimientos-ganancias-humanas.html">Ganancias | Personas Humanas</a>
+                <a href="vencimientos-ganancias-juridicas.html">Ganancias | Personas Jurídicas</a>
+                <a href="vencimientos-retenciones-sicore.html">Retenciones | SICORE</a>
+              </div>
+            </div>
+            <a href="datos-feriados.html">Feriados</a>
+            <a href="datos-categorias-monotributo.html">Categorías de Monotributo</a>
+            <a href="datos-tabla-autonomos.html">Tabla de Autónomos</a>
+            <a href="datos-tabla-ganancias.html">Tabla Ganancias, Deducciones y Retenciones</a>
+            <a href="datos-tabla-bienes-personales.html">Tabla Bienes Personales</a>
+            <a href="datos-intereses-afip.html">Intereses ARCA</a>
+            <a href="datos-regimen-iibb.html">Rég. Simpl. IIBB Santa Fe</a>
+            <a href="datos-leyes-resoluciones.html">Leyes y Resoluciones</a>
+            <a href="datos-glosario.html">Glosario</a>
+          </div>
+        </div>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero page-hero" id="inicio">
+      <div class="hero-inner">
+        <span class="eyebrow">Estudio contable · Desde 1998</span>
+        <h1>Inflación</h1>
+        <p>Inflación mensual e interanual actualizada automáticamente.</p>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <h2>Último dato publicado</h2>
+      <div class="resumen" id="resumen">Cargando datos de inflación…</div>
+    </div>
+
+    <div class="wrap">
+      <h2>Inflación por año</h2>
+      <div class="tabla-wrap"><table>
+        <thead><tr><th>AÑO</th><th>Inflación interanual</th><th>ENE</th><th>FEB</th><th>MAR</th><th>ABR</th><th>MAY</th><th>JUN</th><th>JUL</th><th>AGO</th><th>SEP</th><th>OCT</th><th>NOV</th><th>DIC</th></tr></thead>
+        <tbody id="tabla-inflacion"></tbody>
+      </table></div>
+      <p class="nota-tabla">Inflación mensual de cada año. La columna interanual toma diciembre en los años completos y el último mes publicado en el año en curso.</p>
+      <p class="nota-tabla" id="nota-sd" hidden></p>
+      <p class="nota-tabla">* Entre noviembre de 2015 y abril de 2016 el INDEC no publicó el IPC (emergencia estadística). Los valores de esos meses provienen de fuentes alternativas y son de referencia.</p>
+      <p class="nota-tabla" id="nota-anio-tabla" hidden></p>
+      <p class="fuente">Fuente: <a href="https://www.indec.gob.ar" target="_blank" rel="noopener">INDEC</a> (excepto meses marcados con *), vía <a href="https://argentinadatos.com" target="_blank" rel="noopener">ArgentinaDatos</a>. Elaboración propia.</p>
+
+      <h3 class="sub">Inflación interanual mes a mes</h3>
+      <div class="chart-box"><canvas id="g-interanual"></canvas></div>
+      <p class="fuente">Fuente: <a href="https://www.indec.gob.ar" target="_blank" rel="noopener">INDEC</a>, vía <a href="https://argentinadatos.com" target="_blank" rel="noopener">ArgentinaDatos</a>. Elaboración propia.</p>
+
+      <h3 class="sub">Inflación anual por año</h3>
+      <div class="chart-box"><canvas id="g-anual"></canvas></div>
+      <p class="nota-tabla" id="nota-anio-grafico" hidden></p>
+      <p class="fuente">Fuente: <a href="https://www.indec.gob.ar" target="_blank" rel="noopener">INDEC</a>, vía <a href="https://argentinadatos.com" target="_blank" rel="noopener">ArgentinaDatos</a>. Elaboración propia.</p>
+
+      <h3 class="sub">Variación interanual de la inflación y del dólar compra al cierre de cada mes</h3>
+      <div class="chart-box" id="caja-comparativo"><canvas id="g-comparativo"></canvas></div>
+      <p class="fuente">Fuente: <a href="https://www.indec.gob.ar" target="_blank" rel="noopener">INDEC</a>, vía <a href="https://argentinadatos.com" target="_blank" rel="noopener">ArgentinaDatos</a>. Cotizaciones del dólar: <a href="https://argentinadatos.com" target="_blank" rel="noopener">ArgentinaDatos</a>. Elaboración propia.</p>
+
+      <p class="aviso">Información de referencia. Para actualizaciones e indexaciones con efectos legales o impositivos, utilizar los índices oficiales publicados por el INDEC.</p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="img/logo.png" alt="" width="48" height="48" loading="lazy" decoding="async">
+        <div><strong>Estudio José A. Quacquarini y Asoc.</strong><span>Trayectoria profesional desde 1998</span></div>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Inicio</a><a href="estudio.html">El Estudio</a><a href="servicios.html">Servicios</a><a href="contacto.html">Contacto</a>
+      </div>
+      <div class="copyright">© <span id="year">2026</span> Estudio José A. Quacquarini y Asoc.</div>
+    </div>
+  </footer>
+
+  <a class="back-to-top" id="back-to-top" href="#inicio" aria-label="Volver arriba">↑</a>
+
+  <script>
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('#main-nav');
+    toggle.addEventListener('click', () => {
+      const opened = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(opened));
+    });
+    nav.querySelectorAll('a:not(.nav-dropdown-trigger):not(.nav-submenu-trigger)').forEach(link => link.addEventListener('click', () => {
+      nav.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }));
+    const dropdowns = [
+      document.querySelector('#estudio-nav-dropdown'),
+      document.querySelector('#servicios-nav-dropdown'),
+      document.querySelector('#datos-nav-dropdown')
+    ];
+    dropdowns.forEach((dropdown) => {
+      const trigger = dropdown.querySelector('.nav-dropdown-trigger');
+      trigger.addEventListener('click', (event) => {
+        // En pantallas táctiles, el primer toque abre el menú; el siguiente sigue el enlace principal.
+        if (window.matchMedia('(max-width: 900px)').matches && !dropdown.classList.contains('open')) {
+          event.preventDefault();
+          dropdown.classList.add('open');
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+    document.addEventListener('click', (event) => {
+      dropdowns.forEach((dropdown) => {
+        if (!dropdown.contains(event.target)) {
+          dropdown.classList.remove('open');
+          dropdown.querySelector('.nav-dropdown-trigger').setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+    document.querySelectorAll('.nav-submenu').forEach((submenu) => {
+      const trigger = submenu.querySelector('.nav-submenu-trigger');
+      trigger.addEventListener('click', (event) => {
+        // En pantallas táctiles, el primer toque abre el submenú; el siguiente sigue el enlace.
+        if (window.matchMedia('(max-width: 900px)').matches && !submenu.classList.contains('open')) {
+          event.preventDefault();
+          submenu.classList.add('open');
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+    document.querySelector('#year').textContent = new Date().getFullYear();
+    const phoneTrigger = document.querySelector('.phone-trigger');
+    const phoneDropdown = document.querySelector('#phone-dropdown');
+    phoneTrigger.addEventListener('click', (event) => {
+      event.stopPropagation();
+      const opening = phoneDropdown.hidden;
+      phoneDropdown.hidden = !opening;
+      phoneTrigger.setAttribute('aria-expanded', String(opening));
+    });
+    document.addEventListener('click', (event) => {
+      if (!event.target.closest('.phone-menu')) {
+        phoneDropdown.hidden = true;
+        phoneTrigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !phoneDropdown.hidden) {
+        phoneDropdown.hidden = true;
+        phoneTrigger.setAttribute('aria-expanded', 'false');
+        phoneTrigger.focus();
+      }
+    });
+    const backToTop = document.querySelector('#back-to-top');
+    window.addEventListener('scroll', () => backToTop.classList.toggle('show', window.scrollY > 300));
+  </script>
+  <script>
+    const MESES = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+    const MESES_L = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+    const INICIO = '2011-01';
+    const C_INF = '#a33b2b', C_OFI = '#8f8d3c', C_BLUE = '#3f6e8c';
+    const pct = v => v == null ? 's/d' : v.toLocaleString('es-AR', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + '%';
+    const pctDolar = v => v == null ? 's/d' : v.toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '%';
+    const enEmergencia = k => k >= '2015-11' && k <= '2016-04'; // el INDEC no publicó el IPC en esos meses
+    const anioEnCurso = ult => ult.endsWith('-12') ? null : ult.slice(0, 4);
+    const restarMeses = (k, n) => {
+      let y = +k.slice(0, 4), m = +k.slice(5, 7) - n;
+      while (m < 1) { m += 12; y--; }
+      return `${y}-${String(m).padStart(2, '0')}`;
+    };
+    const etiqueta = k => MESES[+k.slice(5, 7) - 1] + '-' + k.slice(2, 4);
+    const nombreMes = k => MESES_L[+k.slice(5, 7) - 1];
+    const mesesEntre = (desde, hasta) => {
+      const lista = [];
+      for (let k = hasta; k >= desde; k = restarMeses(k, 1)) lista.unshift(k);
+      return lista;
+    };
+
+    /* ---------- Datos de inflación (ArgentinaDatos). El valor ya viene en porcentaje: 1.9 es 1,9%. ---------- */
+    async function indice(nombre) {
+      const r = await fetch(`https://api.argentinadatos.com/v1/finanzas/indices/${nombre}`);
+      if (!r.ok) throw new Error(nombre);
+      const datos = await r.json();
+      const porMes = {};
+      for (const d of datos) {
+        const k = d.fecha.slice(0, 7);
+        if (k >= INICIO && d.valor != null) porMes[k] = d.valor;
+      }
+      return porMes;
+    }
+
+    /* ---------- Dólar: mismo cálculo que datos-dolar.html ---------- */
+    async function cierresMensuales(casa) {
+      const r = await fetch(`https://api.argentinadatos.com/v1/cotizaciones/dolares/${casa}`);
+      if (!r.ok) throw new Error(casa);
+      const datos = await r.json();
+      const hoy = new Date();
+      const mesEnCurso = `${hoy.getFullYear()}-${String(hoy.getMonth() + 1).padStart(2, '0')}`;
+      datos.sort((a, b) => a.fecha.localeCompare(b.fecha));
+      const cierres = {};
+      for (const d of datos) {
+        const k = d.fecha.slice(0, 7);
+        if (k < INICIO || k >= mesEnCurso || d.compra == null) continue; // solo meses ya cerrados
+        cierres[k] = d.compra; // queda el último día hábil del mes
+      }
+      return cierres;
+    }
+    const interanualDolar = (c, k) => (c[k] && c[restarMeses(k, 12)]) ? (c[k] / c[restarMeses(k, 12)] - 1) * 100 : null;
+
+    /* ---------- Resumen ---------- */
+    function armarResumen(mensual, interanual, ult) {
+      const ant = restarMeses(ult, 1), v = mensual[ult], previo = mensual[ant] ?? null;
+      let comparacion = '';
+      if (previo != null) {
+        const relacion = v > previo ? 'por encima del' : v < previo ? 'por debajo del' : 'igual al';
+        comparacion = ` (${relacion} ${pct(previo)} de ${nombreMes(ant)})`;
+      }
+      const cierre = interanual[ult] != null ? ` y se ubica en <strong>${pct(interanual[ult])}</strong> medida interanualmente` : '';
+      document.getElementById('resumen').innerHTML = `
+        <h3>${nombreMes(ult)} ${ult.slice(0, 4)}</h3>
+        <p>La inflación de ${nombreMes(ult).toUpperCase()} de ${ult.slice(0, 4)} fue de <strong>${pct(v)}</strong>${comparacion}${cierre}.</p>`;
+    }
+
+    /* ---------- Tabla ---------- */
+    function inflacionAnual(interanual, ult) {
+      const anual = {};
+      const anioFinal = ult.slice(0, 4);
+      for (let a = +INICIO.slice(0, 4); a <= +anioFinal; a++) {
+        const k = String(a) === anioFinal ? ult : `${a}-12`;
+        anual[a] = interanual[k] ?? null;
+      }
+      return anual;
+    }
+
+    function armarTabla(mensual, anual, ult) {
+      const celda = (k) => {
+        if (k > ult) return '<td></td>'; // mes todavía no publicado
+        return mensual[k] == null ? '<td class="sd">s/d</td>' : `<td>${pct(mensual[k])}${enEmergencia(k) ? '*' : ''}</td>`;
+      };
+      const anios = Object.keys(anual).sort().reverse();
+      document.getElementById('tabla-inflacion').innerHTML = anios.map(a => {
+        const celdas = MESES.map((_, i) => celda(`${a}-${String(i + 1).padStart(2, '0')}`)).join('');
+        const clase = anual[a] == null ? 'var sd' : 'var';
+        return `<tr><td class="anio">${a}${a === anioEnCurso(ult) ? '*' : ''}</td><td class="${clase}">${pct(anual[a])}</td>${celdas}</tr>`;
+      }).join('');
+
+      const faltantes = mesesEntre(INICIO, ult).filter(k => mensual[k] == null);
+      if (faltantes.length) {
+        const nota = document.getElementById('nota-sd');
+        nota.textContent = `s/d: sin dato publicado para ${faltantes.map(etiqueta).join(', ')}. Entre fines de 2015 y 2016 el INDEC estuvo en emergencia estadística y no publicó el índice de esos meses. Los meses sin dato no se estiman ni se interpolan.`;
+        nota.hidden = false;
+      }
+    }
+
+    /* ---------- Gráficos ---------- */
+    const baseOpciones = () => ({
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'bottom' },
+        tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: ${pct(ctx.raw)}` } }
+      },
+      scales: {
+        x: { ticks: { maxRotation: 45, autoSkip: true, maxTicksLimit: 24 } },
+        y: { ticks: { callback: v => v.toLocaleString('es-AR') + '%' } }
+      }
+    });
+
+    function graficoLineas(id, meses, series) {
+      const opciones = baseOpciones();
+      opciones.interaction = { mode: 'index', intersect: false };
+      opciones.plugins.tooltip.callbacks.label = ctx => {
+        const s = series[ctx.datasetIndex];
+        const marca = !s.dolar && ctx.raw != null && enEmergencia(meses[ctx.dataIndex]) ? '*' : '';
+        return `${ctx.dataset.label}: ${(s.dolar ? pctDolar : pct)(ctx.raw)}${marca}`;
+      };
+      new Chart(document.getElementById(id), {
+        type: 'line',
+        data: { labels: meses.map(etiqueta), datasets: series.map(s => ({
+          label: s.nombre, data: s.datos, borderColor: s.color, backgroundColor: s.color,
+          borderWidth: 2, pointRadius: 0, tension: .15, spanGaps: false
+        })) },
+        options: opciones
+      });
+    }
+
+    // Escribe el valor arriba de cada barra; en pantallas angostas lo gira para que no se pisen.
+    const valoresEnBarras = {
+      id: 'valoresEnBarras',
+      afterDatasetsDraw(chart) {
+        const { ctx, data } = chart;
+        const barras = chart.getDatasetMeta(0).data;
+        const girar = barras.length > 1 && Math.abs(barras[1].x - barras[0].x) < 50;
+        ctx.save();
+        ctx.fillStyle = '#272920';
+        ctx.font = '11px Arial, Helvetica, sans-serif';
+        barras.forEach((barra, i) => {
+          const valor = data.datasets[0].data[i];
+          if (valor == null) return;
+          ctx.save();
+          ctx.translate(barra.x, barra.y - 5);
+          if (girar) { ctx.rotate(-Math.PI / 2); ctx.textAlign = 'left'; ctx.textBaseline = 'middle'; }
+          else { ctx.textAlign = 'center'; ctx.textBaseline = 'bottom'; }
+          ctx.fillText(pct(valor), 0, 0);
+          ctx.restore();
+        });
+        ctx.restore();
+      }
+    };
+
+    function graficoAnual(id, anual, ult) {
+      const anios = Object.keys(anual).sort();
+      const opciones = baseOpciones();
+      opciones.plugins.legend.display = false;
+      opciones.layout = { padding: { top: 52 } };
+      opciones.scales.x.ticks = { maxRotation: 45 };
+      new Chart(document.getElementById(id), {
+        type: 'bar',
+        data: { labels: anios.map(a => a === anioEnCurso(ult) ? a + '*' : a), datasets: [{ label: 'Inflación anual', data: anios.map(a => anual[a]), backgroundColor: C_INF }] },
+        options: opciones,
+        plugins: [valoresEnBarras]
+      });
+    }
+
+    function graficoComparativo(interanual, ofi, blue) {
+      const fin = [...Object.keys(interanual), ...Object.keys(ofi)].sort().pop();
+      const meses = mesesEntre(INICIO, fin);
+      graficoLineas('g-comparativo', meses, [
+        { nombre: 'Inflación interanual', datos: meses.map(k => interanual[k] ?? null), color: C_INF },
+        { nombre: 'Dólar oficial · var. interanual', datos: meses.map(k => interanualDolar(ofi, k)), color: C_OFI, dolar: true },
+        { nombre: 'Dólar blue · var. interanual', datos: meses.map(k => interanualDolar(blue, k)), color: C_BLUE, dolar: true }
+      ]);
+    }
+
+    function avisoEnCaja(id, texto) {
+      const caja = document.getElementById(id);
+      caja.innerHTML = '<div class="sin-datos"></div>';
+      caja.firstChild.textContent = texto;
+    }
+
+    /* ---------- Carga ---------- */
+    Promise.all([indice('inflacion'), indice('inflacionInteranual')]).then(([mensual, interanual]) => {
+      const ult = Object.keys(mensual).sort().pop();
+      const anual = inflacionAnual(interanual, ult);
+      armarResumen(mensual, interanual, ult);
+      armarTabla(mensual, anual, ult);
+      if (anioEnCurso(ult)) {
+        ['nota-anio-tabla', 'nota-anio-grafico'].forEach(id => {
+          const nota = document.getElementById(id);
+          nota.textContent = `* Interanual a ${nombreMes(ult)}`;
+          nota.hidden = false;
+        });
+      }
+
+      if (typeof Chart === 'undefined') {
+        ['g-interanual', 'g-anual', 'g-comparativo'].forEach(id => avisoEnCaja(document.getElementById(id).parentElement.id = 'caja-' + id, 'No se pudo cargar el gráfico en este momento. Intentá nuevamente más tarde.'));
+        return;
+      }
+      const meses = mesesEntre(INICIO, ult);
+      graficoLineas('g-interanual', meses, [
+        { nombre: 'Inflación interanual', datos: meses.map(k => interanual[k] ?? null), color: C_INF }
+      ]);
+      graficoAnual('g-anual', anual, ult);
+
+      Promise.all([cierresMensuales('oficial'), cierresMensuales('blue')])
+        .then(([ofi, blue]) => graficoComparativo(interanual, ofi, blue))
+        .catch(() => avisoEnCaja('caja-comparativo', 'No se pudieron cargar las cotizaciones del dólar en este momento. Intentá nuevamente más tarde.'));
+    }).catch(() => {
+      document.getElementById('resumen').textContent = 'No se pudieron cargar los datos de inflación en este momento. Intentá nuevamente más tarde.';
+      document.getElementById('tabla-inflacion').innerHTML = '<tr><td colspan="14">Sin datos disponibles por el momento.</td></tr>';
+      ['g-interanual', 'g-anual', 'g-comparativo'].forEach(id => avisoEnCaja(document.getElementById(id).parentElement.id = 'caja-' + id, 'Gráfico no disponible por el momento.'));
+    });
+  </script>
+</body>
+</html>

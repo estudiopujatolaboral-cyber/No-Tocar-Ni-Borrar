@@ -1,0 +1,109 @@
+# Revisa todos los días las fuentes oficiales que no se pueden leer directamente desde la página
+# y, si hay datos nuevos, actualiza los archivos de la carpeta datos/ (cada .json tiene su copia .js,
+# que es la que cargan las páginas):
+#   - datos/ripte.json: RIPTE de la Secretaría de Seguridad Social (lo usan salarios-ripte y comparación de índices);
+#   - datos/ipc.json: índice y rubros del IPC del INDEC (lo usa comparación de índices);
+#   - datos/vencimientos.json: vencimientos que publica ARCA cada mes (lo usan las páginas de vencimientos);
+#   - datos/convenio.json: vencimientos de SIFERE de la Comisión Arbitral (lo usa vencimientos-convenio-multilateral);
+#   - datos/feriados-AAAA.json: calendario oficial de feriados de argentina.gob.ar (lo usa datos-feriados);
+#   - datos/monotributo.json: cuadro de categorias vigentes del Monotributo de ARCA (lo usa datos-categorias-monotributo);
+#   - datos/autonomos.json: aportes mensuales de Autonomos de los ultimos 3 meses de ARCA (lo usa datos-tabla-autonomos);
+#   - datos/ganancias.json: escalas y deducciones anuales de Ganancias de ARCA, 2 anios mas nuevos (lo usa datos-tabla-ganancias);
+#   - datos/bienes-personales.json: minimo, casa-habitacion y escalas de Bienes Personales de ARCA, 2 periodos mas nuevos (lo usa datos-tabla-bienes-personales);
+#   - datos/intereses-arca.json: evolucion de tasas de interes resarcitorio y punitorio de ARCA (lo usa datos-intereses-afip);
+#   - datos/iibb-santafe.json: categorias del Regimen Simplificado de Ingresos Brutos de API Santa Fe (lo usa datos-regimen-iibb);
+#   - datos/instagram.json + img/instagram/: ultimas publicaciones de @estudioquacquarini (lo usa novedades).
+name: Actualizar datos
+
+on:
+  schedule:
+    - cron: '0 13 * * *'   # 10:00 hora argentina
+  workflow_dispatch:        # permite correrlo a mano desde la pestaña Actions
+
+permissions:
+  contents: write
+
+jobs:
+  actualizar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Leer el RIPTE de la página oficial
+        shell: pwsh
+        run: ./scripts/actualizar-ripte.ps1
+
+      # Si falló el paso anterior igual se intenta este, y se guarda lo que se haya podido actualizar.
+      - name: Leer el IPC del INDEC
+        if: ${{ !cancelled() }}
+        shell: pwsh
+        run: ./scripts/actualizar-ipc.ps1
+
+      - name: Leer los vencimientos de ARCA
+        if: ${{ !cancelled() }}
+        shell: pwsh
+        run: ./scripts/actualizar-vencimientos.ps1
+
+      - name: Leer el calendario de la Comisión Arbitral
+        if: ${{ !cancelled() }}
+        shell: pwsh
+        run: ./scripts/actualizar-convenio.ps1
+
+      - name: Leer el calendario oficial de feriados
+        if: ${{ !cancelled() }}
+        shell: pwsh
+        run: ./scripts/actualizar-feriados.ps1
+
+      - name: Leer las categorias del Monotributo de ARCA
+        if: ${{ !cancelled() }}
+        shell: pwsh
+        run: ./scripts/actualizar-monotributo.ps1
+
+      - name: Leer los valores de aportes de Autonomos de ARCA
+        if: ${{ !cancelled() }}
+        shell: pwsh
+        run: ./scripts/actualizar-autonomos.ps1
+
+      - name: Leer las tablas anuales de Ganancias de ARCA
+        if: ${{ !cancelled() }}
+        shell: pwsh
+        run: ./scripts/actualizar-ganancias.ps1
+
+      - name: Leer los valores de Bienes Personales de ARCA
+        if: ${{ !cancelled() }}
+        shell: pwsh
+        run: ./scripts/actualizar-bienes-personales.ps1
+
+      - name: Leer las tasas de interes resarcitorio y punitorio de ARCA
+        if: ${{ !cancelled() }}
+        shell: pwsh
+        run: ./scripts/actualizar-intereses.ps1
+
+      - name: Leer las categorias del Regimen Simplificado de IIBB de API Santa Fe
+        if: ${{ !cancelled() }}
+        shell: pwsh
+        run: ./scripts/actualizar-iibb-santafe.ps1
+
+      - name: Leer las publicaciones de Instagram del estudio (feed de Behold)
+        if: ${{ !cancelled() }}
+        shell: pwsh
+        run: ./scripts/actualizar-instagram.ps1
+
+      # Copia cada datos/*.json a datos/*.js, que es lo que cargan las páginas.
+      - name: Generar los archivos que leen las páginas
+        if: ${{ !cancelled() }}
+        shell: pwsh
+        run: ./scripts/generar-datos-js.ps1
+
+      - name: Guardar si hay datos nuevos
+        if: ${{ !cancelled() }}
+        run: |
+          git add -A datos/ img/instagram/
+          if git diff --cached --quiet; then
+            echo "Sin cambios."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Datos actualizados desde las fuentes oficiales"
+          git push

@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Feriados inamovibles, trasladables, días no laborables y feriados locales de Argentina, actualizados con el calendario oficial. Estudio José A. Quacquarini y Asoc.">
+  <link rel="canonical" href="https://estudioquacquarini.com.ar/datos-feriados.html">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Estudio José A. Quacquarini y Asoc.">
+  <meta property="og:title" content="Feriados | Estudio José A. Quacquarini y Asoc.">
+  <meta property="og:description" content="Feriados inamovibles, trasladables, días no laborables y feriados locales de Argentina, actualizados con el calendario oficial. Estudio José A. Quacquarini y Asoc.">
+  <meta property="og:url" content="https://estudioquacquarini.com.ar/datos-feriados.html">
+  <meta property="og:image" content="https://estudioquacquarini.com.ar/img/logo.png">
+  <meta property="og:image:alt" content="Logo del Estudio José A. Quacquarini y Asoc.">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" type="image/png" href="img/logo.png">
+  <title>Feriados | Estudio José A. Quacquarini y Asoc.</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <script src="js/tema.js"></script>
+  <style>
+
+    /* Página Feriados (usa también los estilos de vencimientos) */
+    .texto { color:var(--muted); max-width:900px; }
+    .periodos { display:flex; gap:8px; margin:0 0 10px; }
+    .periodos button { border:1px solid var(--line); background:#fff; color:var(--ink); padding:6px 14px; border-radius:3px; cursor:pointer; font:inherit; font-size:.85rem; }
+    .periodos button[aria-pressed="true"] { background:var(--olive-dark); border-color:var(--olive-dark); color:#fff; }
+    .notas-legales { font-size:.85rem; color:var(--muted); margin:18px 0 10px; }
+    .notas-legales h3 { font-size:.95rem; color:var(--ink); margin:18px 0 6px; border-bottom:1px solid var(--line); padding-bottom:4px; }
+    .notas-legales p { margin:6px 0; }
+    .notas-legales ul { margin:4px 0 8px; }
+    /* Página Vencimientos */
+    .tabla-venc table { min-width:560px; }
+    .tabla-venc th[colspan] { text-align:center; }
+    tbody tr.pasado td { color:var(--muted); }
+    tbody tr.proximo td { background:#f1eed6; font-weight:bold; }
+    .mas-venc { columns:2; column-gap:40px; padding-left:20px; margin:0 0 18px; }
+    .mas-venc li { margin:4px 0; break-inside:avoid; }
+    .consulta { font-weight:bold; }
+    @media (max-width: 600px) { .mas-venc { columns:1; } }
+    .page-hero { min-height: 300px; }
+    .page-hero .hero-inner { padding: 60px 22px; }
+    .nav-dropdown > .nav-dropdown-trigger[aria-current="page"] { color: var(--olive); }
+    .wrap { max-width:var(--max); margin:auto; padding:50px 22px 10px; }
+    .wrap h2 { font:500 1.9rem Georgia,serif; margin:0 0 18px; }
+    .wrap a { color:var(--olive-dark); }
+    h3.sub { font-size:1rem; text-align:center; margin:30px 0 8px; color:var(--ink); }
+    .resumen { background:var(--cream); border-left:4px solid var(--gold); padding:20px 24px; }
+    .resumen h3 { margin:0 0 8px; text-transform:uppercase; font-size:1rem; }
+    .resumen p { margin:0; }
+    .tabla-wrap { overflow-x:auto; border:1px solid var(--line); margin:12px 0 8px; }
+    table { border-collapse:collapse; width:100%; min-width:950px; font-size:.86rem; }
+    th { background:#efeddc; color:var(--olive-dark); text-align:left; padding:10px; font-size:.8rem; }
+    td { padding:9px 10px; border-top:1px solid var(--line); white-space:nowrap; font-variant-numeric:tabular-nums; }
+    tbody tr:nth-child(even) td { background:#fbfaf5; }
+    td.anio, td.var { font-weight:bold; }
+    td.sd { color:var(--muted); }
+    .fuente { font-size:.8rem; color:var(--muted); margin:0 0 36px; }
+    .chart-box { border:1px solid var(--line); padding:14px; height:420px; position:relative; margin-bottom:10px; }
+    .aviso { font-size:.82rem; color:var(--muted); }
+    .nota-tabla { font-size:.8rem; color:var(--muted); margin:0 0 8px; }
+    .sin-datos { display:grid; place-items:center; height:100%; text-align:center; color:var(--muted); }
+    main { padding-bottom:40px; }
+    .back-to-top { position: fixed; right: 26px; bottom: 26px; z-index: 30; width: 45px; height: 45px; display: grid; place-items: center; border-radius: 3px; background: var(--olive-dark); color: #fff; font-size: 1.2rem; text-decoration: none; opacity: 0; visibility: hidden; transition: .2s; }
+    .back-to-top.show { opacity: 1; visibility: visible; }
+    .back-to-top:hover { background: var(--olive); }
+    @media (max-width: 600px) {
+      .page-hero { min-height: 240px; }
+      .page-hero .hero-inner { padding: 45px 20px; }
+      .chart-box { height:320px; }
+      .back-to-top { right: 16px; bottom: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="topbar-info">
+        <strong>Estudio Contable José A. Quacquarini y Asoc.</strong>
+      </div>
+      <div class="topbar-icons" aria-label="Datos de contacto">
+        <div class="phone-menu">
+          <button class="phone-trigger" type="button" aria-label="Elegir un teléfono" aria-expanded="false" aria-controls="phone-dropdown">
+            <img src="img/icono-telefono.png" alt="Teléfono" title="Elegir teléfono para WhatsApp">
+          </button>
+          <div class="phone-dropdown" id="phone-dropdown" hidden>
+            <span class="phone-dropdown-title">Contactanos por WhatsApp</span>
+            <a href="https://wa.me/5493464697225" target="_blank" rel="noopener noreferrer">+54 9 3464 69-7225 <small>(Estudio Pujato)</small></a>
+            <a href="https://wa.me/543464553622" target="_blank" rel="noopener noreferrer">+54 3464 55 3622 <small>(Estudio Rosario)</small></a>
+          </div>
+        </div>
+        <a class="email-link" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=contacto@estudioquacquarini.com.ar" target="_blank" rel="noopener noreferrer" aria-label="Escribir un correo al estudio">
+                  <img class="email-icon" src="img/icono-correo.png" alt="Correo electrónico" title="Correo electrónico">
+        </a>
+        <a class="instagram-link" href="https://www.instagram.com/estudioquacquarini?exln=Z20ycTY2a3ZybGp0" target="_blank" rel="noopener noreferrer" aria-label="Visitar Instagram del estudio" title="Instagram del estudio">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+            <circle cx="17.5" cy="6.7" r="1.2" fill="currentColor"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <header>
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="Inicio - Estudio José A. Quacquarini y Asociados">
+        <img src="img/logo.png" width="67" height="67" alt="Logo del Estudio José A. Quacquarini y Asociados">
+        <span class="brand-name">
+          <strong>Estudio José A. Quacquarini y Asoc.</strong>
+          <span>Estudio Contable</span>
+        </span>
+      </a>
+      <button class="menu-toggle" aria-expanded="false" aria-controls="main-nav">☰ Menú</button>
+      <nav id="main-nav" aria-label="Navegación principal">
+        <a href="index.html">Inicio</a>
+        <div class="nav-dropdown" id="estudio-nav-dropdown">
+          <a class="nav-dropdown-trigger" href="estudio.html" aria-haspopup="true" aria-expanded="false">El Estudio <span aria-hidden="true"></span></a>
+          <div class="nav-dropdown-menu" aria-label="Secciones de El Estudio">
+            <a href="estudio.html">El Estudio</a>
+            <a href="estudio-opcion-2.html">¿Qué nos diferencia?</a>
+            <a href="documentos/folleto-quacquarini.pdf" target="_blank" rel="noopener noreferrer">Folleto Institucional</a>
+            <a href="estudio-opcion-4.html">Unite a Estudio Contable José A. Quacquarini y Asoc.</a>
+            <a href="novedades.html">Novedades</a>
+          </div>
+        </div>
+        <div class="nav-dropdown" id="servicios-nav-dropdown">
+          <a class="nav-dropdown-trigger" href="servicios.html" aria-haspopup="true" aria-expanded="false">Servicios <span aria-hidden="true"></span></a>
+          <div class="nav-dropdown-menu" aria-label="Opciones de Servicios">
+            <a href="servicios.html">Servicios</a>
+            <a href="servicios-opcion-2.html">¿Necesitás un crédito para tu empresa?</a>
+            <a href="servicios-opcion-3.html">¿Por qué contratarnos?</a>
+          </div>
+        </div>
+        <a href="novedades.html">Novedades</a>
+        <div class="nav-dropdown" id="datos-nav-dropdown">
+          <a class="nav-dropdown-trigger" href="datos-utiles.html" aria-current="page" aria-haspopup="true" aria-expanded="false">Datos Útiles <span aria-hidden="true"></span></a>
+          <div class="nav-dropdown-menu" aria-label="Opciones de Datos Útiles">
+            <a href="datos-utiles.html">Datos Útiles</a>
+            <div class="nav-submenu">
+              <a class="nav-submenu-trigger" role="button" tabindex="0" style="cursor:pointer" aria-haspopup="true" aria-expanded="false">Indicadores económicos</a>
+              <div class="nav-flyout" aria-label="Indicadores económicos">
+                <a href="datos-inflacion.html">Inflación</a>
+                <a href="datos-dolar.html">Cotización del dólar</a>
+                <a href="datos-salarios-ripte.html">Índice de salarios + Índice RIPTE</a>
+                <a href="datos-salario-minimo.html">Salario mínimo, vital y móvil</a>
+                <a href="datos-comparacion-indices.html">Comparación Índices</a>
+              </div>
+            </div>
+            <div class="nav-submenu">
+              <a class="nav-submenu-trigger" role="button" tabindex="0" style="cursor:pointer" aria-haspopup="true" aria-expanded="false">Vencimientos</a>
+              <div class="nav-flyout" aria-label="Vencimientos">
+                <a href="vencimientos-autonomos.html">Autónomos</a>
+                <a href="vencimientos-monotributo.html">Monotributo</a>
+                <a href="vencimientos-iva.html">IVA | Libro IVA Digital</a>
+                <a href="vencimientos-convenio-multilateral.html">Convenio Multilateral | Ingresos Brutos</a>
+                <a href="vencimientos-servicio-domestico.html">Cargas Sociales | Servicio Doméstico</a>
+                <a href="vencimientos-relacion-dependencia.html">Cargas Sociales | Relación de Dependencia</a>
+                <a href="vencimientos-ganancias-humanas.html">Ganancias | Personas Humanas</a>
+                <a href="vencimientos-ganancias-juridicas.html">Ganancias | Personas Jurídicas</a>
+                <a href="vencimientos-retenciones-sicore.html">Retenciones | SICORE</a>
+              </div>
+            </div>
+            <a href="datos-feriados.html">Feriados</a>
+            <a href="datos-categorias-monotributo.html">Categorías de Monotributo</a>
+            <a href="datos-tabla-autonomos.html">Tabla de Autónomos</a>
+            <a href="datos-tabla-ganancias.html">Tabla Ganancias, Deducciones y Retenciones</a>
+            <a href="datos-tabla-bienes-personales.html">Tabla Bienes Personales</a>
+            <a href="datos-intereses-afip.html">Intereses ARCA</a>
+            <a href="datos-regimen-iibb.html">Rég. Simpl. IIBB Santa Fe</a>
+            <a href="datos-leyes-resoluciones.html">Leyes y Resoluciones</a>
+            <a href="datos-glosario.html">Glosario</a>
+          </div>
+        </div>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero page-hero" id="inicio">
+      <div class="hero-inner">
+        <span class="eyebrow">Estudio contable · Desde 1998</span>
+        <h1>Feriados</h1>
+        <p>Feriados inamovibles, trasladables, días no laborables y feriados locales de la República Argentina. Actualizados automáticamente con el calendario oficial.</p>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <h2>Próximo feriado</h2>
+      <div class="resumen" id="resumen">Cargando feriados…</div>
+    </div>
+
+    <div class="wrap">
+      <h2 id="titulo-tabla">Feriados inamovibles, trasladables y días no laborables</h2>
+      <div class="periodos" id="anios" role="group" aria-label="Año" hidden></div>
+      <div class="tabla-wrap tabla-venc"><table>
+        <thead><tr><th>Fecha</th><th>Día</th><th>Tipo</th><th>Conmemoración</th></tr></thead>
+        <tbody id="tabla-feriados"></tbody>
+      </table></div>
+      <p class="nota-tabla" id="nota-respaldo" hidden>No se pudo cargar el calendario oficial completo: se muestran solo los feriados nacionales y los días turísticos, sin los días no laborables religiosos ni los feriados locales.</p>
+      <div class="notas-legales" id="notas"></div>
+      <p class="fuente">Fuente: <a href="https://www.argentina.gob.ar/feriados" target="_blank" rel="noopener">Jefatura de Gabinete de Ministros · Feriados nacionales</a>. Elaboración propia.</p>
+    </div>
+
+    <div class="wrap">
+      <h2>Vencimientos</h2>
+      <p class="texto">Cuando un vencimiento impositivo cae en feriado o día no laborable, pasa al día hábil siguiente. Mirá las fechas actualizadas de cada impuesto:</p>
+      <ul class="mas-venc">
+        <li><a href="vencimientos-autonomos.html">Autónomos</a></li>
+        <li><a href="vencimientos-monotributo.html">Monotributo</a></li>
+        <li><a href="vencimientos-iva.html">IVA | Libro IVA Digital</a></li>
+        <li><a href="vencimientos-convenio-multilateral.html">Convenio Multilateral | Ingresos Brutos</a></li>
+        <li><a href="vencimientos-relacion-dependencia.html">Cargas Sociales | Relación de Dependencia</a></li>
+        <li><a href="vencimientos-servicio-domestico.html">Cargas Sociales | Servicio Doméstico</a></li>
+        <li><a href="vencimientos-ganancias-humanas.html">Ganancias | Personas Humanas</a></li>
+        <li><a href="vencimientos-ganancias-juridicas.html">Ganancias | Personas Jurídicas</a></li>
+        <li><a href="vencimientos-retenciones-sicore.html">Retenciones | SICORE</a></li>
+      </ul>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="img/logo.png" alt="" width="48" height="48" loading="lazy" decoding="async">
+        <div><strong>Estudio José A. Quacquarini y Asoc.</strong><span>Trayectoria profesional desde 1998</span></div>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Inicio</a><a href="estudio.html">El Estudio</a><a href="servicios.html">Servicios</a><a href="contacto.html">Contacto</a>
+      </div>
+      <div class="copyright">© <span id="year">2026</span> Estudio José A. Quacquarini y Asoc.</div>
+    </div>
+  </footer>
+
+  <a class="back-to-top" id="back-to-top" href="#inicio" aria-label="Volver arriba">↑</a>
+
+  <script>
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('#main-nav');
+    toggle.addEventListener('click', () => {
+      const opened = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(opened));
+    });
+    nav.querySelectorAll('a:not(.nav-dropdown-trigger):not(.nav-submenu-trigger)').forEach(link => link.addEventListener('click', () => {
+      nav.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }));
+    const dropdowns = [
+      document.querySelector('#estudio-nav-dropdown'),
+      document.querySelector('#servicios-nav-dropdown'),
+      document.querySelector('#datos-nav-dropdown')
+    ];
+    dropdowns.forEach((dropdown) => {
+      const trigger = dropdown.querySelector('.nav-dropdown-trigger');
+      trigger.addEventListener('click', (event) => {
+        // En pantallas táctiles, el primer toque abre el menú; el siguiente sigue el enlace principal.
+        if (window.matchMedia('(max-width: 900px)').matches && !dropdown.classList.contains('open')) {
+          event.preventDefault();
+          dropdown.classList.add('open');
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+    document.addEventListener('click', (event) => {
+      dropdowns.forEach((dropdown) => {
+        if (!dropdown.contains(event.target)) {
+          dropdown.classList.remove('open');
+          dropdown.querySelector('.nav-dropdown-trigger').setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+    document.querySelectorAll('.nav-submenu').forEach((submenu) => {
+      const trigger = submenu.querySelector('.nav-submenu-trigger');
+      trigger.addEventListener('click', (event) => {
+        // En pantallas táctiles, el primer toque abre el submenú; el siguiente sigue el enlace.
+        if (window.matchMedia('(max-width: 900px)').matches && !submenu.classList.contains('open')) {
+          event.preventDefault();
+          submenu.classList.add('open');
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+    document.querySelector('#year').textContent = new Date().getFullYear();
+    const phoneTrigger = document.querySelector('.phone-trigger');
+    const phoneDropdown = document.querySelector('#phone-dropdown');
+    phoneTrigger.addEventListener('click', (event) => {
+      event.stopPropagation();
+      const opening = phoneDropdown.hidden;
+      phoneDropdown.hidden = !opening;
+      phoneTrigger.setAttribute('aria-expanded', String(opening));
+    });
+    document.addEventListener('click', (event) => {
+      if (!event.target.closest('.phone-menu')) {
+        phoneDropdown.hidden = true;
+        phoneTrigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !phoneDropdown.hidden) {
+        phoneDropdown.hidden = true;
+        phoneTrigger.setAttribute('aria-expanded', 'false');
+        phoneTrigger.focus();
+      }
+    });
+    const backToTop = document.querySelector('#back-to-top');
+    window.addEventListener('scroll', () => backToTop.classList.toggle('show', window.scrollY > 300));
+  </script>
+  <script>[new Date().getFullYear(), new Date().getFullYear() + 1].forEach(a => document.write(`<script src="datos/feriados-${a}.js"><\/script>`));</script>
+  <script>
+    const MESES_L = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+    const DIAS_L = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+    const TIPOS = {
+      inamovible: 'Feriado inamovible', trasladable: 'Feriado trasladable', turistico: 'Día no laborable turístico',
+      no_laborable: 'Día no laborable', especial: 'Feriado local'
+    };
+    const NO_TRABAJADOS = ['inamovible', 'trasladable', 'turistico']; // los que cuentan para "próximo feriado"
+    const hoy = new Date();
+    const iso = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    const hoyISO = iso(hoy);
+    const fecha = s => new Date(+s.slice(0, 4), +s.slice(5, 7) - 1, +s.slice(8, 10));
+    const diaMes = s => `${+s.slice(8, 10) === 1 ? '1°' : +s.slice(8, 10)}`;
+    const json = url => fetch(url, { cache: 'no-cache' }).then(r => { if (!r.ok) throw new Error(url); return r.json(); });
+    const texto = html => new DOMParser().parseFromString(html, 'text/html').body.textContent.replace(/\s+/g, ' ').trim();
+
+    /* ---------- Fuentes ---------- */
+    // Calendario oficial (argentina.gob.ar): lo guarda todos los días la tarea del sitio
+    // (.github/workflows/actualizar-datos.yml) en datos/feriados-AAAA.js, porque no se puede leer directamente.
+    async function oficial(anio) {
+      const j = (window.DATOS || {})[`feriados-${anio}`];
+      if (!j) throw new Error(`feriados-${anio}`);
+      const dias = (j.mainEntity?.itemListElement || []).map(e => ({
+        fecha: e.item.startDate, tipo: e.item.additionalProperty?.value, nombre: texto(e.item.name)
+      }));
+      // Cada nota es [título, texto en markdown].
+      const notas = (j.subjectOf || []).map(s => Array.isArray(s) ? s : s?.value).filter(v => Array.isArray(v) && v.length === 2);
+      return { dias, notas, completo: true };
+    }
+    // Respaldo (ArgentinaDatos): solo feriados nacionales y puentes turísticos.
+    async function respaldo(anio) {
+      const lista = await json(`https://api.argentinadatos.com/v1/feriados/${anio}`);
+      return { dias: lista.map(f => ({ fecha: f.fecha, tipo: f.tipo === 'puente' ? 'turistico' : f.tipo, nombre: f.nombre })), notas: [], completo: false };
+    }
+    const cargar = anio => oficial(anio).catch(() => respaldo(anio));
+
+    // Notas legales en markdown sencillo: párrafos, listas con "-" y enlaces [texto](url).
+    function markdown(md) {
+      const escapar = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      const enlaces = s => s.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (_, t, u) => `<a href="${new URL(u.replace(/&amp;/g, '&'), 'https://www.argentina.gob.ar').href}" target="_blank" rel="noopener">${t}</a>`);
+      return md.split(/\n\s*\n/).map(bloque => {
+        const lineas = bloque.split('\n').map(l => l.trim()).filter(Boolean);
+        if (!lineas.length) return '';
+        if (lineas.every(l => /^-\s+/.test(l))) return `<ul>${lineas.map(l => `<li>${enlaces(escapar(l.replace(/^-\s+/, '')))}</li>`).join('')}</ul>`;
+        return `<p>${enlaces(escapar(lineas.join(' ')))}</p>`;
+      }).join('');
+    }
+
+    /* ---------- Página ---------- */
+    // Une días seguidos con la misma conmemoración y tipo (por ejemplo, "2 y 3 de abril").
+    function agrupar(dias) {
+      const filas = [];
+      for (const d of [...dias].sort((a, b) => a.fecha.localeCompare(b.fecha))) {
+        const diaAnterior = iso(new Date(fecha(d.fecha).getTime() - 864e5));
+        const fila = filas.find(f => f.hasta === diaAnterior && f.tipo === d.tipo && f.nombre === d.nombre);
+        if (fila) fila.hasta = d.fecha;
+        else filas.push({ ...d, desde: d.fecha, hasta: d.fecha });
+      }
+      return filas;
+    }
+    function mostrarAnio(anio, datos) {
+      // El calendario oficial de un año puede incluir el 1° de enero del siguiente: se muestra en su año.
+      const filas = agrupar(datos.dias.filter(d => d.fecha.startsWith(`${anio}-`)));
+      const proxima = filas.find(f => f.hasta >= hoyISO);
+      document.getElementById('titulo-tabla').textContent = `Feriados inamovibles, trasladables y días no laborables ${anio}`;
+      document.getElementById('tabla-feriados').innerHTML = filas.map(f => {
+        const mes = MESES_L[+f.desde.slice(5, 7) - 1];
+        const fechaTxt = f.desde === f.hasta ? `${diaMes(f.desde)} de ${mes}` : `${diaMes(f.desde)} y ${diaMes(f.hasta)} de ${mes}`;
+        const diaTxt = f.desde === f.hasta ? DIAS_L[fecha(f.desde).getDay()] : `${DIAS_L[fecha(f.desde).getDay()]} y ${DIAS_L[fecha(f.hasta).getDay()]}`;
+        const clase = f.hasta < hoyISO ? ' class="pasado"' : f === proxima ? ' class="proximo"' : '';
+        return `<tr${clase}><td>${fechaTxt}</td><td>${diaTxt}</td><td class="var">${TIPOS[f.tipo] || f.tipo}</td><td></td></tr>`;
+      }).join('');
+      // La conmemoración se escribe como texto, nunca como HTML.
+      document.querySelectorAll('#tabla-feriados tr').forEach((tr, i) => { tr.lastElementChild.textContent = filas[i].nombre; });
+      document.getElementById('nota-respaldo').hidden = datos.completo;
+      document.getElementById('notas').innerHTML = datos.notas.map(([titulo, md]) => `<h3>${titulo.replace(/</g, '&lt;')}</h3>${markdown(md)}`).join('');
+    }
+
+    function armarResumen(todos) {
+      const dias = todos.flatMap(d => d.dias).filter(d => NO_TRABAJADOS.includes(d.tipo) && d.fecha >= hoyISO).sort((a, b) => a.fecha.localeCompare(b.fecha));
+      const resumen = document.getElementById('resumen');
+      if (!dias.length) { resumen.textContent = 'Todavía no se publicó el calendario de feriados del año próximo.'; return; }
+      const d = dias[0], faltan = Math.round((fecha(d.fecha) - fecha(hoyISO)) / 864e5);
+      const cuando = faltan === 0 ? '<strong>Hoy</strong> es' : faltan === 1 ? '<strong>Mañana</strong> es' : `Faltan <strong>${faltan} días</strong> para el`;
+      resumen.innerHTML = `
+        <h3>${DIAS_L[fecha(d.fecha).getDay()]} ${diaMes(d.fecha)} de ${MESES_L[+d.fecha.slice(5, 7) - 1]} de ${d.fecha.slice(0, 4)}</h3>
+        <p>${cuando} ${TIPOS[d.tipo].toLowerCase()}: <strong class="js-nombre"></strong>.</p>`;
+      resumen.querySelector('.js-nombre').textContent = d.nombre;
+    }
+
+    /* ---------- Carga ---------- */
+    const anio = hoy.getFullYear();
+    Promise.all([cargar(anio).catch(() => null), oficial(anio + 1).catch(() => null)]).then(([actual, siguiente]) => {
+      if (!actual) {
+        document.getElementById('resumen').textContent = 'No se pudieron cargar los feriados en este momento. Intentá nuevamente más tarde.';
+        return;
+      }
+      const anios = { [anio]: actual };
+      if (siguiente && siguiente.dias.length) anios[anio + 1] = siguiente;
+      armarResumen(Object.values(anios));
+      // Se muestra el año en curso; cuando ya pasaron todos sus feriados y está publicado el siguiente, ese.
+      let elegido = anio;
+      if (anios[anio + 1] && actual.dias.every(d => d.fecha < hoyISO)) elegido = anio + 1;
+      const botones = document.getElementById('anios');
+      if (Object.keys(anios).length > 1) {
+        botones.innerHTML = Object.keys(anios).map(a => `<button type="button" data-anio="${a}" aria-pressed="${+a === elegido}">${a}</button>`).join('');
+        botones.hidden = false;
+        botones.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+          mostrarAnio(+b.dataset.anio, anios[b.dataset.anio]);
+          botones.querySelectorAll('button').forEach(o => o.setAttribute('aria-pressed', String(o === b)));
+        }));
+      }
+      mostrarAnio(elegido, anios[elegido]);
+    });
+  </script>
+</body>
+</html>

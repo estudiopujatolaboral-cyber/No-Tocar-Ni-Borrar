@@ -1,0 +1,551 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Índice de salarios (INDEC) e índice RIPTE: variación mensual e interanual, comparados con la inflación. Estudio José A. Quacquarini y Asoc.">
+  <link rel="canonical" href="https://estudioquacquarini.com.ar/datos-salarios-ripte.html">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Estudio José A. Quacquarini y Asoc.">
+  <meta property="og:title" content="Índice de salarios + Índice RIPTE | Estudio José A. Quacquarini y Asoc.">
+  <meta property="og:description" content="Índice de salarios (INDEC) e índice RIPTE: variación mensual e interanual, comparados con la inflación. Estudio José A. Quacquarini y Asoc.">
+  <meta property="og:url" content="https://estudioquacquarini.com.ar/datos-salarios-ripte.html">
+  <meta property="og:image" content="https://estudioquacquarini.com.ar/img/logo.png">
+  <meta property="og:image:alt" content="Logo del Estudio José A. Quacquarini y Asoc.">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" type="image/png" href="img/logo.png">
+  <title>Índice de salarios + Índice RIPTE | Estudio José A. Quacquarini y Asoc.</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="css/estilos.css">
+  <script src="js/tema.js"></script>
+  <style>
+
+    /* Página Salarios + RIPTE */
+    .page-hero { min-height: 300px; }
+    .page-hero .hero-inner { padding: 60px 22px; }
+    .nav-dropdown > .nav-dropdown-trigger[aria-current="page"] { color: var(--olive); }
+    .wrap { max-width:var(--max); margin:auto; padding:50px 22px 10px; }
+    .wrap h2 { font:500 1.9rem Georgia,serif; margin:0 0 18px; }
+    .wrap a { color:var(--olive-dark); }
+    h3.sub { font-size:1rem; text-align:center; margin:30px 0 8px; color:var(--ink); }
+    .resumen { background:var(--cream); border-left:4px solid var(--gold); padding:20px 24px; }
+    .resumen h3 { margin:0 0 8px; text-transform:uppercase; font-size:1rem; }
+    .resumen p { margin:0; }
+    .tabla-wrap { overflow-x:auto; border:1px solid var(--line); margin:12px 0 8px; }
+    table { border-collapse:collapse; width:100%; min-width:950px; font-size:.86rem; }
+    th { background:#efeddc; color:var(--olive-dark); text-align:left; padding:10px; font-size:.8rem; }
+    td { padding:9px 10px; border-top:1px solid var(--line); white-space:nowrap; font-variant-numeric:tabular-nums; }
+    tbody tr:nth-child(even) td { background:#fbfaf5; }
+    td.anio, td.var { font-weight:bold; }
+    td.sd { color:var(--muted); }
+    .fuente { font-size:.8rem; color:var(--muted); margin:0 0 36px; }
+    .chart-box { border:1px solid var(--line); padding:14px; height:420px; position:relative; margin-bottom:10px; }
+    .aviso { font-size:.82rem; color:var(--muted); }
+    .nota-tabla { font-size:.8rem; color:var(--muted); margin:0 0 8px; }
+    .sin-datos { display:grid; place-items:center; height:100%; text-align:center; color:var(--muted); }
+    main { padding-bottom:40px; }
+    .back-to-top { position: fixed; right: 26px; bottom: 26px; z-index: 30; width: 45px; height: 45px; display: grid; place-items: center; border-radius: 3px; background: var(--olive-dark); color: #fff; font-size: 1.2rem; text-decoration: none; opacity: 0; visibility: hidden; transition: .2s; }
+    .back-to-top.show { opacity: 1; visibility: visible; }
+    .back-to-top:hover { background: var(--olive); }
+    @media (max-width: 600px) {
+      .page-hero { min-height: 240px; }
+      .page-hero .hero-inner { padding: 45px 20px; }
+      .chart-box { height:320px; }
+      .back-to-top { right: 16px; bottom: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="topbar-info">
+        <strong>Estudio Contable José A. Quacquarini y Asoc.</strong>
+      </div>
+      <div class="topbar-icons" aria-label="Datos de contacto">
+        <div class="phone-menu">
+          <button class="phone-trigger" type="button" aria-label="Elegir un teléfono" aria-expanded="false" aria-controls="phone-dropdown">
+            <img src="img/icono-telefono.png" alt="Teléfono" title="Elegir teléfono para WhatsApp">
+          </button>
+          <div class="phone-dropdown" id="phone-dropdown" hidden>
+            <span class="phone-dropdown-title">Contactanos por WhatsApp</span>
+            <a href="https://wa.me/5493464697225" target="_blank" rel="noopener noreferrer">+54 9 3464 69-7225 <small>(Estudio Pujato)</small></a>
+            <a href="https://wa.me/543464553622" target="_blank" rel="noopener noreferrer">+54 3464 55 3622 <small>(Estudio Rosario)</small></a>
+          </div>
+        </div>
+        <a class="email-link" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=contacto@estudioquacquarini.com.ar" target="_blank" rel="noopener noreferrer" aria-label="Escribir un correo al estudio">
+                  <img class="email-icon" src="img/icono-correo.png" alt="Correo electrónico" title="Correo electrónico">
+        </a>
+        <a class="instagram-link" href="https://www.instagram.com/estudioquacquarini?exln=Z20ycTY2a3ZybGp0" target="_blank" rel="noopener noreferrer" aria-label="Visitar Instagram del estudio" title="Instagram del estudio">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+            <circle cx="17.5" cy="6.7" r="1.2" fill="currentColor"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <header>
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="Inicio - Estudio José A. Quacquarini y Asociados">
+        <img src="img/logo.png" width="67" height="67" alt="Logo del Estudio José A. Quacquarini y Asociados">
+        <span class="brand-name">
+          <strong>Estudio José A. Quacquarini y Asoc.</strong>
+          <span>Estudio Contable</span>
+        </span>
+      </a>
+      <button class="menu-toggle" aria-expanded="false" aria-controls="main-nav">☰ Menú</button>
+      <nav id="main-nav" aria-label="Navegación principal">
+        <a href="index.html">Inicio</a>
+        <div class="nav-dropdown" id="estudio-nav-dropdown">
+          <a class="nav-dropdown-trigger" href="estudio.html" aria-haspopup="true" aria-expanded="false">El Estudio <span aria-hidden="true"></span></a>
+          <div class="nav-dropdown-menu" aria-label="Secciones de El Estudio">
+            <a href="estudio.html">El Estudio</a>
+            <a href="estudio-opcion-2.html">¿Qué nos diferencia?</a>
+            <a href="documentos/folleto-quacquarini.pdf" target="_blank" rel="noopener noreferrer">Folleto Institucional</a>
+            <a href="estudio-opcion-4.html">Unite a Estudio Contable José A. Quacquarini y Asoc.</a>
+            <a href="novedades.html">Novedades</a>
+          </div>
+        </div>
+        <div class="nav-dropdown" id="servicios-nav-dropdown">
+          <a class="nav-dropdown-trigger" href="servicios.html" aria-haspopup="true" aria-expanded="false">Servicios <span aria-hidden="true"></span></a>
+          <div class="nav-dropdown-menu" aria-label="Opciones de Servicios">
+            <a href="servicios.html">Servicios</a>
+            <a href="servicios-opcion-2.html">¿Necesitás un crédito para tu empresa?</a>
+            <a href="servicios-opcion-3.html">¿Por qué contratarnos?</a>
+          </div>
+        </div>
+        <a href="novedades.html">Novedades</a>
+        <div class="nav-dropdown" id="datos-nav-dropdown">
+          <a class="nav-dropdown-trigger" href="datos-utiles.html" aria-current="page" aria-haspopup="true" aria-expanded="false">Datos Útiles <span aria-hidden="true"></span></a>
+          <div class="nav-dropdown-menu" aria-label="Opciones de Datos Útiles">
+            <a href="datos-utiles.html">Datos Útiles</a>
+            <div class="nav-submenu">
+              <a class="nav-submenu-trigger" role="button" tabindex="0" style="cursor:pointer" aria-haspopup="true" aria-expanded="false">Indicadores económicos</a>
+              <div class="nav-flyout" aria-label="Indicadores económicos">
+                <a href="datos-inflacion.html">Inflación</a>
+                <a href="datos-dolar.html">Cotización del dólar</a>
+                <a href="datos-salarios-ripte.html">Índice de salarios + Índice RIPTE</a>
+                <a href="datos-salario-minimo.html">Salario mínimo, vital y móvil</a>
+                <a href="datos-comparacion-indices.html">Comparación Índices</a>
+              </div>
+            </div>
+            <div class="nav-submenu">
+              <a class="nav-submenu-trigger" role="button" tabindex="0" style="cursor:pointer" aria-haspopup="true" aria-expanded="false">Vencimientos</a>
+              <div class="nav-flyout" aria-label="Vencimientos">
+                <a href="vencimientos-autonomos.html">Autónomos</a>
+                <a href="vencimientos-monotributo.html">Monotributo</a>
+                <a href="vencimientos-iva.html">IVA | Libro IVA Digital</a>
+                <a href="vencimientos-convenio-multilateral.html">Convenio Multilateral | Ingresos Brutos</a>
+                <a href="vencimientos-servicio-domestico.html">Cargas Sociales | Servicio Doméstico</a>
+                <a href="vencimientos-relacion-dependencia.html">Cargas Sociales | Relación de Dependencia</a>
+                <a href="vencimientos-ganancias-humanas.html">Ganancias | Personas Humanas</a>
+                <a href="vencimientos-ganancias-juridicas.html">Ganancias | Personas Jurídicas</a>
+                <a href="vencimientos-retenciones-sicore.html">Retenciones | SICORE</a>
+              </div>
+            </div>
+            <a href="datos-feriados.html">Feriados</a>
+            <a href="datos-categorias-monotributo.html">Categorías de Monotributo</a>
+            <a href="datos-tabla-autonomos.html">Tabla de Autónomos</a>
+            <a href="datos-tabla-ganancias.html">Tabla Ganancias, Deducciones y Retenciones</a>
+            <a href="datos-tabla-bienes-personales.html">Tabla Bienes Personales</a>
+            <a href="datos-intereses-afip.html">Intereses ARCA</a>
+            <a href="datos-regimen-iibb.html">Rég. Simpl. IIBB Santa Fe</a>
+            <a href="datos-leyes-resoluciones.html">Leyes y Resoluciones</a>
+            <a href="datos-glosario.html">Glosario</a>
+          </div>
+        </div>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero page-hero" id="inicio">
+      <div class="hero-inner">
+        <span class="eyebrow">Estudio contable · Desde 1998</span>
+        <h1>Índice de salarios + Índice RIPTE</h1>
+        <p>Evolución de los salarios y de la remuneración imponible promedio de los trabajadores estables, comparada con la inflación. Datos actualizados automáticamente.</p>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <h2>Últimos datos publicados</h2>
+      <div class="resumen" id="resumen">
+        <h3>RIPTE</h3>
+        <p id="resumen-ripte"></p>
+        <h3 style="margin-top:16px">Índice de salarios</h3>
+        <p id="resumen-salarios"></p>
+      </div>
+    </div>
+
+    <div class="wrap" id="salarios">
+      <h2>Índice de salarios</h2>
+      <div class="tabla-wrap"><table>
+        <thead><tr><th>AÑO</th><th>Variación anual</th><th>ENE</th><th>FEB</th><th>MAR</th><th>ABR</th><th>MAY</th><th>JUN</th><th>JUL</th><th>AGO</th><th>SEP</th><th>OCT</th><th>NOV</th><th>DIC</th></tr></thead>
+        <tbody id="tabla-salarios"></tbody>
+      </table></div>
+      <p class="nota-tabla">Variación mensual del índice de salarios de cada año. La variación anual toma diciembre en los años completos y el último mes publicado en el año en curso (marcado con *).</p>
+      <p class="fuente">Fuente: <a href="https://www.indec.gob.ar" target="_blank" rel="noopener">INDEC</a>. Elaboración propia.</p>
+
+      <h3 class="sub">Índice de salarios · variación interanual mes a mes</h3>
+      <div class="chart-box" id="caja-g-salarios"><canvas id="g-salarios"></canvas></div>
+      <p class="fuente">Fuente: <a href="https://www.indec.gob.ar" target="_blank" rel="noopener">INDEC</a>. Elaboración propia.</p>
+    </div>
+
+    <div class="wrap" id="ripte">
+      <h2>Índice RIPTE</h2>
+      <p class="nota-tabla">Remuneración imponible promedio de los trabajadores estables, en pesos.</p>
+      <div class="tabla-wrap"><table>
+        <thead><tr><th>AÑO</th><th>Variación anual</th><th>ENE</th><th>FEB</th><th>MAR</th><th>ABR</th><th>MAY</th><th>JUN</th><th>JUL</th><th>AGO</th><th>SEP</th><th>OCT</th><th>NOV</th><th>DIC</th></tr></thead>
+        <tbody id="tabla-ripte"></tbody>
+      </table></div>
+      <p class="nota-tabla">Valor mensual del RIPTE. La variación anual toma diciembre en los años completos y el último mes publicado en el año en curso (marcado con *).</p>
+      <p class="fuente">Fuente: <a href="https://www.argentina.gob.ar/trabajo/seguridadsocial/ripte" target="_blank" rel="noopener">Ministerio de Capital Humano · Secretaría de Seguridad Social</a>. Elaboración propia.</p>
+
+      <h3 class="sub">Índice RIPTE · variación interanual mes a mes</h3>
+      <div class="chart-box" id="caja-g-ripte"><canvas id="g-ripte"></canvas></div>
+      <p class="fuente">Fuente: <a href="https://www.argentina.gob.ar/trabajo/seguridadsocial/ripte" target="_blank" rel="noopener">Secretaría de Seguridad Social</a>. Elaboración propia.</p>
+
+      <h3 class="sub">Salarios, RIPTE e inflación · variación interanual</h3>
+      <div class="chart-box" id="caja-g-comparativo"><canvas id="g-comparativo"></canvas></div>
+      <p class="fuente">Fuentes: <a href="https://www.indec.gob.ar" target="_blank" rel="noopener">INDEC</a>, Secretaría de Seguridad Social. Inflación vía <a href="https://argentinadatos.com" target="_blank" rel="noopener">ArgentinaDatos</a>. Elaboración propia.</p>
+
+      <p class="aviso">Información de referencia. Para actualizaciones e indexaciones con efectos legales, utilizar los índices oficiales publicados por el INDEC y la Secretaría de Seguridad Social.</p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="img/logo.png" alt="" width="48" height="48" loading="lazy" decoding="async">
+        <div><strong>Estudio José A. Quacquarini y Asoc.</strong><span>Trayectoria profesional desde 1998</span></div>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Inicio</a><a href="estudio.html">El Estudio</a><a href="servicios.html">Servicios</a><a href="contacto.html">Contacto</a>
+      </div>
+      <div class="copyright">© <span id="year">2026</span> Estudio José A. Quacquarini y Asoc.</div>
+    </div>
+  </footer>
+
+  <a class="back-to-top" id="back-to-top" href="#inicio" aria-label="Volver arriba">↑</a>
+
+  <script>
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('#main-nav');
+    toggle.addEventListener('click', () => {
+      const opened = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(opened));
+    });
+    nav.querySelectorAll('a:not(.nav-dropdown-trigger):not(.nav-submenu-trigger)').forEach(link => link.addEventListener('click', () => {
+      nav.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }));
+    const dropdowns = [
+      document.querySelector('#estudio-nav-dropdown'),
+      document.querySelector('#servicios-nav-dropdown'),
+      document.querySelector('#datos-nav-dropdown')
+    ];
+    dropdowns.forEach((dropdown) => {
+      const trigger = dropdown.querySelector('.nav-dropdown-trigger');
+      trigger.addEventListener('click', (event) => {
+        // En pantallas táctiles, el primer toque abre el menú; el siguiente sigue el enlace principal.
+        if (window.matchMedia('(max-width: 900px)').matches && !dropdown.classList.contains('open')) {
+          event.preventDefault();
+          dropdown.classList.add('open');
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+    document.addEventListener('click', (event) => {
+      dropdowns.forEach((dropdown) => {
+        if (!dropdown.contains(event.target)) {
+          dropdown.classList.remove('open');
+          dropdown.querySelector('.nav-dropdown-trigger').setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+    document.querySelectorAll('.nav-submenu').forEach((submenu) => {
+      const trigger = submenu.querySelector('.nav-submenu-trigger');
+      trigger.addEventListener('click', (event) => {
+        // En pantallas táctiles, el primer toque abre el submenú; el siguiente sigue el enlace.
+        if (window.matchMedia('(max-width: 900px)').matches && !submenu.classList.contains('open')) {
+          event.preventDefault();
+          submenu.classList.add('open');
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+    document.querySelector('#year').textContent = new Date().getFullYear();
+    const phoneTrigger = document.querySelector('.phone-trigger');
+    const phoneDropdown = document.querySelector('#phone-dropdown');
+    phoneTrigger.addEventListener('click', (event) => {
+      event.stopPropagation();
+      const opening = phoneDropdown.hidden;
+      phoneDropdown.hidden = !opening;
+      phoneTrigger.setAttribute('aria-expanded', String(opening));
+    });
+    document.addEventListener('click', (event) => {
+      if (!event.target.closest('.phone-menu')) {
+        phoneDropdown.hidden = true;
+        phoneTrigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !phoneDropdown.hidden) {
+        phoneDropdown.hidden = true;
+        phoneTrigger.setAttribute('aria-expanded', 'false');
+        phoneTrigger.focus();
+      }
+    });
+    const backToTop = document.querySelector('#back-to-top');
+    window.addEventListener('scroll', () => backToTop.classList.toggle('show', window.scrollY > 300));
+  </script>
+  <script src="datos/ripte.js"></script>
+  <script>
+    /* ---------- Datos de respaldo ----------
+       La página trae los datos actualizados de la API de Series de Tiempo (datos.gob.ar)
+       y el RIPTE también de datos/ripte.js (página oficial de Seguridad Social).
+       Estos valores se usan solo si esas fuentes no responden o les falta algún mes. */
+    // Índice de salarios (INDEC): variación mensual en %.
+    const SALARIOS = {
+      2012: [null, null, null, null, null, null, 2.55, 2.14, 1.35, 1.35, 2.32, 1.39],
+      2013: [0.62, 0.70, 2.58, 2.15, 3.69, 2.08, 2.31, 1.90, 2.35, 1.32, 2.39, 1.19],
+      2014: [1.73, 2.12, 2.91, 4.95, 3.14, 3.00, 3.43, 2.28, 1.67, 1.56, 1.64, 1.01],
+      2015: [1.96, 0.92, 3.16, 1.39, 2.90, 3.92, 3.52, 2.64, 1.82, 1.22, 2.19, 1.60],
+      2016: [1.41, 1.32, 3.15, 4.12, 3.32, 1.92, 4.47, 2.75, 1.31, 2.37, 1.41, 1.36],
+      2017: [1.54, 1.32, 2.89, 3.51, 1.60, 1.76, 3.99, 2.35, 1.41, 1.52, 1.56, 1.09],
+      2018: [1.11, 0.84, 1.91, 2.69, 1.52, 0.84, 2.63, 2.82, 2.91, 3.65, 2.92, 2.48],
+      2019: [3.08, 2.66, 3.95, 2.23, 2.82, 2.00, 4.72, 2.44, 2.67, 3.24, 2.37, 2.62],
+      2020: [5.99, 3.85, 3.04, 0.17, -0.07, 0.60, 1.79, 2.00, 2.50, 4.10, 3.29, 1.76],
+      2021: [3.27, 4.33, 5.02, 3.21, 2.84, 2.28, 4.91, 3.18, 4.00, 4.03, 3.94, 2.57],
+      2022: [3.76, 3.13, 7.39, 4.96, 6.22, 4.84, 5.54, 6.52, 6.73, 5.14, 6.71, 5.27],
+      2023: [4.71, 6.00, 10.11, 5.67, 7.49, 6.06, 11.02, 7.61, 11.68, 8.33, 9.06, 8.85],
+      2024: [16.44, 13.32, 10.27, 10.15, 8.32, 6.19, 7.47, 5.65, 4.71, 4.59, 3.84, 3.10],
+      2025: [2.93, 3.83, 2.97, 3.38, 2.99, 2.98, 2.48, 3.16, 2.22, 2.50, 1.78, 1.61],
+      2026: [2.54, 2.43, 3.40, 3.73, 2.22, 2.89, 2.82]
+    };
+    // Variación anual publicada (diciembre contra diciembre; en el año en curso, último mes contra igual mes del año anterior).
+    const SALARIOS_ANUAL = { 2010: 26.35, 2011: 29.45, 2012: 24.49, 2013: 25.88, 2014: 33.66, 2015: 29.91, 2016: 32.99, 2017: 27.47, 2018: 29.70, 2019: 40.90, 2020: 32.99, 2021: 53.36, 2022: 90.35, 2023: 152.68, 2024: 145.47, 2025: 38.23, 2026: 36.18 };
+
+    // RIPTE (Secretaría de Seguridad Social): valor mensual en pesos.
+    const RIPTE = {
+      2014: [8785.03, 9249.24, 9634.80, 10156.92, 10295.06, 10394.19, 10894.97, 10946.23, 11393.29, 11730.73, 11709.73, 11953.56],
+      2015: [11998.00, 12410.77, 12869.99, 13077.34, 13556.94, 14104.44, 14535.84, 14598.48, 14983.42, 15202.49, 15526.19, 15800.99],
+      2016: [15822.95, 16520.57, 16977.34, 17691.33, 18042.76, 18277.67, 18988.50, 19216.84, 19666.53, 20069.32, 20422.68, 20690.22],
+      2017: [21048.30, 21483.11, 22285.55, 22650.63, 23030.06, 23470.04, 24489.26, 24700.54, 25136.41, 25843.57, 26177.42, 26301.47],
+      2018: [26929.90, 27440.30, 28072.39, 28858.11, 29338.86, 29598.17, 30283.89, 30978.81, 31523.68, 33154.35, 33733.87, 34339.72],
+      2019: [35362.36, 36733.81, 38884.59, 39658.24, 40911.24, 41584.36, 43291.07, 44092.97, 45485.33, 47834.45, 48591.74, 49574.49],
+      2020: [53070.39, 56386.69, 56873.03, 56955.79, 57058.06, 58362.15, 60440.76, 60767.44, 61910.11, 64756.42, 65571.97, 66869.24],
+      2021: [68100.97, 72293.62, 75809.39, 80502.20, 81464.74, 84513.84, 88274.31, 90340.32, 94157.71, 97538.78, 100590.14, 102589.87],
+      2022: [107358.85, 112413.82, 121220.45, 128406.32, 133595.77, 141289.40, 148811.85, 155611.28, 165421.01, 174436.90, 184210.25, 194175.11],
+      2023: [201580.26, 218543.91, 239882.73, 263481.22, 279820.37, 302562.69, 324997.28, 344057.43, 376594.32, 420706.55, 447079.57, 484079.57],
+      2024: [555269.16, 619007.05, 705832.58, 819501.72, 879483.08, 933179.85, 994681.38, 1032410.48, 1075145.08, 1146474.18, 1178925.33, 1202927.89],
+      2025: [1234658.40, 1310357.80, 1363510.33, 1402606.61, 1428661.30, 1468135.75, 1510680.81, 1530297.32, 1551831.75, 1593047.33, 1611851.61, 1633547.00],
+      2026: [1646344.54, 1734357.18, 1775664.12, 1837609.35, 1849727.96, 1915878.76, 1946028.12, 1982518.19]
+    };
+    const RIPTE_ANUAL = { 2010: 28.83, 2011: 35.89, 2012: 32.30, 2013: 25.16, 2014: 36.71, 2015: 32.19, 2016: 30.94, 2017: 27.12, 2018: 30.56, 2019: 44.36, 2020: 34.89, 2021: 53.42, 2022: 89.27, 2023: 149.41, 2024: 148.39, 2025: 35.80, 2026: 29.55 };
+
+    const MESES = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+    const MESES_L = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+    const C_SAL = '#8f8d3c', C_RIPTE = '#3f6e8c', C_INF = '#a33b2b';
+    const num = (v, d = 2) => v.toLocaleString('es-AR', { minimumFractionDigits: d, maximumFractionDigits: d });
+    const pct = v => v == null ? 's/d' : num(v) + '%';
+    const restarMeses = (k, n) => {
+      let y = +k.slice(0, 4), m = +k.slice(5, 7) - n;
+      while (m < 1) { m += 12; y--; }
+      return `${y}-${String(m).padStart(2, '0')}`;
+    };
+    const etiqueta = k => MESES[+k.slice(5, 7) - 1] + '-' + k.slice(2, 4);
+    const nombreMes = k => MESES_L[+k.slice(5, 7) - 1];
+    const mesesEntre = (desde, hasta) => {
+      const lista = [];
+      for (let k = hasta; k >= desde; k = restarMeses(k, 1)) lista.unshift(k);
+      return lista;
+    };
+
+    // Pasa { año: [12 valores] } a { 'aaaa-mm': valor }.
+    function porMes(datos) {
+      const r = {};
+      for (const a in datos) datos[a].forEach((v, i) => { if (v != null) r[`${a}-${String(i + 1).padStart(2, '0')}`] = v; });
+      return r;
+    }
+    const salMensual = porMes(SALARIOS);
+    const ripteMensual = porMes(RIPTE);
+    const salIndice = {}; // nivel del índice de salarios (base oct-2016 = 100), viene de la API
+    const ultimo = obj => Object.keys(obj).sort().pop();
+
+    // Salarios: con el nivel del índice se compara contra el mismo mes del año anterior;
+    // si no está, se usa el producto de las últimas 12 variaciones mensuales.
+    function interanualSalarios(k) {
+      const ant = restarMeses(k, 12);
+      if (salIndice[k] && salIndice[ant]) return (salIndice[k] / salIndice[ant] - 1) * 100;
+      let f = 1;
+      for (let i = 0; i < 12; i++) {
+        const v = salMensual[restarMeses(k, i)];
+        if (v == null) return null;
+        f *= 1 + v / 100;
+      }
+      return (f - 1) * 100;
+    }
+    // RIPTE: valor del mes contra el mismo mes del año anterior.
+    const interanualRipte = k => (ripteMensual[k] && ripteMensual[restarMeses(k, 12)]) ? (ripteMensual[k] / ripteMensual[restarMeses(k, 12)] - 1) * 100 : null;
+
+    /* ---------- Datos desde la API (datos.gob.ar) ---------- */
+    const SERIE_SALARIOS = '149.1_TL_INDIIOS_OCTU_0_21', SERIE_RIPTE = '158.1_REPTE_0_0_5';
+    async function serie(id) {
+      const r = await fetch(`https://apis.datos.gob.ar/series/api/series/?ids=${id}&format=json&limit=1000&start_date=2009-01-01`);
+      if (!r.ok) throw new Error(id);
+      const j = await r.json();
+      const datos = {};
+      for (const [fecha, valor] of j.data) if (valor != null) datos[fecha.slice(0, 7)] = valor;
+      return datos;
+    }
+    // RIPTE de la página oficial: lo actualiza todos los días una tarea automática (.github/workflows/actualizar-datos.yml).
+    const ripteSitio = () => Promise.resolve((window.DATOS || {}).ripte || {});
+    async function actualizarDesdeApi() {
+      const [sal, ripte, ripteOficial] = await Promise.all([serie(SERIE_SALARIOS).catch(() => ({})), serie(SERIE_RIPTE).catch(() => ({})), ripteSitio().catch(() => ({}))]);
+      Object.assign(salIndice, sal);
+      for (const k in sal) {
+        const ant = sal[restarMeses(k, 1)];
+        if (ant) salMensual[k] = Math.round((sal[k] / ant - 1) * 10000) / 100;
+      }
+      Object.assign(ripteMensual, ripte, ripteOficial);
+    }
+
+    // Variación anual: diciembre contra diciembre; en el año en curso, último mes contra igual mes del año anterior.
+    // Los años sin datos suficientes usan el valor publicado de respaldo.
+    function variacionAnual(mensual, interanual, respaldo) {
+      const ult = ultimo(mensual), anual = { ...respaldo };
+      for (let a = 2010; a <= +ult.slice(0, 4); a++) {
+        const k = String(a) === ult.slice(0, 4) ? ult : `${a}-12`;
+        const v = mensual[k] != null ? interanual(k) : null;
+        if (v != null) anual[a] = v;
+      }
+      return anual;
+    }
+
+    /* ---------- Tablas ---------- */
+    function armarTabla(id, mensual, anual, formato) {
+      const ult = ultimo(mensual), anioActual = ult.endsWith('-12') ? null : ult.slice(0, 4);
+      const anios = Object.keys(anual).sort().reverse();
+      document.getElementById(id).innerHTML = anios.map(a => {
+        const celdas = MESES.map((_, i) => {
+          const v = mensual[`${a}-${String(i + 1).padStart(2, '0')}`];
+          return `<td>${v == null ? '' : formato(v)}</td>`;
+        }).join('');
+        return `<tr><td class="anio">${a}${a === anioActual ? '*' : ''}</td><td class="var">${pct(anual[a])}</td>${celdas}</tr>`;
+      }).join('');
+    }
+
+    /* ---------- Resumen ---------- */
+    function comparar(v, inf) {
+      if (inf == null) return '';
+      const relacion = v > inf ? 'mayor' : v < inf ? 'menor' : 'igual';
+      return ` (${relacion} a la inflación interanual de ese mes, que fue de ${pct(inf)})`;
+    }
+    function armarResumen(inflacion) {
+      const kr = ultimo(ripteMensual), ks = ultimo(salMensual);
+      const mensualRipte = (ripteMensual[kr] / ripteMensual[restarMeses(kr, 1)] - 1) * 100;
+      const iaR = interanualRipte(kr), iaS = interanualSalarios(ks);
+      document.getElementById('resumen-ripte').innerHTML =
+        `En <strong>${nombreMes(kr)} de ${kr.slice(0, 4)}</strong> el RIPTE fue de <strong>$ ${num(ripteMensual[kr])}</strong>, un aumento mensual de <strong>${pct(mensualRipte)}</strong>. La variación interanual es de <strong>${pct(iaR)}</strong>${comparar(iaR, inflacion[kr])}.`;
+      document.getElementById('resumen-salarios').innerHTML =
+        `En <strong>${nombreMes(ks)} de ${ks.slice(0, 4)}</strong> el índice de salarios aumentó <strong>${pct(salMensual[ks])}</strong>. La variación interanual es de <strong>${pct(iaS)}</strong>${comparar(iaS, inflacion[ks])}.`;
+    }
+
+    /* ---------- Gráficos ---------- */
+    // Escribe el valor de diciembre de cada año (y el último mes) sobre la línea, como referencia.
+    const valoresAnuales = {
+      id: 'valoresAnuales',
+      afterDatasetsDraw(chart, _, opts) {
+        if (!opts.meses) return;
+        const { ctx } = chart;
+        const puntos = chart.getDatasetMeta(0).data, datos = chart.data.datasets[0].data;
+        ctx.save();
+        ctx.fillStyle = '#272920';
+        ctx.font = '11px Arial, Helvetica, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'bottom';
+        const angosto = chart.width < 600;
+        opts.meses.forEach((k, i) => {
+          const esUltimo = i === opts.meses.length - 1;
+          if (datos[i] == null || !(k.endsWith('-12') || esUltimo)) return;
+          if (angosto && !esUltimo && +k.slice(0, 4) % 2) return; // en celular, uno de cada dos años
+          ctx.fillText(pct(datos[i]), puntos[i].x, puntos[i].y - 6);
+        });
+        ctx.restore();
+      }
+    };
+
+    function grafico(id, meses, series, etiquetar) {
+      new Chart(document.getElementById(id), {
+        type: 'line',
+        data: { labels: meses.map(etiqueta), datasets: series.map(s => ({
+          label: s.nombre, data: s.datos, borderColor: s.color, backgroundColor: s.color,
+          borderWidth: 2, pointRadius: 0, tension: .15, spanGaps: false
+        })) },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          interaction: { mode: 'index', intersect: false },
+          layout: { padding: { top: etiquetar ? 18 : 0 } },
+          plugins: {
+            legend: { position: 'bottom', display: series.length > 1 },
+            tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: ${pct(ctx.raw)}` } },
+            valoresAnuales: { meses: etiquetar ? meses : null }
+          },
+          scales: {
+            x: { ticks: { maxRotation: 45, autoSkip: true, maxTicksLimit: 24 } },
+            y: { beginAtZero: true, ticks: { callback: v => v.toLocaleString('es-AR') + '%' } }
+          }
+        },
+        plugins: [valoresAnuales]
+      });
+    }
+
+    function avisoEnCaja(id, texto) {
+      const caja = document.getElementById(id);
+      caja.innerHTML = '<div class="sin-datos"></div>';
+      caja.firstChild.textContent = texto;
+    }
+
+    /* ---------- Carga ---------- */
+    // La inflación se trae de ArgentinaDatos (valor en porcentaje: 33.5 es 33,5%).
+    const cargarInflacion = () => fetch('https://api.argentinadatos.com/v1/finanzas/indices/inflacionInteranual')
+      .then(r => { if (!r.ok) throw new Error('inflacion'); return r.json(); })
+      .then(datos => {
+        const inflacion = {};
+        for (const d of datos) if (d.valor != null) inflacion[d.fecha.slice(0, 7)] = d.valor;
+        return inflacion;
+      })
+      .catch(() => ({}));
+
+    Promise.all([actualizarDesdeApi().catch(() => {}), cargarInflacion()])
+      .then(([, inflacion]) => {
+        // En salarios solo se recalcula con el nivel del índice; antes de oct-2016 queda el valor publicado.
+        const anualSalarios = k => (salIndice[k] && salIndice[restarMeses(k, 12)]) ? interanualSalarios(k) : null;
+        armarTabla('tabla-salarios', salMensual, variacionAnual(salMensual, anualSalarios, SALARIOS_ANUAL), pct);
+        armarTabla('tabla-ripte', ripteMensual, variacionAnual(ripteMensual, interanualRipte, RIPTE_ANUAL), v => num(v));
+        armarResumen(inflacion);
+
+        const mesesSal = mesesEntre('2013-06', ultimo(salMensual));
+        const mesesRipte = mesesEntre('2015-01', ultimo(ripteMensual));
+        const mesesComp = mesesEntre('2015-01', [ultimo(salMensual), ultimo(ripteMensual)].sort().pop());
+        if (typeof Chart === 'undefined') {
+          ['caja-g-salarios', 'caja-g-ripte', 'caja-g-comparativo'].forEach(id => avisoEnCaja(id, 'No se pudo cargar el gráfico en este momento. Intentá nuevamente más tarde.'));
+          return;
+        }
+        grafico('g-salarios', mesesSal, [{ nombre: 'Índice de salarios · var. interanual', datos: mesesSal.map(interanualSalarios), color: C_SAL }], true);
+        grafico('g-ripte', mesesRipte, [{ nombre: 'RIPTE · var. interanual', datos: mesesRipte.map(interanualRipte), color: C_RIPTE }], true);
+        const series = [
+          { nombre: 'Índice de salarios', datos: mesesComp.map(k => salMensual[k] != null ? interanualSalarios(k) : null), color: C_SAL },
+          { nombre: 'RIPTE', datos: mesesComp.map(k => interanualRipte(k)), color: C_RIPTE }
+        ];
+        if (Object.keys(inflacion).length) series.push({ nombre: 'Inflación', datos: mesesComp.map(k => inflacion[k] ?? null), color: C_INF });
+        grafico('g-comparativo', mesesComp, series, false);
+      });
+  </script>
+</body>
+</html>

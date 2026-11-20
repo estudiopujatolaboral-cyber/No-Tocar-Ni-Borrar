@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Salario mínimo, vital y móvil vigente y su evolución desde 2010, en pesos y en dólares, comparado con la inflación. Estudio José A. Quacquarini y Asoc.">
+  <link rel="canonical" href="https://estudioquacquarini.com.ar/datos-salario-minimo.html">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Estudio José A. Quacquarini y Asoc.">
+  <meta property="og:title" content="Salario mínimo, vital y móvil | Estudio José A. Quacquarini y Asoc.">
+  <meta property="og:description" content="Salario mínimo, vital y móvil vigente y su evolución desde 2010, en pesos y en dólares, comparado con la inflación. Estudio José A. Quacquarini y Asoc.">
+  <meta property="og:url" content="https://estudioquacquarini.com.ar/datos-salario-minimo.html">
+  <meta property="og:image" content="https://estudioquacquarini.com.ar/img/logo.png">
+  <meta property="og:image:alt" content="Logo del Estudio José A. Quacquarini y Asoc.">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" type="image/png" href="img/logo.png">
+  <title>Salario mínimo, vital y móvil | Estudio José A. Quacquarini y Asoc.</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="css/estilos.css">
+  <script src="js/tema.js"></script>
+  <style>
+
+    /* Página Salario mínimo */
+    .texto { color:var(--muted); max-width:900px; }
+    .tabla-smvm table { min-width:640px; }
+    .page-hero { min-height: 300px; }
+    .page-hero .hero-inner { padding: 60px 22px; }
+    .nav-dropdown > .nav-dropdown-trigger[aria-current="page"] { color: var(--olive); }
+    .wrap { max-width:var(--max); margin:auto; padding:50px 22px 10px; }
+    .wrap h2 { font:500 1.9rem Georgia,serif; margin:0 0 18px; }
+    .wrap a { color:var(--olive-dark); }
+    h3.sub { font-size:1rem; text-align:center; margin:30px 0 8px; color:var(--ink); }
+    .resumen { background:var(--cream); border-left:4px solid var(--gold); padding:20px 24px; }
+    .resumen h3 { margin:0 0 8px; text-transform:uppercase; font-size:1rem; }
+    .resumen p { margin:0; }
+    .tabla-wrap { overflow-x:auto; border:1px solid var(--line); margin:12px 0 8px; }
+    table { border-collapse:collapse; width:100%; min-width:950px; font-size:.86rem; }
+    th { background:#efeddc; color:var(--olive-dark); text-align:left; padding:10px; font-size:.8rem; }
+    td { padding:9px 10px; border-top:1px solid var(--line); white-space:nowrap; font-variant-numeric:tabular-nums; }
+    tbody tr:nth-child(even) td { background:#fbfaf5; }
+    td.anio, td.var { font-weight:bold; }
+    td.sd { color:var(--muted); }
+    .fuente { font-size:.8rem; color:var(--muted); margin:0 0 36px; }
+    .chart-box { border:1px solid var(--line); padding:14px; height:420px; position:relative; margin-bottom:10px; }
+    .aviso { font-size:.82rem; color:var(--muted); }
+    .nota-tabla { font-size:.8rem; color:var(--muted); margin:0 0 8px; }
+    .sin-datos { display:grid; place-items:center; height:100%; text-align:center; color:var(--muted); }
+    main { padding-bottom:40px; }
+    .back-to-top { position: fixed; right: 26px; bottom: 26px; z-index: 30; width: 45px; height: 45px; display: grid; place-items: center; border-radius: 3px; background: var(--olive-dark); color: #fff; font-size: 1.2rem; text-decoration: none; opacity: 0; visibility: hidden; transition: .2s; }
+    .back-to-top.show { opacity: 1; visibility: visible; }
+    .back-to-top:hover { background: var(--olive); }
+    @media (max-width: 600px) {
+      .page-hero { min-height: 240px; }
+      .page-hero .hero-inner { padding: 45px 20px; }
+      .chart-box { height:320px; }
+      .back-to-top { right: 16px; bottom: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="topbar-info">
+        <strong>Estudio Contable José A. Quacquarini y Asoc.</strong>
+      </div>
+      <div class="topbar-icons" aria-label="Datos de contacto">
+        <div class="phone-menu">
+          <button class="phone-trigger" type="button" aria-label="Elegir un teléfono" aria-expanded="false" aria-controls="phone-dropdown">
+            <img src="img/icono-telefono.png" alt="Teléfono" title="Elegir teléfono para WhatsApp">
+          </button>
+          <div class="phone-dropdown" id="phone-dropdown" hidden>
+            <span class="phone-dropdown-title">Contactanos por WhatsApp</span>
+            <a href="https://wa.me/5493464697225" target="_blank" rel="noopener noreferrer">+54 9 3464 69-7225 <small>(Estudio Pujato)</small></a>
+            <a href="https://wa.me/543464553622" target="_blank" rel="noopener noreferrer">+54 3464 55 3622 <small>(Estudio Rosario)</small></a>
+          </div>
+        </div>
+        <a class="email-link" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=contacto@estudioquacquarini.com.ar" target="_blank" rel="noopener noreferrer" aria-label="Escribir un correo al estudio">
+                  <img class="email-icon" src="img/icono-correo.png" alt="Correo electrónico" title="Correo electrónico">
+        </a>
+        <a class="instagram-link" href="https://www.instagram.com/estudioquacquarini?exln=Z20ycTY2a3ZybGp0" target="_blank" rel="noopener noreferrer" aria-label="Visitar Instagram del estudio" title="Instagram del estudio">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+            <circle cx="17.5" cy="6.7" r="1.2" fill="currentColor"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <header>
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="Inicio - Estudio José A. Quacquarini y Asociados">
+        <img src="img/logo.png" width="67" height="67" alt="Logo del Estudio José A. Quacquarini y Asociados">
+        <span class="brand-name">
+          <strong>Estudio José A. Quacquarini y Asoc.</strong>
+          <span>Estudio Contable</span>
+        </span>
+      </a>
+      <button class="menu-toggle" aria-expanded="false" aria-controls="main-nav">☰ Menú</button>
+      <nav id="main-nav" aria-label="Navegación principal">
+        <a href="index.html">Inicio</a>
+        <div class="nav-dropdown" id="estudio-nav-dropdown">
+          <a class="nav-dropdown-trigger" href="estudio.html" aria-haspopup="true" aria-expanded="false">El Estudio <span aria-hidden="true"></span></a>
+          <div class="nav-dropdown-menu" aria-label="Secciones de El Estudio">
+            <a href="estudio.html">El Estudio</a>
+            <a href="estudio-opcion-2.html">¿Qué nos diferencia?</a>
+            <a href="documentos/folleto-quacquarini.pdf" target="_blank" rel="noopener noreferrer">Folleto Institucional</a>
+            <a href="estudio-opcion-4.html">Unite a Estudio Contable José A. Quacquarini y Asoc.</a>
+            <a href="novedades.html">Novedades</a>
+          </div>
+        </div>
+        <div class="nav-dropdown" id="servicios-nav-dropdown">
+          <a class="nav-dropdown-trigger" href="servicios.html" aria-haspopup="true" aria-expanded="false">Servicios <span aria-hidden="true"></span></a>
+          <div class="nav-dropdown-menu" aria-label="Opciones de Servicios">
+            <a href="servicios.html">Servicios</a>
+            <a href="servicios-opcion-2.html">¿Necesitás un crédito para tu empresa?</a>
+            <a href="servicios-opcion-3.html">¿Por qué contratarnos?</a>
+          </div>
+        </div>
+        <a href="novedades.html">Novedades</a>
+        <div class="nav-dropdown" id="datos-nav-dropdown">
+          <a class="nav-dropdown-trigger" href="datos-utiles.html" aria-current="page" aria-haspopup="true" aria-expanded="false">Datos Útiles <span aria-hidden="true"></span></a>
+          <div class="nav-dropdown-menu" aria-label="Opciones de Datos Útiles">
+            <a href="datos-utiles.html">Datos Útiles</a>
+            <div class="nav-submenu">
+              <a class="nav-submenu-trigger" role="button" tabindex="0" style="cursor:pointer" aria-haspopup="true" aria-expanded="false">Indicadores económicos</a>
+              <div class="nav-flyout" aria-label="Indicadores económicos">
+                <a href="datos-inflacion.html">Inflación</a>
+                <a href="datos-dolar.html">Cotización del dólar</a>
+                <a href="datos-salarios-ripte.html">Índice de salarios + Índice RIPTE</a>
+                <a href="datos-salario-minimo.html">Salario mínimo, vital y móvil</a>
+                <a href="datos-comparacion-indices.html">Comparación Índices</a>
+              </div>
+            </div>
+            <div class="nav-submenu">
+              <a class="nav-submenu-trigger" role="button" tabindex="0" style="cursor:pointer" aria-haspopup="true" aria-expanded="false">Vencimientos</a>
+              <div class="nav-flyout" aria-label="Vencimientos">
+                <a href="vencimientos-autonomos.html">Autónomos</a>
+                <a href="vencimientos-monotributo.html">Monotributo</a>
+                <a href="vencimientos-iva.html">IVA | Libro IVA Digital</a>
+                <a href="vencimientos-convenio-multilateral.html">Convenio Multilateral | Ingresos Brutos</a>
+                <a href="vencimientos-servicio-domestico.html">Cargas Sociales | Servicio Doméstico</a>
+                <a href="vencimientos-relacion-dependencia.html">Cargas Sociales | Relación de Dependencia</a>
+                <a href="vencimientos-ganancias-humanas.html">Ganancias | Personas Humanas</a>
+                <a href="vencimientos-ganancias-juridicas.html">Ganancias | Personas Jurídicas</a>
+                <a href="vencimientos-retenciones-sicore.html">Retenciones | SICORE</a>
+              </div>
+            </div>
+            <a href="datos-feriados.html">Feriados</a>
+            <a href="datos-categorias-monotributo.html">Categorías de Monotributo</a>
+            <a href="datos-tabla-autonomos.html">Tabla de Autónomos</a>
+            <a href="datos-tabla-ganancias.html">Tabla Ganancias, Deducciones y Retenciones</a>
+            <a href="datos-tabla-bienes-personales.html">Tabla Bienes Personales</a>
+            <a href="datos-intereses-afip.html">Intereses ARCA</a>
+            <a href="datos-regimen-iibb.html">Rég. Simpl. IIBB Santa Fe</a>
+            <a href="datos-leyes-resoluciones.html">Leyes y Resoluciones</a>
+            <a href="datos-glosario.html">Glosario</a>
+          </div>
+        </div>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero page-hero" id="inicio">
+      <div class="hero-inner">
+        <span class="eyebrow">Estudio contable · Desde 1998</span>
+        <h1>Salario mínimo, vital y móvil</h1>
+        <p>Valor vigente del salario mínimo, vital y móvil y su evolución desde 2010. Datos actualizados automáticamente.</p>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <h2>Valor vigente</h2>
+      <div class="resumen" id="resumen">Cargando datos del salario mínimo…</div>
+    </div>
+
+    <div class="wrap">
+      <h2>Qué es el salario mínimo, vital y móvil</h2>
+      <p class="texto">Según el artículo 116 de la Ley de Contrato de Trabajo, es «la menor remuneración que debe percibir en efectivo el trabajador sin cargas de familia, en su jornada legal de trabajo, de modo que le asegure alimentación adecuada, vivienda digna, educación, vestuario, asistencia sanitaria, transporte y esparcimiento, vacaciones y previsión». Lo fija el Consejo Nacional del Empleo, la Productividad y el Salario Mínimo, Vital y Móvil, debe actualizarse periódicamente y no puede reducirse por convenio colectivo ni por acuerdo individual.</p>
+      <p class="texto">También es la referencia de la prestación por desempleo: equivale al 75% del importe neto de la mejor remuneración mensual, normal y habitual de los 6 meses anteriores al despido, y no puede ser menor al 50% ni mayor al 100% del salario mínimo vigente.</p>
+    </div>
+
+    <div class="wrap">
+      <h2>Evolución desde 2010</h2>
+      <div class="tabla-wrap tabla-smvm"><table>
+        <thead><tr><th>Desde</th><th>Valor mensual</th><th>Variación respecto del valor anterior</th><th>Variación interanual</th><th>Valor en USD</th></tr></thead>
+        <tbody id="tabla-smvm"></tbody>
+      </table></div>
+      <p class="nota-tabla">Cada fila es un cambio de valor. La variación interanual compara con el valor vigente doce meses antes. El valor en dólares usa el dólar oficial compra al cierre de ese mes (en el mes en curso, la última cotización publicada). s/d: sin cotización disponible; la serie del dólar comienza en 2011.</p>
+      <p class="fuente">Fuentes: Consejo Nacional del Empleo, la Productividad y el Salario Mínimo, Vital y Móvil, vía <a href="https://datos.gob.ar" target="_blank" rel="noopener">datos.gob.ar</a>. Cotización del dólar: <a href="https://argentinadatos.com" target="_blank" rel="noopener">ArgentinaDatos</a>. Elaboración propia.</p>
+
+      <h3 class="sub">Variación interanual del salario mínimo y de la inflación</h3>
+      <div class="chart-box" id="caja-g-comparativo"><canvas id="g-comparativo"></canvas></div>
+      <p class="nota-tabla">* Entre noviembre de 2015 y abril de 2016 el INDEC no publicó el IPC (emergencia estadística). Los valores de inflación de esos meses provienen de fuentes alternativas y son de referencia.</p>
+      <p class="fuente">Fuentes: Consejo del Salario, vía <a href="https://datos.gob.ar" target="_blank" rel="noopener">datos.gob.ar</a>. Inflación: <a href="https://www.indec.gob.ar" target="_blank" rel="noopener">INDEC</a>, vía <a href="https://argentinadatos.com" target="_blank" rel="noopener">ArgentinaDatos</a>. Elaboración propia.</p>
+
+      <p class="aviso">Información de referencia. Para liquidaciones con efectos legales, verificar el valor en la resolución vigente del Consejo Nacional del Empleo, la Productividad y el Salario Mínimo, Vital y Móvil publicada en el Boletín Oficial.</p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="img/logo.png" alt="" width="48" height="48" loading="lazy" decoding="async">
+        <div><strong>Estudio José A. Quacquarini y Asoc.</strong><span>Trayectoria profesional desde 1998</span></div>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Inicio</a><a href="estudio.html">El Estudio</a><a href="servicios.html">Servicios</a><a href="contacto.html">Contacto</a>
+      </div>
+      <div class="copyright">© <span id="year">2026</span> Estudio José A. Quacquarini y Asoc.</div>
+    </div>
+  </footer>
+
+  <a class="back-to-top" id="back-to-top" href="#inicio" aria-label="Volver arriba">↑</a>
+
+  <script>
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('#main-nav');
+    toggle.addEventListener('click', () => {
+      const opened = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(opened));
+    });
+    nav.querySelectorAll('a:not(.nav-dropdown-trigger):not(.nav-submenu-trigger)').forEach(link => link.addEventListener('click', () => {
+      nav.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }));
+    const dropdowns = [
+      document.querySelector('#estudio-nav-dropdown'),
+      document.querySelector('#servicios-nav-dropdown'),
+      document.querySelector('#datos-nav-dropdown')
+    ];
+    dropdowns.forEach((dropdown) => {
+      const trigger = dropdown.querySelector('.nav-dropdown-trigger');
+      trigger.addEventListener('click', (event) => {
+        // En pantallas táctiles, el primer toque abre el menú; el siguiente sigue el enlace principal.
+        if (window.matchMedia('(max-width: 900px)').matches && !dropdown.classList.contains('open')) {
+          event.preventDefault();
+          dropdown.classList.add('open');
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+    document.addEventListener('click', (event) => {
+      dropdowns.forEach((dropdown) => {
+        if (!dropdown.contains(event.target)) {
+          dropdown.classList.remove('open');
+          dropdown.querySelector('.nav-dropdown-trigger').setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+    document.querySelectorAll('.nav-submenu').forEach((submenu) => {
+      const trigger = submenu.querySelector('.nav-submenu-trigger');
+      trigger.addEventListener('click', (event) => {
+        // En pantallas táctiles, el primer toque abre el submenú; el siguiente sigue el enlace.
+        if (window.matchMedia('(max-width: 900px)').matches && !submenu.classList.contains('open')) {
+          event.preventDefault();
+          submenu.classList.add('open');
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+    document.querySelector('#year').textContent = new Date().getFullYear();
+    const phoneTrigger = document.querySelector('.phone-trigger');
+    const phoneDropdown = document.querySelector('#phone-dropdown');
+    phoneTrigger.addEventListener('click', (event) => {
+      event.stopPropagation();
+      const opening = phoneDropdown.hidden;
+      phoneDropdown.hidden = !opening;
+      phoneTrigger.setAttribute('aria-expanded', String(opening));
+    });
+    document.addEventListener('click', (event) => {
+      if (!event.target.closest('.phone-menu')) {
+        phoneDropdown.hidden = true;
+        phoneTrigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !phoneDropdown.hidden) {
+        phoneDropdown.hidden = true;
+        phoneTrigger.setAttribute('aria-expanded', 'false');
+        phoneTrigger.focus();
+      }
+    });
+    const backToTop = document.querySelector('#back-to-top');
+    window.addEventListener('scroll', () => backToTop.classList.toggle('show', window.scrollY > 300));
+  </script>
+  <script>
+    const MESES = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+    const MESES_L = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+    const INICIO = '2010-01';
+    const C_SMVM = '#8f8d3c', C_INF = '#a33b2b';
+    const num = (v, d = 2) => v.toLocaleString('es-AR', { minimumFractionDigits: d, maximumFractionDigits: d });
+    const pct = v => v == null ? 's/d' : num(v) + '%';
+    const pctInf = v => v == null ? 's/d' : num(v, 1) + '%';
+    const pesos = v => '$ ' + v.toLocaleString('es-AR', { maximumFractionDigits: 2 });
+    const enEmergencia = k => k >= '2015-11' && k <= '2016-04'; // el INDEC no publicó el IPC en esos meses
+    const hoy = new Date();
+    const mesActual = `${hoy.getFullYear()}-${String(hoy.getMonth() + 1).padStart(2, '0')}`;
+    const restarMeses = (k, n) => {
+      let y = +k.slice(0, 4), m = +k.slice(5, 7) - n;
+      while (m < 1) { m += 12; y--; }
+      return `${y}-${String(m).padStart(2, '0')}`;
+    };
+    const etiqueta = k => MESES[+k.slice(5, 7) - 1] + '-' + k.slice(2, 4);
+    const nombreMes = k => MESES_L[+k.slice(5, 7) - 1];
+    const desde = k => `1 de ${nombreMes(k)} de ${k.slice(0, 4)}`;
+    const mesesEntre = (desde, hasta) => {
+      const lista = [];
+      for (let k = hasta; k >= desde; k = restarMeses(k, 1)) lista.unshift(k);
+      return lista;
+    };
+
+    /* ---------- Salario mínimo (datos.gob.ar): valor mensual y por hora, en pesos ---------- */
+    // La serie incluye los aumentos ya fijados para los próximos meses.
+    async function salarioMinimo() {
+      const r = await fetch('https://apis.datos.gob.ar/series/api/series/?ids=57.1_SMVMM_0_M_34,57.1_SMVMH_0_M_31&format=json&limit=1000&start_date=2009-01-01');
+      if (!r.ok) throw new Error('smvm');
+      const j = await r.json();
+      const mensual = {}, hora = {};
+      for (const [fecha, m, h] of j.data) {
+        const k = fecha.slice(0, 7);
+        if (m != null) mensual[k] = m;
+        if (h != null) hora[k] = Math.round(h * 100) / 100;
+      }
+      return { mensual, hora };
+    }
+
+    /* ---------- Dólar oficial compra al cierre de cada mes (en el mes en curso, el último dato) ---------- */
+    async function cierresDolar() {
+      const r = await fetch('https://api.argentinadatos.com/v1/cotizaciones/dolares/oficial');
+      if (!r.ok) throw new Error('dolar');
+      const datos = await r.json();
+      datos.sort((a, b) => a.fecha.localeCompare(b.fecha));
+      const cierres = {};
+      for (const d of datos) if (d.fecha >= INICIO && d.compra != null) cierres[d.fecha.slice(0, 7)] = d.compra;
+      return cierres;
+    }
+
+    /* ---------- Inflación interanual (ArgentinaDatos). El valor ya viene en porcentaje: 33.4 es 33,4%. ---------- */
+    async function inflacionInteranual() {
+      const r = await fetch('https://api.argentinadatos.com/v1/finanzas/indices/inflacionInteranual');
+      if (!r.ok) throw new Error('inflacion');
+      const inflacion = {};
+      for (const d of await r.json()) if (d.valor != null) inflacion[d.fecha.slice(0, 7)] = d.valor;
+      return inflacion;
+    }
+
+    const variacion = (s, k, n) => s[k] != null && s[restarMeses(k, n)] ? (s[k] / s[restarMeses(k, n)] - 1) * 100 : null;
+
+    /* ---------- Resumen ---------- */
+    function armarResumen(smvm, inflacion) {
+      const { mensual, hora } = smvm;
+      const k = Object.keys(mensual).filter(m => m <= mesActual).sort().pop();
+      let inicio = k;
+      while (mensual[restarMeses(inicio, 1)] === mensual[k]) inicio = restarMeses(inicio, 1);
+      const ultInf = Object.keys(inflacion).sort().pop();
+      const referencia = ultInf ? ` Como referencia, la última inflación interanual publicada (${nombreMes(ultInf)} de ${ultInf.slice(0, 4)}) fue de ${pctInf(inflacion[ultInf])}.` : '';
+      const proximos = Object.keys(mensual).filter(m => m > k && mensual[m] !== mensual[restarMeses(m, 1)]).sort();
+      const listaProximos = proximos.length
+        ? `<p style="margin-top:12px"><strong>Próximos aumentos ya establecidos:</strong> ${proximos.map(m => `${nombreMes(m)} ${m.slice(0, 4)}: ${pesos(mensual[m])}`).join(' · ')}.</p>`
+        : '';
+      document.getElementById('resumen').innerHTML = `
+        <h3>${nombreMes(k)} ${k.slice(0, 4)}</h3>
+        <p>El salario mínimo, vital y móvil vigente desde el ${desde(inicio)} es de <strong>${pesos(mensual[k])}</strong> por mes (<strong>${pesos(hora[k])}</strong> por hora para los trabajadores jornalizados). Su variación interanual es de <strong>${pct(variacion(mensual, k, 12))}</strong>, con un aumento de <strong>${pct(variacion(mensual, k, 1))}</strong> respecto del mes anterior.${referencia}</p>
+        ${listaProximos}`;
+    }
+
+    /* ---------- Tabla: una fila por cada cambio de valor ---------- */
+    function armarTabla(mensual, dolar) {
+      const cambios = Object.keys(mensual)
+        .filter(k => k >= INICIO && k <= mesActual && mensual[k] !== mensual[restarMeses(k, 1)])
+        .sort().reverse();
+      document.getElementById('tabla-smvm').innerHTML = cambios.map(k => {
+        const usd = dolar[k] ? num(mensual[k] / dolar[k]) : 's/d';
+        return `<tr><td>${desde(k)}</td><td class="var">${pesos(mensual[k])}</td><td>${pct(variacion(mensual, k, 1))}</td><td>${pct(variacion(mensual, k, 12))}</td><td${dolar[k] ? '' : ' class="sd"'}>${usd}</td></tr>`;
+      }).join('');
+    }
+
+    /* ---------- Gráfico ---------- */
+    function graficoComparativo(mensual, inflacion) {
+      const fin = Object.keys(mensual).filter(k => k <= mesActual).sort().pop();
+      const meses = mesesEntre('2011-01', fin);
+      const series = [{ nombre: 'Salario mínimo · var. interanual', datos: meses.map(k => variacion(mensual, k, 12)), color: C_SMVM }];
+      if (Object.keys(inflacion).length) series.push({ nombre: 'Inflación interanual', datos: meses.map(k => inflacion[k] ?? null), color: C_INF, inflacion: true });
+      new Chart(document.getElementById('g-comparativo'), {
+        type: 'line',
+        data: { labels: meses.map(etiqueta), datasets: series.map(s => ({
+          label: s.nombre, data: s.datos, borderColor: s.color, backgroundColor: s.color,
+          borderWidth: 2, pointRadius: 0, tension: .15, spanGaps: false
+        })) },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          interaction: { mode: 'index', intersect: false },
+          plugins: {
+            legend: { position: 'bottom' },
+            tooltip: { callbacks: { label: ctx => {
+              const s = series[ctx.datasetIndex];
+              if (!s.inflacion) return `${ctx.dataset.label}: ${pct(ctx.raw)}`;
+              return `${ctx.dataset.label}: ${pctInf(ctx.raw)}${ctx.raw != null && enEmergencia(meses[ctx.dataIndex]) ? '*' : ''}`;
+            } } }
+          },
+          scales: {
+            x: { ticks: { maxRotation: 45, autoSkip: true, maxTicksLimit: 24 } },
+            y: { beginAtZero: true, ticks: { callback: v => v.toLocaleString('es-AR') + '%' } }
+          }
+        }
+      });
+    }
+
+    function avisoEnCaja(id, texto) {
+      const caja = document.getElementById(id);
+      caja.innerHTML = '<div class="sin-datos"></div>';
+      caja.firstChild.textContent = texto;
+    }
+
+    /* ---------- Carga ---------- */
+    Promise.all([salarioMinimo(), cierresDolar().catch(() => ({})), inflacionInteranual().catch(() => ({}))])
+      .then(([smvm, dolar, inflacion]) => {
+        armarResumen(smvm, inflacion);
+        armarTabla(smvm.mensual, dolar);
+        if (typeof Chart === 'undefined') {
+          avisoEnCaja('caja-g-comparativo', 'No se pudo cargar el gráfico en este momento. Intentá nuevamente más tarde.');
+          return;
+        }
+        graficoComparativo(smvm.mensual, inflacion);
+      })
+      .catch(() => {
+        document.getElementById('resumen').textContent = 'No se pudieron cargar los datos del salario mínimo en este momento. Intentá nuevamente más tarde.';
+        document.getElementById('tabla-smvm').innerHTML = '<tr><td colspan="5">Sin datos disponibles por el momento.</td></tr>';
+        avisoEnCaja('caja-g-comparativo', 'Gráfico no disponible por el momento.');
+      });
+  </script>
+</body>
+</html>

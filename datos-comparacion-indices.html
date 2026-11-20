@@ -1,0 +1,609 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Comparación de la inflación, el dólar oficial y blue, los salarios (RIPTE e índice de salarios), el salario mínimo y la tasa TAMAR: variación mensual e interanual y ránking. Estudio José A. Quacquarini y Asoc.">
+  <link rel="canonical" href="https://estudioquacquarini.com.ar/datos-comparacion-indices.html">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Estudio José A. Quacquarini y Asoc.">
+  <meta property="og:title" content="Comparación de índices | Estudio José A. Quacquarini y Asoc.">
+  <meta property="og:description" content="Comparación de la inflación, el dólar oficial y blue, los salarios (RIPTE e índice de salarios), el salario mínimo y la tasa TAMAR: variación mensual e interanual y ránking. Estudio José A. Quacquarini y Asoc.">
+  <meta property="og:url" content="https://estudioquacquarini.com.ar/datos-comparacion-indices.html">
+  <meta property="og:image" content="https://estudioquacquarini.com.ar/img/logo.png">
+  <meta property="og:image:alt" content="Logo del Estudio José A. Quacquarini y Asoc.">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" type="image/png" href="img/logo.png">
+  <title>Comparación de índices | Estudio José A. Quacquarini y Asoc.</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="css/estilos.css">
+  <script src="js/tema.js"></script>
+  <style>
+
+    /* Página Comparación de índices */
+    .bloques h3 { margin:18px 0 6px; }
+    .bloques h3:first-child { margin-top:0; }
+    .bloques p + p { margin-top:8px; }
+    .rankings { display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-bottom:10px; }
+    .ranking { border:1px solid var(--line); padding:18px 20px; }
+    .ranking h3 { margin:0 0 10px; font:500 1.3rem Georgia,serif; }
+    .ranking ol { list-style:none; margin:0; padding:0; }
+    .ranking li { display:grid; grid-template-columns:34px 1fr auto; align-items:center; gap:10px; padding:8px 0; border-top:1px solid var(--line); }
+    .ranking li:first-child { border-top:0; }
+    .ranking .pos { font-weight:bold; color:var(--olive-dark); }
+    .ranking .valor { min-width:92px; text-align:right; padding:4px 10px; border-radius:3px; background:var(--c); color:#fff; font-weight:bold; font-variant-numeric:tabular-nums; }
+    .ranking .valor.sd { background:#e3e2d8; color:var(--ink); }
+    .periodos { display:flex; justify-content:center; gap:8px; margin:0 0 10px; }
+    .periodos button { border:1px solid var(--line); background:#fff; color:var(--ink); padding:6px 14px; border-radius:3px; cursor:pointer; font:inherit; font-size:.85rem; }
+    .periodos button[aria-pressed="true"] { background:var(--olive-dark); border-color:var(--olive-dark); color:#fff; }
+    @media (max-width: 700px) { .rankings { grid-template-columns:1fr; } }
+    .page-hero { min-height: 300px; }
+    .page-hero .hero-inner { padding: 60px 22px; }
+    .nav-dropdown > .nav-dropdown-trigger[aria-current="page"] { color: var(--olive); }
+    .wrap { max-width:var(--max); margin:auto; padding:50px 22px 10px; }
+    .wrap h2 { font:500 1.9rem Georgia,serif; margin:0 0 18px; }
+    .wrap a { color:var(--olive-dark); }
+    h3.sub { font-size:1rem; text-align:center; margin:30px 0 8px; color:var(--ink); }
+    .resumen { background:var(--cream); border-left:4px solid var(--gold); padding:20px 24px; }
+    .resumen h3 { margin:0 0 8px; text-transform:uppercase; font-size:1rem; }
+    .resumen p { margin:0; }
+    .tabla-wrap { overflow-x:auto; border:1px solid var(--line); margin:12px 0 8px; }
+    table { border-collapse:collapse; width:100%; min-width:950px; font-size:.86rem; }
+    th { background:#efeddc; color:var(--olive-dark); text-align:left; padding:10px; font-size:.8rem; }
+    td { padding:9px 10px; border-top:1px solid var(--line); white-space:nowrap; font-variant-numeric:tabular-nums; }
+    tbody tr:nth-child(even) td { background:#fbfaf5; }
+    td.anio, td.var { font-weight:bold; }
+    td.sd { color:var(--muted); }
+    .fuente { font-size:.8rem; color:var(--muted); margin:0 0 36px; }
+    .chart-box { border:1px solid var(--line); padding:14px; height:420px; position:relative; margin-bottom:10px; }
+    .aviso { font-size:.82rem; color:var(--muted); }
+    .nota-tabla { font-size:.8rem; color:var(--muted); margin:0 0 8px; }
+    .sin-datos { display:grid; place-items:center; height:100%; text-align:center; color:var(--muted); }
+    main { padding-bottom:40px; }
+    .back-to-top { position: fixed; right: 26px; bottom: 26px; z-index: 30; width: 45px; height: 45px; display: grid; place-items: center; border-radius: 3px; background: var(--olive-dark); color: #fff; font-size: 1.2rem; text-decoration: none; opacity: 0; visibility: hidden; transition: .2s; }
+    .back-to-top.show { opacity: 1; visibility: visible; }
+    .back-to-top:hover { background: var(--olive); }
+    @media (max-width: 600px) {
+      .page-hero { min-height: 240px; }
+      .page-hero .hero-inner { padding: 45px 20px; }
+      .chart-box { height:320px; }
+      .back-to-top { right: 16px; bottom: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="topbar-info">
+        <strong>Estudio Contable José A. Quacquarini y Asoc.</strong>
+      </div>
+      <div class="topbar-icons" aria-label="Datos de contacto">
+        <div class="phone-menu">
+          <button class="phone-trigger" type="button" aria-label="Elegir un teléfono" aria-expanded="false" aria-controls="phone-dropdown">
+            <img src="img/icono-telefono.png" alt="Teléfono" title="Elegir teléfono para WhatsApp">
+          </button>
+          <div class="phone-dropdown" id="phone-dropdown" hidden>
+            <span class="phone-dropdown-title">Contactanos por WhatsApp</span>
+            <a href="https://wa.me/5493464697225" target="_blank" rel="noopener noreferrer">+54 9 3464 69-7225 <small>(Estudio Pujato)</small></a>
+            <a href="https://wa.me/543464553622" target="_blank" rel="noopener noreferrer">+54 3464 55 3622 <small>(Estudio Rosario)</small></a>
+          </div>
+        </div>
+        <a class="email-link" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=contacto@estudioquacquarini.com.ar" target="_blank" rel="noopener noreferrer" aria-label="Escribir un correo al estudio">
+                  <img class="email-icon" src="img/icono-correo.png" alt="Correo electrónico" title="Correo electrónico">
+        </a>
+        <a class="instagram-link" href="https://www.instagram.com/estudioquacquarini?exln=Z20ycTY2a3ZybGp0" target="_blank" rel="noopener noreferrer" aria-label="Visitar Instagram del estudio" title="Instagram del estudio">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+            <circle cx="17.5" cy="6.7" r="1.2" fill="currentColor"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <header>
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="Inicio - Estudio José A. Quacquarini y Asociados">
+        <img src="img/logo.png" width="67" height="67" alt="Logo del Estudio José A. Quacquarini y Asociados">
+        <span class="brand-name">
+          <strong>Estudio José A. Quacquarini y Asoc.</strong>
+          <span>Estudio Contable</span>
+        </span>
+      </a>
+      <button class="menu-toggle" aria-expanded="false" aria-controls="main-nav">☰ Menú</button>
+      <nav id="main-nav" aria-label="Navegación principal">
+        <a href="index.html">Inicio</a>
+        <div class="nav-dropdown" id="estudio-nav-dropdown">
+          <a class="nav-dropdown-trigger" href="estudio.html" aria-haspopup="true" aria-expanded="false">El Estudio <span aria-hidden="true"></span></a>
+          <div class="nav-dropdown-menu" aria-label="Secciones de El Estudio">
+            <a href="estudio.html">El Estudio</a>
+            <a href="estudio-opcion-2.html">¿Qué nos diferencia?</a>
+            <a href="documentos/folleto-quacquarini.pdf" target="_blank" rel="noopener noreferrer">Folleto Institucional</a>
+            <a href="estudio-opcion-4.html">Unite a Estudio Contable José A. Quacquarini y Asoc.</a>
+            <a href="novedades.html">Novedades</a>
+          </div>
+        </div>
+        <div class="nav-dropdown" id="servicios-nav-dropdown">
+          <a class="nav-dropdown-trigger" href="servicios.html" aria-haspopup="true" aria-expanded="false">Servicios <span aria-hidden="true"></span></a>
+          <div class="nav-dropdown-menu" aria-label="Opciones de Servicios">
+            <a href="servicios.html">Servicios</a>
+            <a href="servicios-opcion-2.html">¿Necesitás un crédito para tu empresa?</a>
+            <a href="servicios-opcion-3.html">¿Por qué contratarnos?</a>
+          </div>
+        </div>
+        <a href="novedades.html">Novedades</a>
+        <div class="nav-dropdown" id="datos-nav-dropdown">
+          <a class="nav-dropdown-trigger" href="datos-utiles.html" aria-current="page" aria-haspopup="true" aria-expanded="false">Datos Útiles <span aria-hidden="true"></span></a>
+          <div class="nav-dropdown-menu" aria-label="Opciones de Datos Útiles">
+            <a href="datos-utiles.html">Datos Útiles</a>
+            <div class="nav-submenu">
+              <a class="nav-submenu-trigger" role="button" tabindex="0" style="cursor:pointer" aria-haspopup="true" aria-expanded="false">Indicadores económicos</a>
+              <div class="nav-flyout" aria-label="Indicadores económicos">
+                <a href="datos-inflacion.html">Inflación</a>
+                <a href="datos-dolar.html">Cotización del dólar</a>
+                <a href="datos-salarios-ripte.html">Índice de salarios + Índice RIPTE</a>
+                <a href="datos-salario-minimo.html">Salario mínimo, vital y móvil</a>
+                <a href="datos-comparacion-indices.html">Comparación Índices</a>
+              </div>
+            </div>
+            <div class="nav-submenu">
+              <a class="nav-submenu-trigger" role="button" tabindex="0" style="cursor:pointer" aria-haspopup="true" aria-expanded="false">Vencimientos</a>
+              <div class="nav-flyout" aria-label="Vencimientos">
+                <a href="vencimientos-autonomos.html">Autónomos</a>
+                <a href="vencimientos-monotributo.html">Monotributo</a>
+                <a href="vencimientos-iva.html">IVA | Libro IVA Digital</a>
+                <a href="vencimientos-convenio-multilateral.html">Convenio Multilateral | Ingresos Brutos</a>
+                <a href="vencimientos-servicio-domestico.html">Cargas Sociales | Servicio Doméstico</a>
+                <a href="vencimientos-relacion-dependencia.html">Cargas Sociales | Relación de Dependencia</a>
+                <a href="vencimientos-ganancias-humanas.html">Ganancias | Personas Humanas</a>
+                <a href="vencimientos-ganancias-juridicas.html">Ganancias | Personas Jurídicas</a>
+                <a href="vencimientos-retenciones-sicore.html">Retenciones | SICORE</a>
+              </div>
+            </div>
+            <a href="datos-feriados.html">Feriados</a>
+            <a href="datos-categorias-monotributo.html">Categorías de Monotributo</a>
+            <a href="datos-tabla-autonomos.html">Tabla de Autónomos</a>
+            <a href="datos-tabla-ganancias.html">Tabla Ganancias, Deducciones y Retenciones</a>
+            <a href="datos-tabla-bienes-personales.html">Tabla Bienes Personales</a>
+            <a href="datos-intereses-afip.html">Intereses ARCA</a>
+            <a href="datos-regimen-iibb.html">Rég. Simpl. IIBB Santa Fe</a>
+            <a href="datos-leyes-resoluciones.html">Leyes y Resoluciones</a>
+            <a href="datos-glosario.html">Glosario</a>
+          </div>
+        </div>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero page-hero" id="inicio">
+      <div class="hero-inner">
+        <span class="eyebrow">Estudio contable · Desde 1998</span>
+        <h1>Comparación de índices</h1>
+        <p>Inflación, dólar, salarios, salario mínimo y tasa TAMAR: cuánto aumentó cada uno en el último mes y en el último año. Datos actualizados automáticamente.</p>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <h2 id="titulo-resumen">Resumen de datos</h2>
+      <div class="resumen bloques" id="resumen">Cargando datos…</div>
+    </div>
+
+    <div class="wrap">
+      <h2 id="titulo-ranking">Ránking de aumentos</h2>
+      <div class="rankings">
+        <div class="ranking"><h3>Anualizados</h3><ol id="ranking-anual"></ol></div>
+        <div class="ranking"><h3>Mensualizados</h3><ol id="ranking-mensual"></ol></div>
+      </div>
+      <p class="nota-tabla" id="nota-ranking"></p>
+
+      <h3 class="sub" id="titulo-barras">Comparación interanual y mensual</h3>
+      <div class="chart-box" id="caja-g-barras"><canvas id="g-barras"></canvas></div>
+      <p class="nota-tabla">Barras: variación interanual (eje izquierdo). Línea: variación mensual (eje derecho).</p>
+      <p class="fuente">Fuentes: inflación, <a href="https://www.indec.gob.ar" target="_blank" rel="noopener">INDEC</a>; cotizaciones vía <a href="https://argentinadatos.com" target="_blank" rel="noopener">ArgentinaDatos</a>; TAMAR y REM: <a href="https://www.bcra.gob.ar" target="_blank" rel="noopener">BCRA</a>; RIPTE: <a href="https://www.argentina.gob.ar/trabajo/seguridadsocial/ripte" target="_blank" rel="noopener">Secretaría de Seguridad Social</a>; índice de salarios y salario mínimo vía <a href="https://datos.gob.ar" target="_blank" rel="noopener">datos.gob.ar</a>. Elaboración propia.</p>
+
+      <h3 class="sub">Variación interanual de la inflación, el dólar y las remuneraciones (RIPTE)</h3>
+      <div class="periodos" role="group" aria-label="Período del gráfico">
+        <button type="button" data-periodo="todo" aria-pressed="true">Desde 2011</button>
+        <button type="button" data-periodo="36" aria-pressed="false">Últimos 3 años</button>
+      </div>
+      <div class="chart-box" id="caja-g-lineas"><canvas id="g-lineas"></canvas></div>
+      <p class="nota-tabla">Dólar oficial y blue: cotización compra al cierre de cada mes. * Entre noviembre de 2015 y abril de 2016 el INDEC no publicó el IPC (emergencia estadística); los valores de inflación de esos meses provienen de fuentes alternativas y son de referencia.</p>
+      <p class="fuente">Fuentes: <a href="https://www.indec.gob.ar" target="_blank" rel="noopener">INDEC</a> y cotizaciones vía <a href="https://argentinadatos.com" target="_blank" rel="noopener">ArgentinaDatos</a>; RIPTE: <a href="https://www.argentina.gob.ar/trabajo/seguridadsocial/ripte" target="_blank" rel="noopener">Secretaría de Seguridad Social</a>. Elaboración propia.</p>
+
+      <p class="aviso">Información de referencia. Para actualizaciones e indexaciones con efectos legales o impositivos, utilizar los índices oficiales publicados por cada organismo.</p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="img/logo.png" alt="" width="48" height="48" loading="lazy" decoding="async">
+        <div><strong>Estudio José A. Quacquarini y Asoc.</strong><span>Trayectoria profesional desde 1998</span></div>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Inicio</a><a href="estudio.html">El Estudio</a><a href="servicios.html">Servicios</a><a href="contacto.html">Contacto</a>
+      </div>
+      <div class="copyright">© <span id="year">2026</span> Estudio José A. Quacquarini y Asoc.</div>
+    </div>
+  </footer>
+
+  <a class="back-to-top" id="back-to-top" href="#inicio" aria-label="Volver arriba">↑</a>
+
+  <script>
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('#main-nav');
+    toggle.addEventListener('click', () => {
+      const opened = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(opened));
+    });
+    nav.querySelectorAll('a:not(.nav-dropdown-trigger):not(.nav-submenu-trigger)').forEach(link => link.addEventListener('click', () => {
+      nav.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }));
+    const dropdowns = [
+      document.querySelector('#estudio-nav-dropdown'),
+      document.querySelector('#servicios-nav-dropdown'),
+      document.querySelector('#datos-nav-dropdown')
+    ];
+    dropdowns.forEach((dropdown) => {
+      const trigger = dropdown.querySelector('.nav-dropdown-trigger');
+      trigger.addEventListener('click', (event) => {
+        // En pantallas táctiles, el primer toque abre el menú; el siguiente sigue el enlace principal.
+        if (window.matchMedia('(max-width: 900px)').matches && !dropdown.classList.contains('open')) {
+          event.preventDefault();
+          dropdown.classList.add('open');
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+    document.addEventListener('click', (event) => {
+      dropdowns.forEach((dropdown) => {
+        if (!dropdown.contains(event.target)) {
+          dropdown.classList.remove('open');
+          dropdown.querySelector('.nav-dropdown-trigger').setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+    document.querySelectorAll('.nav-submenu').forEach((submenu) => {
+      const trigger = submenu.querySelector('.nav-submenu-trigger');
+      trigger.addEventListener('click', (event) => {
+        // En pantallas táctiles, el primer toque abre el submenú; el siguiente sigue el enlace.
+        if (window.matchMedia('(max-width: 900px)').matches && !submenu.classList.contains('open')) {
+          event.preventDefault();
+          submenu.classList.add('open');
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+    document.querySelector('#year').textContent = new Date().getFullYear();
+    const phoneTrigger = document.querySelector('.phone-trigger');
+    const phoneDropdown = document.querySelector('#phone-dropdown');
+    phoneTrigger.addEventListener('click', (event) => {
+      event.stopPropagation();
+      const opening = phoneDropdown.hidden;
+      phoneDropdown.hidden = !opening;
+      phoneTrigger.setAttribute('aria-expanded', String(opening));
+    });
+    document.addEventListener('click', (event) => {
+      if (!event.target.closest('.phone-menu')) {
+        phoneDropdown.hidden = true;
+        phoneTrigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !phoneDropdown.hidden) {
+        phoneDropdown.hidden = true;
+        phoneTrigger.setAttribute('aria-expanded', 'false');
+        phoneTrigger.focus();
+      }
+    });
+    const backToTop = document.querySelector('#back-to-top');
+    window.addEventListener('scroll', () => backToTop.classList.toggle('show', window.scrollY > 300));
+  </script>
+  <script src="datos/ripte.js"></script>
+  <script src="datos/ipc.js"></script>
+  <script>
+    const MESES = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+    const MESES_L = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+    const INICIO = '2011-01';
+    const COLOR = { inflacion: '#a33b2b', oficial: '#8f8d3c', blue: '#3f6e8c', ripte: '#272920', tamar: '#7d7e75', smvm: '#9c9443' };
+    const C_MENSUAL = '#c46a1f';
+    const num = (v, d = 2) => v.toLocaleString('es-AR', { minimumFractionDigits: d, maximumFractionDigits: d });
+    const pct = (v, d = 2) => v == null ? 's/d' : num(v, d) + '%';
+    const pesos = v => '$ ' + v.toLocaleString('es-AR', { maximumFractionDigits: 2 });
+    const enEmergencia = k => k >= '2015-11' && k <= '2016-04'; // el INDEC no publicó el IPC en esos meses
+    const hoy = new Date();
+    const mesActual = `${hoy.getFullYear()}-${String(hoy.getMonth() + 1).padStart(2, '0')}`;
+    const restarMeses = (k, n) => {
+      let y = +k.slice(0, 4), m = +k.slice(5, 7) - n;
+      while (m < 1) { m += 12; y--; }
+      return `${y}-${String(m).padStart(2, '0')}`;
+    };
+    const etiqueta = k => MESES[+k.slice(5, 7) - 1] + '-' + k.slice(2, 4);
+    const nombreMes = k => MESES_L[+k.slice(5, 7) - 1];
+    const mesAnio = k => `${nombreMes(k)} de ${k.slice(0, 4)}`;
+    const diasDelMes = k => new Date(+k.slice(0, 4), +k.slice(5, 7), 0).getDate();
+    const mesesEntre = (desde, hasta) => {
+      const lista = [];
+      for (let k = hasta; k >= desde; k = restarMeses(k, 1)) lista.unshift(k);
+      return lista;
+    };
+    const ultimoHasta = (obj, tope) => Object.keys(obj).filter(k => k <= tope).sort().pop();
+    const variacion = (s, k, n) => s[k] != null && s[restarMeses(k, n)] ? (s[k] / s[restarMeses(k, n)] - 1) * 100 : null;
+    const json = url => fetch(url).then(r => { if (!r.ok) throw new Error(url); return r.json(); });
+    // Meses de inflación calculados con el índice del INDEC (dos decimales); el resto viene con uno.
+    const precisos = { mensual: new Set(), anual: new Set() };
+    const decInf = (campo, k) => precisos[campo].has(k) ? 2 : 1;
+
+    /* ---------- Fuentes ---------- */
+    // Inflación (ArgentinaDatos). El valor ya viene en porcentaje: 1.9 es 1,9%.
+    async function inflacion(nombre) {
+      const porMes = {};
+      for (const d of await json(`https://api.argentinadatos.com/v1/finanzas/indices/${nombre}`)) if (d.valor != null) porMes[d.fecha.slice(0, 7)] = d.valor;
+      return porMes;
+    }
+    // Dólar compra al cierre de cada mes ya terminado (mismo cálculo que datos-dolar.html).
+    async function cierresDolar(casa) {
+      const datos = await json(`https://api.argentinadatos.com/v1/cotizaciones/dolares/${casa}`);
+      datos.sort((a, b) => a.fecha.localeCompare(b.fecha));
+      const cierres = {};
+      for (const d of datos) {
+        const k = d.fecha.slice(0, 7);
+        if (k >= '2010-01' && k < mesActual && d.compra != null) cierres[k] = d.compra;
+      }
+      return cierres;
+    }
+    // datos.gob.ar: índice de salarios (nivel), salario mínimo mensual y RIPTE.
+    async function seriesGob() {
+      const j = await json('https://apis.datos.gob.ar/series/api/series/?ids=149.1_TL_INDIIOS_OCTU_0_21,57.1_SMVMM_0_M_34,158.1_REPTE_0_0_5&format=json&limit=1000&start_date=2009-01-01');
+      const salarios = {}, smvm = {}, ripte = {};
+      for (const [fecha, sal, min, rip] of j.data) {
+        const k = fecha.slice(0, 7);
+        if (sal != null) salarios[k] = sal;
+        if (min != null) smvm[k] = min;
+        if (rip != null) ripte[k] = rip;
+      }
+      return { salarios, smvm, ripte };
+    }
+    // Archivos que actualiza todos los días una tarea automática (.github/workflows/actualizar-datos.yml):
+    // RIPTE de la página oficial e IPC del INDEC (índice con todos sus decimales y rubros).
+    const datoSitio = archivo => {
+      const d = (window.DATOS || {})[archivo.replace('.json', '')]; // cargado por datos/ripte.js y datos/ipc.js
+      return d ? Promise.resolve(d) : Promise.reject(new Error(archivo));
+    };
+    // BCRA: 44 = TAMAR de bancos privados (% nominal anual, diaria); 29 = REM, mediana de la inflación esperada a 12 meses.
+    async function bcra(id, desde) {
+      const j = await json(`https://api.bcra.gob.ar/estadisticas/v4.0/monetarias/${id}?desde=${desde}&hasta=${hoy.toISOString().slice(0, 10)}&limit=3000`);
+      return j.results[0].detalle;
+    }
+    function promedioMensual(detalle) {
+      const suma = {}, cant = {};
+      for (const d of detalle) {
+        const k = d.fecha.slice(0, 7);
+        suma[k] = (suma[k] || 0) + d.valor;
+        cant[k] = (cant[k] || 0) + 1;
+      }
+      const r = {};
+      for (const k in suma) r[k] = suma[k] / cant[k];
+      return r;
+    }
+
+    /* ---------- Resumen ---------- */
+    function compararInflacion(v, inf, k) {
+      if (v == null || inf == null) return '';
+      const relacion = v > inf ? 'mayor' : v < inf ? 'menor' : 'igual';
+      return ` (${relacion} a la inflación interanual de ese mes, que fue de ${pct(inf, decInf('anual', k))})`;
+    }
+    // Rubros que más y que menos aumentaron; si hay empate en el corte, se incluyen todos los empatados.
+    function extremos(divisiones, mayores) {
+      const orden = [...divisiones].sort((a, b) => mayores ? b.mensual - a.mensual : a.mensual - b.mensual);
+      const corte = orden[Math.min(1, orden.length - 1)].mensual;
+      const lista = orden.filter(x => mayores ? x.mensual >= corte : x.mensual <= corte).map(x => `<strong>${x.nombre}</strong> (${pct(x.mensual, 1)})`);
+      return lista.length > 1 ? lista.slice(0, -1).join(', ') + ' y ' + lista[lista.length - 1] : lista[0];
+    }
+    function armarResumen(M, d) {
+      const { infM, infIA, rem, rubros, ofi, blue, ripte, salarios, smvm, tamar } = d;
+      const ant = restarMeses(M, 1);
+      const bloques = [];
+
+      let inf = `<p>La inflación de <strong>${mesAnio(M)}</strong> fue de <strong>${pct(infM[M], decInf('mensual', M))}</strong>`;
+      if (infM[ant] != null) inf += ` (${infM[M] > infM[ant] ? 'por encima del' : infM[M] < infM[ant] ? 'por debajo del' : 'igual al'} ${pct(infM[ant], decInf('mensual', ant))} de ${nombreMes(ant)})`;
+      inf += ` y se ubica en <strong>${pct(infIA[M], decInf('anual', M))}</strong> interanual.</p>`;
+      if (rubros && rubros.periodo === M) inf += `<p>Los rubros que más aumentaron fueron ${extremos(rubros.divisiones, true)}. Los que menos aumentaron fueron ${extremos(rubros.divisiones, false)}.</p>`;
+      if (rem) inf += `<p>La inflación esperada para los próximos 12 meses según el Relevamiento de Expectativas de Mercado (REM) del BCRA de ${mesAnio(rem.fecha.slice(0, 7))} es de <strong>${pct(rem.valor, 1)}</strong>.</p>`;
+      bloques.push(`<h3>Inflación</h3>${inf}`);
+
+      if (ofi[M] && blue[M]) {
+        bloques.push(`<h3>Dólar</h3><p>El dólar oficial compra cerró ${nombreMes(M)} en <strong>${pesos(ofi[M])}</strong> (${pct(variacion(ofi, M, 1))} respecto del mes anterior y ${pct(variacion(ofi, M, 12))} interanual). El dólar blue compra cerró en <strong>${pesos(blue[M])}</strong> (${pct(variacion(blue, M, 1))} mensual y ${pct(variacion(blue, M, 12))} interanual). La brecha entre ambos es de <strong>${pct((blue[M] / ofi[M] - 1) * 100)}</strong>.</p>`);
+      }
+
+      let sal = '';
+      const kR = ultimoHasta(ripte, mesActual);
+      if (kR) sal += `<p>El índice RIPTE (remuneración imponible promedio de los trabajadores estables) de <strong>${mesAnio(kR)}</strong> fue de <strong>${pesos(ripte[kR])}</strong>: un aumento mensual de <strong>${pct(variacion(ripte, kR, 1))}</strong> y una variación interanual de <strong>${pct(variacion(ripte, kR, 12))}</strong>${compararInflacion(variacion(ripte, kR, 12), infIA[kR], kR)}.</p>`;
+      const kS = ultimoHasta(salarios, mesActual);
+      if (kS) sal += `<p>El índice de salarios aumentó <strong>${pct(variacion(salarios, kS, 1))}</strong> en ${mesAnio(kS)} y su variación interanual es de <strong>${pct(variacion(salarios, kS, 12))}</strong>${compararInflacion(variacion(salarios, kS, 12), infIA[kS], kS)}.</p>`;
+      if (smvm[M]) sal += `<p>El salario mínimo, vital y móvil de ${mesAnio(M)} es de <strong>${pesos(smvm[M])}</strong>: variación interanual de <strong>${pct(variacion(smvm, M, 12))}</strong> y aumento de <strong>${pct(variacion(smvm, M, 1))}</strong> respecto del mes anterior.</p>`;
+      if (sal) bloques.push(`<h3>Salarios</h3>${sal}`);
+
+      if (tamar[M] != null) {
+        bloques.push(`<h3>Tasa TAMAR</h3><p>La TAMAR (Tasa Mayorista de Argentina) es la tasa nominal anual que pagan los bancos privados por depósitos a plazo fijo en pesos de $ 1.000 millones o más, a 30 a 35 días. La publica el BCRA todos los días y se usa como tasa de referencia. El promedio de ${nombreMes(M)} fue de <strong>${pct(tamar[M])}</strong> nominal anual, que equivale a <strong>${pct(tamar[M] * diasDelMes(M) / 365)}</strong> en el mes.</p>`);
+      }
+      document.getElementById('resumen').innerHTML = bloques.join('');
+    }
+
+    /* ---------- Indicadores del mes de referencia (ránking y gráfico de barras) ---------- */
+    function indicadores(M, d) {
+      const { infM, infIA, ofi, blue, ripte, smvm, tamar } = d;
+      const kR = ultimoHasta(ripte, M);
+      return [
+        { id: 'inflacion', nombre: 'Inflación', anual: infIA[M] ?? null, mensual: infM[M] ?? null, dec: { anual: decInf('anual', M), mensual: decInf('mensual', M) } },
+        { id: 'oficial', nombre: 'Dólar oficial', anual: variacion(ofi, M, 12), mensual: variacion(ofi, M, 1) },
+        { id: 'blue', nombre: 'Dólar blue', anual: variacion(blue, M, 12), mensual: variacion(blue, M, 1) },
+        { id: 'ripte', nombre: kR && kR !== M ? `Salarios (RIPTE) a ${MESES[+kR.slice(5, 7) - 1]}` : 'Salarios (RIPTE)', anual: kR ? variacion(ripte, kR, 12) : null, mensual: kR ? variacion(ripte, kR, 1) : null },
+        { id: 'tamar', nombre: 'TAMAR', anual: tamar[M] ?? null, mensual: tamar[M] != null ? tamar[M] * diasDelMes(M) / 365 : null },
+        { id: 'smvm', nombre: 'Salario mínimo', anual: variacion(smvm, M, 12), mensual: variacion(smvm, M, 1) }
+      ];
+    }
+
+    function armarRanking(id, lista, campo) {
+      const orden = [...lista].sort((a, b) => (b[campo] ?? -Infinity) - (a[campo] ?? -Infinity));
+      document.getElementById(id).innerHTML = orden.map((x, i) =>
+        `<li style="--c:${COLOR[x.id]}"><span class="pos">${i + 1}°</span><span class="nombre">${x.nombre}</span><span class="valor${x[campo] == null ? ' sd' : ''}">${pct(x[campo], x.dec?.[campo])}</span></li>`
+      ).join('');
+    }
+
+    /* ---------- Gráficos ---------- */
+    // Escribe el valor de cada barra y de cada punto de la línea.
+    const valores = {
+      id: 'valores',
+      afterDatasetsDraw(chart) {
+        const { ctx } = chart;
+        ctx.save();
+        ctx.font = '11px Arial, Helvetica, sans-serif';
+        ctx.textAlign = 'center';
+        chart.data.datasets.forEach((ds, di) => {
+          chart.getDatasetMeta(di).data.forEach((el, i) => {
+            const v = ds.data[i];
+            if (v == null) return;
+            const texto = pct(v, ds.decimales[i]);
+            if (ds.type === 'line') {
+              const w = ctx.measureText(texto).width + 8;
+              ctx.fillStyle = '#272920';
+              ctx.fillRect(el.x - w / 2, el.y - 22, w, 16);
+              ctx.fillStyle = '#fff';
+              ctx.textBaseline = 'middle';
+              ctx.fillText(texto, el.x, el.y - 14);
+            } else {
+              ctx.fillStyle = '#272920';
+              ctx.textBaseline = 'bottom';
+              ctx.fillText(texto, el.x, Math.min(el.y, el.base) - 4);
+            }
+          });
+        });
+        ctx.restore();
+      }
+    };
+
+    function graficoBarras(lista) {
+      const ejeY = (titulo, posicion, extra = {}) => ({
+        position: posicion, beginAtZero: true, grace: '15%',
+        title: { display: true, text: titulo },
+        ticks: { callback: v => v.toLocaleString('es-AR') + '%' }, ...extra
+      });
+      new Chart(document.getElementById('g-barras'), {
+        data: {
+          labels: lista.map(x => x.nombre),
+          datasets: [
+            { type: 'bar', label: 'Variación interanual', data: lista.map(x => x.anual), decimales: lista.map(x => x.dec?.anual), yAxisID: 'y', backgroundColor: lista.map(x => COLOR[x.id]) },
+            { type: 'line', label: 'Variación mensual', data: lista.map(x => x.mensual), decimales: lista.map(x => x.dec?.mensual), yAxisID: 'y2', borderColor: C_MENSUAL, backgroundColor: C_MENSUAL, borderWidth: 2, pointRadius: 3, tension: 0 }
+          ]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          layout: { padding: { top: 10 } },
+          plugins: {
+            legend: { display: false },
+            tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: ${pct(ctx.raw, ctx.dataset.decimales[ctx.dataIndex])}` } }
+          },
+          scales: {
+            x: { ticks: { maxRotation: 0, autoSkip: false } },
+            y: ejeY('Interanual', 'left'),
+            y2: ejeY('Mensual', 'right', { grid: { drawOnChartArea: false } })
+          }
+        },
+        plugins: [valores]
+      });
+    }
+
+    function graficoLineas(meses, series) {
+      const chart = new Chart(document.getElementById('g-lineas'), {
+        type: 'line',
+        data: { labels: meses.map(etiqueta), datasets: series.map(s => ({
+          label: s.nombre, data: s.datos, borderColor: s.color, backgroundColor: s.color,
+          borderWidth: 2, pointRadius: 0, tension: .15, spanGaps: false
+        })) },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          interaction: { mode: 'index', intersect: false },
+          plugins: {
+            legend: { position: 'bottom' },
+            tooltip: { callbacks: { label: ctx => {
+              const s = series[ctx.datasetIndex], k = chart.$meses[ctx.dataIndex];
+              return `${ctx.dataset.label}: ${pct(ctx.raw, s.inflacion ? decInf('anual', k) : 2)}${s.inflacion && ctx.raw != null && enEmergencia(k) ? '*' : ''}`;
+            } } }
+          },
+          scales: {
+            x: { ticks: { maxRotation: 45, autoSkip: true, maxTicksLimit: 24 } },
+            y: { ticks: { callback: v => v.toLocaleString('es-AR') + '%' } }
+          }
+        }
+      });
+      chart.$meses = meses;
+      // Botones "Desde 2011" / "Últimos 3 años": recortan los mismos datos.
+      document.querySelectorAll('.periodos button').forEach(b => b.addEventListener('click', () => {
+        const desde = b.dataset.periodo === 'todo' ? 0 : Math.max(0, meses.length - 36);
+        chart.$meses = meses.slice(desde);
+        chart.data.labels = chart.$meses.map(etiqueta);
+        chart.data.datasets.forEach((ds, i) => { ds.data = series[i].datos.slice(desde); });
+        chart.update();
+        document.querySelectorAll('.periodos button').forEach(o => o.setAttribute('aria-pressed', String(o === b)));
+      }));
+    }
+
+    function avisoEnCaja(id, texto) {
+      const caja = document.getElementById(id);
+      caja.innerHTML = '<div class="sin-datos"></div>';
+      caja.firstChild.textContent = texto;
+    }
+
+    /* ---------- Carga ---------- */
+    const desdeBcra = `${hoy.getFullYear() - 2}-01-01`;
+    Promise.all([
+      inflacion('inflacion'), inflacion('inflacionInteranual'),
+      cierresDolar('oficial').catch(() => ({})), cierresDolar('blue').catch(() => ({})),
+      seriesGob().catch(() => ({ salarios: {}, smvm: {}, ripte: {} })), datoSitio('ripte.json').catch(() => ({})), datoSitio('ipc.json').catch(() => null),
+      bcra(44, desdeBcra).then(promedioMensual).catch(() => ({})),
+      bcra(29, desdeBcra).then(d => d.sort((a, b) => b.fecha.localeCompare(a.fecha))[0]).catch(() => null)
+    ]).then(([infM, infIA, ofi, blue, gob, ripteOficial, ipc, tamar, rem]) => {
+      // Con el índice del INDEC las variaciones de inflación se calculan con dos decimales.
+      if (ipc) for (const k in ipc.nivel) {
+        const m = variacion(ipc.nivel, k, 1), a = variacion(ipc.nivel, k, 12);
+        if (m != null) { infM[k] = m; precisos.mensual.add(k); }
+        if (a != null) { infIA[k] = a; precisos.anual.add(k); }
+      }
+      const d = { infM, infIA, rem, ofi, blue, tamar, rubros: ipc && ipc.rubros, salarios: gob.salarios, smvm: gob.smvm, ripte: { ...gob.ripte, ...ripteOficial } };
+      const M = Object.keys(infM).sort().pop(); // mes de referencia: último dato de inflación publicado
+      const titulo = `${nombreMes(M)} ${M.slice(0, 4)}`;
+      document.getElementById('titulo-resumen').textContent = `Resumen de datos a ${titulo}`;
+      document.getElementById('titulo-ranking').textContent = `Ránking de aumentos a ${titulo}`;
+      document.getElementById('titulo-barras').textContent = `Comparación interanual y mensual a ${titulo}`;
+      armarResumen(M, d);
+      const lista = indicadores(M, d);
+      armarRanking('ranking-anual', lista, 'anual');
+      armarRanking('ranking-mensual', lista, 'mensual');
+      document.getElementById('nota-ranking').textContent = 'Anualizados: variación interanual; en la TAMAR, el promedio del mes de la tasa nominal anual. Mensualizados: variación respecto del mes anterior; en la TAMAR, la tasa proporcional a los días del mes. Los salarios se publican con atraso, por eso se toma el último dato disponible.';
+
+      if (typeof Chart === 'undefined') {
+        ['caja-g-barras', 'caja-g-lineas'].forEach(id => avisoEnCaja(id, 'No se pudo cargar el gráfico en este momento. Intentá nuevamente más tarde.'));
+        return;
+      }
+      graficoBarras(lista);
+      const fin = [M, ultimoHasta(ofi, mesActual) || M].sort().pop();
+      const meses = mesesEntre(INICIO, fin);
+      graficoLineas(meses, [
+        { nombre: 'Inflación interanual', datos: meses.map(k => infIA[k] ?? null), color: COLOR.inflacion, inflacion: true },
+        { nombre: 'Dólar oficial · var. interanual', datos: meses.map(k => variacion(ofi, k, 12)), color: COLOR.oficial },
+        { nombre: 'Dólar blue · var. interanual', datos: meses.map(k => variacion(blue, k, 12)), color: COLOR.blue },
+        { nombre: 'Remuneraciones (RIPTE) · var. interanual', datos: meses.map(k => variacion(d.ripte, k, 12)), color: COLOR.ripte }
+      ]);
+    }).catch(() => {
+      document.getElementById('resumen').textContent = 'No se pudieron cargar los datos en este momento. Intentá nuevamente más tarde.';
+      ['caja-g-barras', 'caja-g-lineas'].forEach(id => avisoEnCaja(id, 'Gráfico no disponible por el momento.'));
+    });
+  </script>
+</body>
+</html>

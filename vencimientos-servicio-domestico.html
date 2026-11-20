@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Vencimientos de cargas sociales de servicio doméstico (casas particulares): pago obligatorio y voluntario, actualizados con el calendario de ARCA. Estudio José A. Quacquarini y Asoc.">
+  <link rel="canonical" href="https://estudioquacquarini.com.ar/vencimientos-servicio-domestico.html">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Estudio José A. Quacquarini y Asoc.">
+  <meta property="og:title" content="Vencimientos Servicio Doméstico | Estudio José A. Quacquarini y Asoc.">
+  <meta property="og:description" content="Vencimientos de cargas sociales de servicio doméstico (casas particulares): pago obligatorio y voluntario, actualizados con el calendario de ARCA. Estudio José A. Quacquarini y Asoc.">
+  <meta property="og:url" content="https://estudioquacquarini.com.ar/vencimientos-servicio-domestico.html">
+  <meta property="og:image" content="https://estudioquacquarini.com.ar/img/logo.png">
+  <meta property="og:image:alt" content="Logo del Estudio José A. Quacquarini y Asoc.">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" type="image/png" href="img/logo.png">
+  <title>Vencimientos Servicio Doméstico | Estudio José A. Quacquarini y Asoc.</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <script src="js/tema.js"></script>
+  <style>
+
+    /* Página Vencimientos */
+    .tabla-venc table { min-width:560px; }
+    .tabla-venc th[colspan] { text-align:center; }
+    tbody tr.pasado td { color:var(--muted); }
+    tbody tr.proximo td { background:#f1eed6; font-weight:bold; }
+    .mas-venc { columns:2; column-gap:40px; padding-left:20px; margin:0 0 18px; }
+    .mas-venc li { margin:4px 0; break-inside:avoid; }
+    .consulta { font-weight:bold; }
+    @media (max-width: 600px) { .mas-venc { columns:1; } }
+    .page-hero { min-height: 300px; }
+    .page-hero .hero-inner { padding: 60px 22px; }
+    .nav-dropdown > .nav-dropdown-trigger[aria-current="page"] { color: var(--olive); }
+    .wrap { max-width:var(--max); margin:auto; padding:50px 22px 10px; }
+    .wrap h2 { font:500 1.9rem Georgia,serif; margin:0 0 18px; }
+    .wrap a { color:var(--olive-dark); }
+    h3.sub { font-size:1rem; text-align:center; margin:30px 0 8px; color:var(--ink); }
+    .resumen { background:var(--cream); border-left:4px solid var(--gold); padding:20px 24px; }
+    .resumen h3 { margin:0 0 8px; text-transform:uppercase; font-size:1rem; }
+    .resumen p { margin:0; }
+    .tabla-wrap { overflow-x:auto; border:1px solid var(--line); margin:12px 0 8px; }
+    table { border-collapse:collapse; width:100%; min-width:950px; font-size:.86rem; }
+    th { background:#efeddc; color:var(--olive-dark); text-align:left; padding:10px; font-size:.8rem; }
+    td { padding:9px 10px; border-top:1px solid var(--line); white-space:nowrap; font-variant-numeric:tabular-nums; }
+    tbody tr:nth-child(even) td { background:#fbfaf5; }
+    td.anio, td.var { font-weight:bold; }
+    td.sd { color:var(--muted); }
+    .fuente { font-size:.8rem; color:var(--muted); margin:0 0 36px; }
+    .chart-box { border:1px solid var(--line); padding:14px; height:420px; position:relative; margin-bottom:10px; }
+    .aviso { font-size:.82rem; color:var(--muted); }
+    .nota-tabla { font-size:.8rem; color:var(--muted); margin:0 0 8px; }
+    .sin-datos { display:grid; place-items:center; height:100%; text-align:center; color:var(--muted); }
+    main { padding-bottom:40px; }
+    .back-to-top { position: fixed; right: 26px; bottom: 26px; z-index: 30; width: 45px; height: 45px; display: grid; place-items: center; border-radius: 3px; background: var(--olive-dark); color: #fff; font-size: 1.2rem; text-decoration: none; opacity: 0; visibility: hidden; transition: .2s; }
+    .back-to-top.show { opacity: 1; visibility: visible; }
+    .back-to-top:hover { background: var(--olive); }
+    @media (max-width: 600px) {
+      .page-hero { min-height: 240px; }
+      .page-hero .hero-inner { padding: 45px 20px; }
+      .chart-box { height:320px; }
+      .back-to-top { right: 16px; bottom: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="topbar-info">
+        <strong>Estudio Contable José A. Quacquarini y Asoc.</strong>
+      </div>
+      <div class="topbar-icons" aria-label="Datos de contacto">
+        <div class="phone-menu">
+          <button class="phone-trigger" type="button" aria-label="Elegir un teléfono" aria-expanded="false" aria-controls="phone-dropdown">
+            <img src="img/icono-telefono.png" alt="Teléfono" title="Elegir teléfono para WhatsApp">
+          </button>
+          <div class="phone-dropdown" id="phone-dropdown" hidden>
+            <span class="phone-dropdown-title">Contactanos por WhatsApp</span>
+            <a href="https://wa.me/5493464697225" target="_blank" rel="noopener noreferrer">+54 9 3464 69-7225 <small>(Estudio Pujato)</small></a>
+            <a href="https://wa.me/543464553622" target="_blank" rel="noopener noreferrer">+54 3464 55 3622 <small>(Estudio Rosario)</small></a>
+          </div>
+        </div>
+        <a class="email-link" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=contacto@estudioquacquarini.com.ar" target="_blank" rel="noopener noreferrer" aria-label="Escribir un correo al estudio">
+                  <img class="email-icon" src="img/icono-correo.png" alt="Correo electrónico" title="Correo electrónico">
+        </a>
+        <a class="instagram-link" href="https://www.instagram.com/estudioquacquarini?exln=Z20ycTY2a3ZybGp0" target="_blank" rel="noopener noreferrer" aria-label="Visitar Instagram del estudio" title="Instagram del estudio">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+            <circle cx="17.5" cy="6.7" r="1.2" fill="currentColor"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <header>
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="Inicio - Estudio José A. Quacquarini y Asociados">
+        <img src="img/logo.png" width="67" height="67" alt="Logo del Estudio José A. Quacquarini y Asociados">
+        <span class="brand-name">
+          <strong>Estudio José A. Quacquarini y Asoc.</strong>
+          <span>Estudio Contable</span>
+        </span>
+      </a>
+      <button class="menu-toggle" aria-expanded="false" aria-controls="main-nav">☰ Menú</button>
+      <nav id="main-nav" aria-label="Navegación principal">
+        <a href="index.html">Inicio</a>
+        <div class="nav-dropdown" id="estudio-nav-dropdown">
+          <a class="nav-dropdown-trigger" href="estudio.html" aria-haspopup="true" aria-expanded="false">El Estudio <span aria-hidden="true"></span></a>
+          <div class="nav-dropdown-menu" aria-label="Secciones de El Estudio">
+            <a href="estudio.html">El Estudio</a>
+            <a href="estudio-opcion-2.html">¿Qué nos diferencia?</a>
+            <a href="documentos/folleto-quacquarini.pdf" target="_blank" rel="noopener noreferrer">Folleto Institucional</a>
+            <a href="estudio-opcion-4.html">Unite a Estudio Contable José A. Quacquarini y Asoc.</a>
+            <a href="novedades.html">Novedades</a>
+          </div>
+        </div>
+        <div class="nav-dropdown" id="servicios-nav-dropdown">
+          <a class="nav-dropdown-trigger" href="servicios.html" aria-haspopup="true" aria-expanded="false">Servicios <span aria-hidden="true"></span></a>
+          <div class="nav-dropdown-menu" aria-label="Opciones de Servicios">
+            <a href="servicios.html">Servicios</a>
+            <a href="servicios-opcion-2.html">¿Necesitás un crédito para tu empresa?</a>
+            <a href="servicios-opcion-3.html">¿Por qué contratarnos?</a>
+          </div>
+        </div>
+        <a href="novedades.html">Novedades</a>
+        <div class="nav-dropdown" id="datos-nav-dropdown">
+          <a class="nav-dropdown-trigger" href="datos-utiles.html" aria-current="page" aria-haspopup="true" aria-expanded="false">Datos Útiles <span aria-hidden="true"></span></a>
+          <div class="nav-dropdown-menu" aria-label="Opciones de Datos Útiles">
+            <a href="datos-utiles.html">Datos Útiles</a>
+            <div class="nav-submenu">
+              <a class="nav-submenu-trigger" role="button" tabindex="0" style="cursor:pointer" aria-haspopup="true" aria-expanded="false">Indicadores económicos</a>
+              <div class="nav-flyout" aria-label="Indicadores económicos">
+                <a href="datos-inflacion.html">Inflación</a>
+                <a href="datos-dolar.html">Cotización del dólar</a>
+                <a href="datos-salarios-ripte.html">Índice de salarios + Índice RIPTE</a>
+                <a href="datos-salario-minimo.html">Salario mínimo, vital y móvil</a>
+                <a href="datos-comparacion-indices.html">Comparación Índices</a>
+              </div>
+            </div>
+            <div class="nav-submenu">
+              <a class="nav-submenu-trigger" role="button" tabindex="0" style="cursor:pointer" aria-haspopup="true" aria-expanded="false">Vencimientos</a>
+              <div class="nav-flyout" aria-label="Vencimientos">
+                <a href="vencimientos-autonomos.html">Autónomos</a>
+                <a href="vencimientos-monotributo.html">Monotributo</a>
+                <a href="vencimientos-iva.html">IVA | Libro IVA Digital</a>
+                <a href="vencimientos-convenio-multilateral.html">Convenio Multilateral | Ingresos Brutos</a>
+                <a href="vencimientos-servicio-domestico.html">Cargas Sociales | Servicio Doméstico</a>
+                <a href="vencimientos-relacion-dependencia.html">Cargas Sociales | Relación de Dependencia</a>
+                <a href="vencimientos-ganancias-humanas.html">Ganancias | Personas Humanas</a>
+                <a href="vencimientos-ganancias-juridicas.html">Ganancias | Personas Jurídicas</a>
+                <a href="vencimientos-retenciones-sicore.html">Retenciones | SICORE</a>
+              </div>
+            </div>
+            <a href="datos-feriados.html">Feriados</a>
+            <a href="datos-categorias-monotributo.html">Categorías de Monotributo</a>
+            <a href="datos-tabla-autonomos.html">Tabla de Autónomos</a>
+            <a href="datos-tabla-ganancias.html">Tabla Ganancias, Deducciones y Retenciones</a>
+            <a href="datos-tabla-bienes-personales.html">Tabla Bienes Personales</a>
+            <a href="datos-intereses-afip.html">Intereses ARCA</a>
+            <a href="datos-regimen-iibb.html">Rég. Simpl. IIBB Santa Fe</a>
+            <a href="datos-leyes-resoluciones.html">Leyes y Resoluciones</a>
+            <a href="datos-glosario.html">Glosario</a>
+          </div>
+        </div>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero page-hero" id="inicio">
+      <div class="hero-inner">
+        <span class="eyebrow">Estudio contable · Desde 1998</span>
+        <h1>Vencimientos · Cargas sociales de Servicio Doméstico</h1>
+        <p>Fechas de pago de los aportes y contribuciones del personal de casas particulares, obligatorio y voluntario. Actualizadas automáticamente con lo que publica ARCA.</p>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <h2>Próximo vencimiento</h2>
+      <div class="resumen" id="resumen">Cargando vencimientos…</div>
+    </div>
+
+    <div class="wrap">
+      <h2 id="titulo-tabla">Vencimientos</h2>
+      <div class="tabla-wrap tabla-venc"><table>
+        <thead>
+          <tr><th rowspan="2">Mes de devengamiento</th><th colspan="2">Fecha de vencimiento</th></tr>
+          <tr><th>Pago obligatorio (F. 102/RT)</th><th>Pago voluntario (F. 575/RT)</th></tr>
+        </thead>
+        <tbody id="tabla-venc"></tbody>
+      </table></div>
+      <p class="nota-tabla">El mes en curso se toma directamente del calendario de ARCA. Los demás meses siguen el cronograma de ARCA, igual para todas las terminaciones de CUIT: el pago obligatorio vence el día 10 y el voluntario el día 15; si caen en feriado o fin de semana, pasan al día hábil siguiente.</p>
+      <p class="nota-tabla" id="nota-cambios" hidden>* Fecha publicada por ARCA distinta del cronograma general (prórroga o cambio de calendario).</p>
+      <p class="nota-tabla" id="nota-feriados" hidden>No se pudieron cargar los feriados: las fechas calculadas solo contemplan fines de semana y pueden variar.</p>
+      <p class="fuente">Fuentes: <a href="https://www.arca.gob.ar/vencimientos/" target="_blank" rel="noopener">ARCA · Calendario de vencimientos</a>. Feriados vía <a href="https://argentinadatos.com" target="_blank" rel="noopener">ArgentinaDatos</a>. Elaboración propia.</p>
+      <p class="aviso">Información de referencia. Antes de pagar, verificar la fecha en el calendario de vencimientos de ARCA.</p>
+    </div>
+
+    <div class="wrap">
+      <h2>Más vencimientos</h2>
+      <ul class="mas-venc">
+        <li><a href="vencimientos-autonomos.html">Autónomos</a></li>
+        <li><a href="vencimientos-monotributo.html">Monotributo</a></li>
+        <li><a href="vencimientos-iva.html">IVA | Libro IVA Digital</a></li>
+        <li><a href="vencimientos-convenio-multilateral.html">Convenio Multilateral | Ingresos Brutos</a></li>
+        <li><a href="vencimientos-relacion-dependencia.html">Cargas Sociales | Relación de Dependencia</a></li>
+        <li><a href="vencimientos-ganancias-humanas.html">Ganancias | Personas Humanas</a></li>
+        <li><a href="vencimientos-ganancias-juridicas.html">Ganancias | Personas Jurídicas</a></li>
+        <li><a href="vencimientos-retenciones-sicore.html">Retenciones | SICORE</a></li>
+      </ul>
+      <p class="consulta">¿Tenés dudas? <a href="index.html#contacto">Contactanos</a> y te respondemos a la brevedad.</p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="img/logo.png" alt="" width="48" height="48" loading="lazy" decoding="async">
+        <div><strong>Estudio José A. Quacquarini y Asoc.</strong><span>Trayectoria profesional desde 1998</span></div>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Inicio</a><a href="estudio.html">El Estudio</a><a href="servicios.html">Servicios</a><a href="contacto.html">Contacto</a>
+      </div>
+      <div class="copyright">© <span id="year">2026</span> Estudio José A. Quacquarini y Asoc.</div>
+    </div>
+  </footer>
+
+  <a class="back-to-top" id="back-to-top" href="#inicio" aria-label="Volver arriba">↑</a>
+
+  <script>
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('#main-nav');
+    toggle.addEventListener('click', () => {
+      const opened = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(opened));
+    });
+    nav.querySelectorAll('a:not(.nav-dropdown-trigger):not(.nav-submenu-trigger)').forEach(link => link.addEventListener('click', () => {
+      nav.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }));
+    const dropdowns = [
+      document.querySelector('#estudio-nav-dropdown'),
+      document.querySelector('#servicios-nav-dropdown'),
+      document.querySelector('#datos-nav-dropdown')
+    ];
+    dropdowns.forEach((dropdown) => {
+      const trigger = dropdown.querySelector('.nav-dropdown-trigger');
+      trigger.addEventListener('click', (event) => {
+        // En pantallas táctiles, el primer toque abre el menú; el siguiente sigue el enlace principal.
+        if (window.matchMedia('(max-width: 900px)').matches && !dropdown.classList.contains('open')) {
+          event.preventDefault();
+          dropdown.classList.add('open');
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+    document.addEventListener('click', (event) => {
+      dropdowns.forEach((dropdown) => {
+        if (!dropdown.contains(event.target)) {
+          dropdown.classList.remove('open');
+          dropdown.querySelector('.nav-dropdown-trigger').setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+    document.querySelectorAll('.nav-submenu').forEach((submenu) => {
+      const trigger = submenu.querySelector('.nav-submenu-trigger');
+      trigger.addEventListener('click', (event) => {
+        // En pantallas táctiles, el primer toque abre el submenú; el siguiente sigue el enlace.
+        if (window.matchMedia('(max-width: 900px)').matches && !submenu.classList.contains('open')) {
+          event.preventDefault();
+          submenu.classList.add('open');
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+    document.querySelector('#year').textContent = new Date().getFullYear();
+    const phoneTrigger = document.querySelector('.phone-trigger');
+    const phoneDropdown = document.querySelector('#phone-dropdown');
+    phoneTrigger.addEventListener('click', (event) => {
+      event.stopPropagation();
+      const opening = phoneDropdown.hidden;
+      phoneDropdown.hidden = !opening;
+      phoneTrigger.setAttribute('aria-expanded', String(opening));
+    });
+    document.addEventListener('click', (event) => {
+      if (!event.target.closest('.phone-menu')) {
+        phoneDropdown.hidden = true;
+        phoneTrigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !phoneDropdown.hidden) {
+        phoneDropdown.hidden = true;
+        phoneTrigger.setAttribute('aria-expanded', 'false');
+        phoneTrigger.focus();
+      }
+    });
+    const backToTop = document.querySelector('#back-to-top');
+    window.addEventListener('scroll', () => backToTop.classList.toggle('show', window.scrollY > 300));
+  </script>
+  <script src="datos/vencimientos.js"></script>
+  <script>
+    const MESES = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+    const MESES_L = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+    const DIAS_L = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+    // Vencimientos de Casas Particulares: día del cronograma y detalle con que figura en el calendario de ARCA.
+    const PAGOS = [
+      { id: 'obligatorio', nombre: 'Pago obligatorio', dia: 10, detalle: /obligatorio/i },
+      { id: 'voluntario', nombre: 'Pago voluntario', dia: 15, detalle: /voluntario/i }
+    ];
+    const hoy = new Date();
+    const iso = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    const hoyISO = iso(hoy);
+    const fecha = s => new Date(+s.slice(0, 4), +s.slice(5, 7) - 1, +s.slice(8, 10));
+    const corta = s => `${s.slice(8, 10)}-${MESES[+s.slice(5, 7) - 1]}`;
+    const larga = s => `${DIAS_L[fecha(s).getDay()]} ${+s.slice(8, 10)} de ${MESES_L[+s.slice(5, 7) - 1]}`;
+    const restarMeses = (k, n) => {
+      let y = +k.slice(0, 4), m = +k.slice(5, 7) - n;
+      while (m < 1) { m += 12; y--; }
+      while (m > 12) { m -= 12; y++; } // con n negativo, suma meses
+      return `${y}-${String(m).padStart(2, '0')}`;
+    };
+    const nombrePeriodo = k => MESES_L[+k.slice(5, 7) - 1] + ' ' + k.slice(0, 4);
+    const capital = s => s[0].toUpperCase() + s.slice(1);
+    const json = url => fetch(url).then(r => { if (!r.ok) throw new Error(url); return r.json(); });
+
+    /* ---------- Feriados (ArgentinaDatos) ---------- */
+    // Incluye los puentes turísticos: son días no laborables y ARCA los toma como inhábiles para los vencimientos.
+    const feriados = new Set();
+    const esHabil = d => d.getDay() !== 0 && d.getDay() !== 6 && !feriados.has(iso(d));
+    // Cronograma general de ARCA: el día fijado o, si es inhábil, el hábil siguiente.
+    function cronograma(mes, dia) {
+      const d = new Date(+mes.slice(0, 4), +mes.slice(5, 7) - 1, dia);
+      while (!esHabil(d)) d.setDate(d.getDate() + 1);
+      return iso(d);
+    }
+
+    /* ---------- Fechas oficiales ---------- */
+    // Mes en curso: calendario de ARCA. Meses anteriores: lo que guardó la tarea diaria del sitio
+    // (.github/workflows/actualizar-datos.yml) en datos/vencimientos.js.
+    // Formato de ambos: { "Casas Particulares | Pago obligatorio (F. 102/RT)": { "2026-11": { "Todos": "2026-11-11" } } }
+    function deCasasParticulares(datos) {
+      const r = { obligatorio: {}, voluntario: {} };
+      for (const clave in datos) {
+        const [titulo, detalle = ''] = clave.split(' | ');
+        const pago = titulo === 'Casas Particulares' && PAGOS.find(p => p.detalle.test(detalle));
+        if (pago) for (const mes in datos[clave]) r[pago.id][mes] = Object.values(datos[clave][mes])[0];
+      }
+      return r;
+    }
+    async function calendarioArca() {
+      const r = await fetch('https://www.arca.gob.ar/vencimientos/xml/vencimientos.xml');
+      if (!r.ok) throw new Error('arca');
+      const xml = new DOMParser().parseFromString(await r.text(), 'text/xml');
+      const datos = {};
+      for (const item of xml.querySelectorAll('item')) {
+        const html = item.querySelector('descripcion')?.textContent || '';
+        const clave = `${item.querySelector('titulo')?.textContent.trim()} | ${html.split('<')[0].trim()}`;
+        for (const [, grupo, d, m, a] of html.matchAll(/<td>\s*([^<]+?)\s*<\/td>\s*<td>\s*(\d{2})\/(\d{2})\/(\d{4})\s*<\/td>/g)) {
+          ((datos[clave] ??= {})[`${a}-${m}`] ??= {})[grupo] = `${a}-${m}-${d}`;
+        }
+      }
+      return datos;
+    }
+
+    /* ---------- Página ---------- */
+    function armar(oficiales) {
+      const fechasDe = mesVenc => PAGOS.map(p => {
+        const calc = cronograma(mesVenc, p.dia), ofi = oficiales[p.id][mesVenc];
+        return { pago: p.nombre, fecha: ofi || calc, oficial: !!ofi, cambio: !!ofi && ofi !== calc };
+      });
+      // Ventana móvil de 12 meses: arranca en el próximo vencimiento; cuando un período vence del todo,
+      // sale de la tabla y entra el mismo mes del año siguiente.
+      let proximo = `${hoy.getFullYear()}-${String(hoy.getMonth() + 1).padStart(2, '0')}`;
+      while (fechasDe(proximo).every(x => x.fecha < hoyISO)) proximo = restarMeses(proximo, -1);
+      const mesesVenc = Array.from({ length: 12 }, (_, i) => restarMeses(proximo, -i));
+
+      document.getElementById('titulo-tabla').textContent = `Vencimientos de ${nombrePeriodo(restarMeses(mesesVenc[0], 1))} a ${nombrePeriodo(restarMeses(mesesVenc[11], 1))}`;
+      document.getElementById('tabla-venc').innerHTML = mesesVenc.map(k =>
+        `<tr${k === proximo ? ' class="proximo"' : ''}><td class="anio">${capital(nombrePeriodo(restarMeses(k, 1)))}</td>${fechasDe(k).map(x => `<td>${corta(x.fecha)}${x.cambio ? '*' : ''}</td>`).join('')}</tr>`
+      ).join('');
+      document.getElementById('nota-cambios').hidden = !mesesVenc.some(k => fechasDe(k).some(x => x.cambio));
+
+      const fechas = fechasDe(proximo);
+      const origen = fechas.every(x => x.oficial) ? 'Fechas publicadas por ARCA.' : 'Fechas según el cronograma general de ARCA; pueden cambiar si ARCA dispone una prórroga.';
+      document.getElementById('resumen').innerHTML = `
+        <h3>Período ${nombrePeriodo(restarMeses(proximo, 1))}</h3>
+        <p>${fechas.map(x => `${x.pago}: <strong>${larga(x.fecha)}</strong>${x.fecha < hoyISO ? ' (ya vencido)' : ''}`).join('<br>')}</p>
+        <p style="margin-top:8px">${origen}</p>`;
+    }
+
+    /* ---------- Carga ---------- */
+    const anio = hoy.getFullYear();
+    Promise.all([
+      // Cada año por separado: el año siguiente puede no estar publicado todavía.
+      Promise.all([anio - 1, anio, anio + 1].map(a => json(`https://api.argentinadatos.com/v1/feriados/${a}`)
+        .then(lista => { lista.forEach(f => feriados.add(f.fecha)); return true; })
+        .catch(() => false)))
+        .then(cargados => cargados[1]), // el aviso aparece solo si faltan los del año en curso
+      Promise.resolve((window.DATOS || {}).vencimientos || {}).catch(() => ({})),
+      calendarioArca().catch(() => ({}))
+    ]).then(([hayFeriados, guardados, actuales]) => {
+      document.getElementById('nota-feriados').hidden = hayFeriados;
+      const g = deCasasParticulares(guardados), a = deCasasParticulares(actuales);
+      armar({ obligatorio: { ...g.obligatorio, ...a.obligatorio }, voluntario: { ...g.voluntario, ...a.voluntario } });
+    });
+  </script>
+</body>
+</html>
