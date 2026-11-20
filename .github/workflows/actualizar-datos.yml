@@ -54,23 +54,30 @@ jobs:
         shell: pwsh
         run: ./scripts/actualizar-feriados.ps1
 
+      # Las paginas de ARCA (www.arca.gob.ar y serviciosweb.afip.gob.ar) no le muestran los datos a los servidores
+      # de GitHub (fuera de Argentina); desde una PC en Argentina los scripts funcionan bien (probado 2026-11-20).
+      # Por eso estos pasos no marcan error si fallan: se actualizan corriendo los scripts desde la PC.
       - name: Leer las categorias del Monotributo de ARCA
         if: ${{ !cancelled() }}
+        continue-on-error: true
         shell: pwsh
         run: ./scripts/actualizar-monotributo.ps1
 
       - name: Leer los valores de aportes de Autonomos de ARCA
         if: ${{ !cancelled() }}
+        continue-on-error: true
         shell: pwsh
         run: ./scripts/actualizar-autonomos.ps1
 
       - name: Leer las tablas anuales de Ganancias de ARCA
         if: ${{ !cancelled() }}
+        continue-on-error: true
         shell: pwsh
         run: ./scripts/actualizar-ganancias.ps1
 
       - name: Leer los valores de Bienes Personales de ARCA
         if: ${{ !cancelled() }}
+        continue-on-error: true
         shell: pwsh
         run: ./scripts/actualizar-bienes-personales.ps1
 
@@ -112,4 +119,6 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "Datos actualizados desde las fuentes oficiales"
+          # Si mientras corria se subieron otros cambios (por ejemplo desde GitHub Desktop), los trae antes de subir.
+          git pull --rebase
           git push
