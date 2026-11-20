@@ -74,13 +74,19 @@ jobs:
         shell: pwsh
         run: ./scripts/actualizar-bienes-personales.ps1
 
+      # serviciosweb.afip.gob.ar no le muestra la tabla a los servidores de GitHub (fuera de Argentina).
+      # Si falla no marca error: las tasas cambian pocas veces y se pueden actualizar corriendo el script desde la PC.
       - name: Leer las tasas de interes resarcitorio y punitorio de ARCA
         if: ${{ !cancelled() }}
+        continue-on-error: true
         shell: pwsh
         run: ./scripts/actualizar-intereses.ps1
 
+      # santafe.gob.ar no responde a los servidores de GitHub (fuera de Argentina).
+      # Si falla no marca error: las categorias cambian cada semestre y se pueden actualizar corriendo el script desde la PC.
       - name: Leer las categorias del Regimen Simplificado de IIBB de API Santa Fe
         if: ${{ !cancelled() }}
+        continue-on-error: true
         shell: pwsh
         run: ./scripts/actualizar-iibb-santafe.ps1
 
