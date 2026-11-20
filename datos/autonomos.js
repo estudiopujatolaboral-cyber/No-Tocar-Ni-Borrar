@@ -1,387 +1,387 @@
 window.DATOS = window.DATOS || {};
 window.DATOS["autonomos"] = {
-    "periodos":  [
-                     {
-                         "vigencia":  "15/11/2026",
-                         "pdf":  "https://www.arca.gob.ar/autonomos/documentos/Valores-autonomos-desde-noviembre-2026.pdf"
-                     },
-                     {
-                         "vigencia":  "15/10/2026",
-                         "pdf":  "https://www.arca.gob.ar/autonomos/documentos/Valores-autonomos-desde-octubre-2026.pdf"
-                     },
-                     {
-                         "vigencia":  "15/09/2026",
-                         "pdf":  "https://www.arca.gob.ar/autonomos/documentos/Valores-autonomos-desde-septiembre-2026.pdf"
-                     }
-                 ],
-    "tablas":  [
-                   {
-                       "bloque":  "minimas",
-                       "letra":  "A",
-                       "titulo":  "Aportes mensuales de los trabajadores autónomos",
-                       "encabezado":  "Categorías",
-                       "filas":  [
-                                     {
-                                         "categoria":  "I",
-                                         "importes":  [
-                                                          79782.20,
-                                                          78271.56,
-                                                          76993.48
-                                                      ]
-                                     },
-                                     {
-                                         "categoria":  "II",
-                                         "importes":  [
-                                                          111693.38,
-                                                          109578.51,
-                                                          107789.20
-                                                      ]
-                                     },
-                                     {
-                                         "categoria":  "III",
-                                         "importes":  [
-                                                          159563.00,
-                                                          156541.75,
-                                                          153985.59
-                                                      ]
-                                     },
-                                     {
-                                         "categoria":  "IV",
-                                         "importes":  [
-                                                          255300.69,
-                                                          250466.70,
-                                                          246376.84
-                                                      ]
-                                     },
-                                     {
-                                         "categoria":  "V",
-                                         "importes":  [
-                                                          351037.07,
-                                                          344390.34,
-                                                          338766.81
-                                                      ]
-                                     }
-                                 ]
-                   },
-                   {
-                       "bloque":  "minimas",
-                       "letra":  "B",
-                       "titulo":  "Aportes mensuales de los trabajadores autónomos que realicen actividades penosas o riesgosas a las que les corresponde un régimen previsional diferencial",
-                       "encabezado":  "Categorías",
-                       "filas":  [
-                                     {
-                                         "categoria":  "I’ (I prima)",
-                                         "importes":  [
-                                                          87261.78,
-                                                          85609.52,
-                                                          84211.61
-                                                      ]
-                                     },
-                                     {
-                                         "categoria":  "II’ (II prima)",
-                                         "importes":  [
-                                                          122164.63,
-                                                          119851.50,
-                                                          117894.44
-                                                      ]
-                                     },
-                                     {
-                                         "categoria":  "III’ (III prima)",
-                                         "importes":  [
-                                                          174522.03,
-                                                          171217.53,
-                                                          168421.73
-                                                      ]
-                                     },
-                                     {
-                                         "categoria":  "IV’ (IV prima)",
-                                         "importes":  [
-                                                          279235.14,
-                                                          273947.95,
-                                                          269474.67
-                                                      ]
-                                     },
-                                     {
-                                         "categoria":  "V’ (V prima)",
-                                         "importes":  [
-                                                          383946.80,
-                                                          376676.94,
-                                                          370526.20
-                                                      ]
-                                     }
-                                 ]
-                   },
-                   {
-                       "bloque":  "minimas",
-                       "letra":  "C",
-                       "titulo":  "Afiliaciones voluntarias",
-                       "encabezado":  "Categoría",
-                       "filas":  [
-                                     {
-                                         "categoria":  "I",
-                                         "importes":  [
-                                                          79782.20,
-                                                          78271.56,
-                                                          76993.48
-                                                      ]
-                                     }
-                                 ]
-                   },
-                   {
-                       "bloque":  "minimas",
-                       "letra":  "D",
-                       "titulo":  "Menores de 21 años",
-                       "encabezado":  "Categoría",
-                       "filas":  [
-                                     {
-                                         "categoria":  "I",
-                                         "importes":  [
-                                                          79782.20,
-                                                          78271.56,
-                                                          76993.48
-                                                      ]
-                                     }
-                                 ]
-                   },
-                   {
-                       "bloque":  "minimas",
-                       "letra":  "E",
-                       "titulo":  "Beneficiarios de prestaciones previsionales otorgadas en el marco de la Ley Nº 24.241 y sus modificaciones, que ingresen, reingresen o continúen en la actividad autónoma",
-                       "encabezado":  "Categoría",
-                       "filas":  [
-                                     {
-                                         "categoria":  "I",
-                                         "importes":  [
-                                                          67316.23,
-                                                          66041.63,
-                                                          64963.25
-                                                      ]
-                                     }
-                                 ]
-                   },
-                   {
-                       "bloque":  "minimas",
-                       "letra":  "F",
-                       "titulo":  "Amas de Casa que opten por el aporte reducido previsto por la Ley Nº 24.828",
-                       "encabezado":  "Categoría",
-                       "filas":  [
-                                     {
-                                         "categoria":  "I",
-                                         "importes":  [
-                                                          27425.13,
-                                                          26905.85,
-                                                          26466.51
-                                                      ]
-                                     }
-                                 ]
-                   },
-                   {
-                       "bloque":  "revista",
-                       "letra":  "A",
-                       "titulo":  "Aportes mensuales de los trabajadores autónomos",
-                       "encabezado":  "Categorías",
-                       "filas":  [
-                                     {
-                                         "categoria":  "A",
-                                         "importes":  [
-                                                          62227.78,
-                                                          61049.52,
-                                                          60052.65
-                                                      ]
-                                     },
-                                     {
-                                         "categoria":  "B",
-                                         "importes":  [
-                                                          76390.12,
-                                                          74943.70,
-                                                          73719.95
-                                                      ]
-                                     },
-                                     {
-                                         "categoria":  "B’",
-                                         "importes":  [
-                                                          83551.70,
-                                                          81969.67,
-                                                          80631.20
-                                                      ]
-                                     },
-                                     {
-                                         "categoria":  "C",
-                                         "importes":  [
-                                                          102116.28,
-                                                          100182.74,
-                                                          98546.87
-                                                      ]
-                                     },
-                                     {
-                                         "categoria":  "C’",
-                                         "importes":  [
-                                                          111689.68,
-                                                          109574.87,
-                                                          107785.63
-                                                      ]
-                                     },
-                                     {
-                                         "categoria":  "D",
-                                         "importes":  [
-                                                          152776.66,
-                                                          149883.90,
-                                                          147436.46
-                                                      ]
-                                     },
-                                     {
-                                         "categoria":  "D’",
-                                         "importes":  [
-                                                          167099.47,
-                                                          163935.52,
-                                                          161258.63
-                                                      ]
-                                     },
-                                     {
-                                         "categoria":  "E",
-                                         "importes":  [
-                                                          255096.21,
-                                                          250266.08,
-                                                          246179.50
-                                                      ]
-                                     },
-                                     {
-                                         "categoria":  "E’",
-                                         "importes":  [
-                                                          279011.48,
-                                                          273728.52,
-                                                          269258.83
-                                                      ]
-                                     },
-                                     {
-                                         "categoria":  "F",
-                                         "importes":  [
-                                                          356817.94,
-                                                          350061.76,
-                                                          344345.62
-                                                      ]
-                                     },
-                                     {
-                                         "categoria":  "G",
-                                         "importes":  [
-                                                          509996.11,
-                                                          500339.56,
-                                                          492169.54
-                                                      ]
-                                     },
-                                     {
-                                         "categoria":  "G’",
-                                         "importes":  [
-                                                          557808.25,
-                                                          547246.40,
-                                                          538310.44
-                                                      ]
-                                     },
-                                     {
-                                         "categoria":  "H",
-                                         "importes":  [
-                                                          765294.40,
-                                                          750803.89,
-                                                          738544.06
-                                                      ]
-                                     },
-                                     {
-                                         "categoria":  "I",
-                                         "importes":  [
-                                                          957367.54,
-                                                          939240.20,
-                                                          923903.40
-                                                      ]
-                                     },
-                                     {
-                                         "categoria":  "J",
-                                         "importes":  [
-                                                          957367.54,
-                                                          939240.20,
-                                                          923903.40
-                                                      ]
-                                     }
-                                 ]
-                   },
-                   {
-                       "bloque":  "revista",
-                       "letra":  "B",
-                       "titulo":  "Beneficiarios de prestaciones previsionales otorgadas en el marco de la Ley Nº 24.241 y sus modificaciones, que ingresen, reingresen o continúen en la actividad autónoma",
-                       "encabezado":  "Categoría vigente hasta febrero de 2007",
-                       "filas":  [
-                                     {
-                                         "categoria":  "A",
-                                         "importes":  [
-                                                          52504.69,
-                                                          51510.53,
-                                                          50669.42
-                                                      ]
-                                     }
-                                 ]
-                   },
-                   {
-                       "bloque":  "revista",
-                       "letra":  "F",
-                       "titulo":  "Amas de Casa que opten por el aporte reducido previsto por la Ley Nº 24.828",
-                       "encabezado":  "Categoría vigente hasta febrero de 2007",
-                       "filas":  [
-                                     {
-                                         "categoria":  "A",
-                                         "importes":  [
-                                                          21390.80,
-                                                          20985.77,
-                                                          20643.10
-                                                      ]
-                                     }
-                                 ]
-                   },
-                   {
-                       "bloque":  "rentas",
-                       "letra":  "",
-                       "titulo":  "Rentas de Referencia para el cálculo de los aportes previsionales de los trabajadores autónomos, (Artículo 8º, Ley Nº 24.241 y modificaciones)",
-                       "encabezado":  "Categorías",
-                       "filas":  [
-                                     {
-                                         "categoria":  "I",
-                                         "importes":  [
-                                                          249319.39,
-                                                          244598.64,
-                                                          240604.60
-                                                      ]
-                                     },
-                                     {
-                                         "categoria":  "II",
-                                         "importes":  [
-                                                          349041.80,
-                                                          342432.85,
-                                                          336841.28
-                                                      ]
-                                     },
-                                     {
-                                         "categoria":  "III",
-                                         "importes":  [
-                                                          498634.39,
-                                                          489192.97,
-                                                          481204.97
-                                                      ]
-                                     },
-                                     {
-                                         "categoria":  "IV",
-                                         "importes":  [
-                                                          797814.69,
-                                                          782708.42,
-                                                          769927.62
-                                                      ]
-                                     },
-                                     {
-                                         "categoria":  "V",
-                                         "importes":  [
-                                                          1096990.87,
-                                                          1076219.83,
-                                                          1058646.30
-                                                      ]
-                                     }
-                                 ]
-                   }
-               ]
+  "periodos": [
+    {
+      "vigencia": "15/11/2026",
+      "pdf": "https://www.arca.gob.ar/autonomos/documentos/Valores-autonomos-desde-noviembre-2026.pdf"
+    },
+    {
+      "vigencia": "15/10/2026",
+      "pdf": "https://www.arca.gob.ar/autonomos/documentos/Valores-autonomos-desde-octubre-2026.pdf"
+    },
+    {
+      "vigencia": "15/09/2026",
+      "pdf": "https://www.arca.gob.ar/autonomos/documentos/Valores-autonomos-desde-septiembre-2026.pdf"
+    }
+  ],
+  "tablas": [
+    {
+      "bloque": "minimas",
+      "letra": "A",
+      "titulo": "Aportes mensuales de los trabajadores autónomos",
+      "encabezado": "Categorías",
+      "filas": [
+        {
+          "categoria": "I",
+          "importes": [
+            79782.2,
+            78271.56,
+            76993.48
+          ]
+        },
+        {
+          "categoria": "II",
+          "importes": [
+            111693.38,
+            109578.51,
+            107789.2
+          ]
+        },
+        {
+          "categoria": "III",
+          "importes": [
+            159563.0,
+            156541.75,
+            153985.59
+          ]
+        },
+        {
+          "categoria": "IV",
+          "importes": [
+            255300.69,
+            250466.7,
+            246376.84
+          ]
+        },
+        {
+          "categoria": "V",
+          "importes": [
+            351037.07,
+            344390.34,
+            338766.81
+          ]
+        }
+      ]
+    },
+    {
+      "bloque": "minimas",
+      "letra": "B",
+      "titulo": "Aportes mensuales de los trabajadores autónomos que realicen actividades penosas o riesgosas a las que les corresponde un régimen previsional diferencial",
+      "encabezado": "Categorías",
+      "filas": [
+        {
+          "categoria": "I’ (I prima)",
+          "importes": [
+            87261.78,
+            85609.52,
+            84211.61
+          ]
+        },
+        {
+          "categoria": "II’ (II prima)",
+          "importes": [
+            122164.63,
+            119851.5,
+            117894.44
+          ]
+        },
+        {
+          "categoria": "III’ (III prima)",
+          "importes": [
+            174522.03,
+            171217.53,
+            168421.73
+          ]
+        },
+        {
+          "categoria": "IV’ (IV prima)",
+          "importes": [
+            279235.14,
+            273947.95,
+            269474.67
+          ]
+        },
+        {
+          "categoria": "V’ (V prima)",
+          "importes": [
+            383946.8,
+            376676.94,
+            370526.2
+          ]
+        }
+      ]
+    },
+    {
+      "bloque": "minimas",
+      "letra": "C",
+      "titulo": "Afiliaciones voluntarias",
+      "encabezado": "Categoría",
+      "filas": [
+        {
+          "categoria": "I",
+          "importes": [
+            79782.2,
+            78271.56,
+            76993.48
+          ]
+        }
+      ]
+    },
+    {
+      "bloque": "minimas",
+      "letra": "D",
+      "titulo": "Menores de 21 años",
+      "encabezado": "Categoría",
+      "filas": [
+        {
+          "categoria": "I",
+          "importes": [
+            79782.2,
+            78271.56,
+            76993.48
+          ]
+        }
+      ]
+    },
+    {
+      "bloque": "minimas",
+      "letra": "E",
+      "titulo": "Beneficiarios de prestaciones previsionales otorgadas en el marco de la Ley Nº 24.241 y sus modificaciones, que ingresen, reingresen o continúen en la actividad autónoma",
+      "encabezado": "Categoría",
+      "filas": [
+        {
+          "categoria": "I",
+          "importes": [
+            67316.23,
+            66041.63,
+            64963.25
+          ]
+        }
+      ]
+    },
+    {
+      "bloque": "minimas",
+      "letra": "F",
+      "titulo": "Amas de Casa que opten por el aporte reducido previsto por la Ley Nº 24.828",
+      "encabezado": "Categoría",
+      "filas": [
+        {
+          "categoria": "I",
+          "importes": [
+            27425.13,
+            26905.85,
+            26466.51
+          ]
+        }
+      ]
+    },
+    {
+      "bloque": "revista",
+      "letra": "A",
+      "titulo": "Aportes mensuales de los trabajadores autónomos",
+      "encabezado": "Categorías",
+      "filas": [
+        {
+          "categoria": "A",
+          "importes": [
+            62227.78,
+            61049.52,
+            60052.65
+          ]
+        },
+        {
+          "categoria": "B",
+          "importes": [
+            76390.12,
+            74943.7,
+            73719.95
+          ]
+        },
+        {
+          "categoria": "B’",
+          "importes": [
+            83551.7,
+            81969.67,
+            80631.2
+          ]
+        },
+        {
+          "categoria": "C",
+          "importes": [
+            102116.28,
+            100182.74,
+            98546.87
+          ]
+        },
+        {
+          "categoria": "C’",
+          "importes": [
+            111689.68,
+            109574.87,
+            107785.63
+          ]
+        },
+        {
+          "categoria": "D",
+          "importes": [
+            152776.66,
+            149883.9,
+            147436.46
+          ]
+        },
+        {
+          "categoria": "D’",
+          "importes": [
+            167099.47,
+            163935.52,
+            161258.63
+          ]
+        },
+        {
+          "categoria": "E",
+          "importes": [
+            255096.21,
+            250266.08,
+            246179.5
+          ]
+        },
+        {
+          "categoria": "E’",
+          "importes": [
+            279011.48,
+            273728.52,
+            269258.83
+          ]
+        },
+        {
+          "categoria": "F",
+          "importes": [
+            356817.94,
+            350061.76,
+            344345.62
+          ]
+        },
+        {
+          "categoria": "G",
+          "importes": [
+            509996.11,
+            500339.56,
+            492169.54
+          ]
+        },
+        {
+          "categoria": "G’",
+          "importes": [
+            557808.25,
+            547246.4,
+            538310.44
+          ]
+        },
+        {
+          "categoria": "H",
+          "importes": [
+            765294.4,
+            750803.89,
+            738544.06
+          ]
+        },
+        {
+          "categoria": "I",
+          "importes": [
+            957367.54,
+            939240.2,
+            923903.4
+          ]
+        },
+        {
+          "categoria": "J",
+          "importes": [
+            957367.54,
+            939240.2,
+            923903.4
+          ]
+        }
+      ]
+    },
+    {
+      "bloque": "revista",
+      "letra": "B",
+      "titulo": "Beneficiarios de prestaciones previsionales otorgadas en el marco de la Ley Nº 24.241 y sus modificaciones, que ingresen, reingresen o continúen en la actividad autónoma",
+      "encabezado": "Categoría vigente hasta febrero de 2007",
+      "filas": [
+        {
+          "categoria": "A",
+          "importes": [
+            52504.69,
+            51510.53,
+            50669.42
+          ]
+        }
+      ]
+    },
+    {
+      "bloque": "revista",
+      "letra": "F",
+      "titulo": "Amas de Casa que opten por el aporte reducido previsto por la Ley Nº 24.828",
+      "encabezado": "Categoría vigente hasta febrero de 2007",
+      "filas": [
+        {
+          "categoria": "A",
+          "importes": [
+            21390.8,
+            20985.77,
+            20643.1
+          ]
+        }
+      ]
+    },
+    {
+      "bloque": "rentas",
+      "letra": "",
+      "titulo": "Rentas de Referencia para el cálculo de los aportes previsionales de los trabajadores autónomos, (Artículo 8º, Ley Nº 24.241 y modificaciones)",
+      "encabezado": "Categorías",
+      "filas": [
+        {
+          "categoria": "I",
+          "importes": [
+            249319.39,
+            244598.64,
+            240604.6
+          ]
+        },
+        {
+          "categoria": "II",
+          "importes": [
+            349041.8,
+            342432.85,
+            336841.28
+          ]
+        },
+        {
+          "categoria": "III",
+          "importes": [
+            498634.39,
+            489192.97,
+            481204.97
+          ]
+        },
+        {
+          "categoria": "IV",
+          "importes": [
+            797814.69,
+            782708.42,
+            769927.62
+          ]
+        },
+        {
+          "categoria": "V",
+          "importes": [
+            1096990.87,
+            1076219.83,
+            1058646.3
+          ]
+        }
+      ]
+    }
+  ]
 };
