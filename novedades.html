@@ -21,7 +21,6 @@
   <style>
 
     /* Página Novedades: publicaciones de Instagram */
-    .texto { color:var(--muted); max-width:900px; }
     .publicaciones { display:grid; grid-template-columns:repeat(3, 1fr); gap:22px; margin:26px 0 30px; }
     .publicacion { border:1px solid var(--line); background:#fff; display:flex; flex-direction:column; transition:transform .2s, box-shadow .2s; }
     .publicacion:hover { transform:translateY(-4px); box-shadow:0 14px 30px rgba(40,40,25,.07); }
@@ -189,8 +188,6 @@
     </section>
 
     <div class="wrap">
-      <p class="texto">Estas son las últimas publicaciones de <a href="https://www.instagram.com/estudioquacquarini/" target="_blank" rel="noopener noreferrer">@estudioquacquarini</a>. La página se actualiza sola todos los días: cada publicación nueva en Instagram aparece aquí al día siguiente.</p>
-
       <div class="publicaciones" id="publicaciones"></div>
 
       <div class="sin-publicaciones" id="sin-publicaciones" hidden>
