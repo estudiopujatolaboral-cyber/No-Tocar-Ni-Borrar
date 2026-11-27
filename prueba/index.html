@@ -43,7 +43,7 @@
         <div class="login-intro">
           <span class="eyebrow">Servicio exclusivo para clientes</span>
           <h1>Facturá Fácil</h1>
-          <p>El facturador de los clientes del Estudio Quacquarini. Emití tu Factura C en 3 pasos, desde la computadora o el celular.</p>
+          <p>El facturador de los clientes del Estudio Quacquarini. Emití tus facturas en 3 pasos, desde la computadora o el celular: según tu condición frente al IVA te aparecen las que te corresponden (A y B, o C).</p>
           <p class="nota-fiscal">No compartís tu clave fiscal: el estudio factura por vos con la autorización que das en ARCA.</p>
         </div>
         <form class="panel login-form" id="fLogin">
@@ -51,7 +51,12 @@
           <label for="lCuit">CUIT</label><input id="lCuit" inputmode="numeric" autocomplete="username" placeholder="20-12345678-9" required>
           <label for="lPw">Contraseña</label><input id="lPw" type="password" autocomplete="current-password" required>
           <button class="btn bloque" type="submit">Ingresar</button>
-          <p class="demo">Versión de prueba · CUIT <b>20-12345678-6</b> · clave <b>inicio123</b></p>
+          <div class="demo">
+            <p>Versión de prueba · tocá una cuenta para entrar (clave <b>inicio123</b>)</p>
+            <button type="button" class="demo-cuenta" data-cuit="20-12345678-6"><b>Monotributista</b><span>20-12345678-6 · Factura C</span></button>
+            <button type="button" class="demo-cuenta" data-cuit="27-23456789-1"><b>Responsable Inscripto</b><span>27-23456789-1 · Factura A y B</span></button>
+            <button type="button" class="demo-cuenta" data-cuit="20-30123456-3"><b>Exento</b><span>20-30123456-3 · Factura C</span></button>
+          </div>
           <p class="center mut chico">¿Todavía no tenés acceso? <a class="lnk" href="https://estudioquacquarini.com.ar/contacto.html" target="_blank" rel="noopener">Pedíselo al estudio</a></p>
         </form>
       </div>
@@ -64,10 +69,10 @@
       <div class="saludo"><small>Hola,</small><h1 id="hNombre"></h1><span class="badge" id="hBadge"></span></div>
       <div class="aviso" id="aviso" hidden></div>
       <div class="grid-2">
-        <button class="big" type="button" data-go="nueva"><span><b>Nueva factura</b><small>Emitila en 3 pasos</small></span><span class="plus">+</span></button>
+        <button class="big" type="button" data-go="nueva"><span><b>Nueva factura</b><small id="bigSub">Emitila en 3 pasos</small></span><span class="plus">+</span></button>
         <div class="card meter" id="meterCard">
-          <div class="meter-h"><span>Facturado últimos 12 meses</span><b id="fact12"></b></div>
-          <div class="bar"><i id="barra"></i></div>
+          <div class="meter-h"><span id="meterLbl">Facturado últimos 12 meses</span><b id="fact12"></b></div>
+          <div class="bar" id="barWrap"><i id="barra"></i></div>
           <div class="meter-f" id="meterTxt"></div>
         </div>
       </div>
@@ -79,9 +84,12 @@
   <!-- Nueva factura -->
   <section class="vista" id="v-nueva" hidden>
     <div class="contenedor">
-      <div class="titulo"><a class="volver" href="#home">← Inicio</a><h1>Nueva factura C</h1></div>
+      <div class="titulo"><a class="volver" href="#home">← Inicio</a><h1>Nueva factura <span class="letra-tit" id="nLetra"></span></h1></div>
       <div class="panel form-factura">
-        <label>¿A quién le facturás?</label>
+        <label>Tipo de factura</label>
+        <div class="seg" id="segTipo"></div>
+        <p class="hint" id="tipoHint"></p>
+        <label id="lblCli">¿A quién le facturás?</label>
         <div class="seg" id="segCli"><button class="on" type="button" data-v="cf">Consumidor final</button><button type="button" data-v="doc">Con CUIT / DNI</button></div>
         <div id="docBox" hidden>
           <div class="chips" id="frecuentes"></div>
@@ -97,10 +105,12 @@
         <label for="detalle">Concepto</label>
         <input id="detalle" placeholder="Ej.: Honorarios profesionales" maxlength="500">
         <div class="chips" id="conceptos"></div>
-        <div class="fila-2">
-          <div><label for="importe">Importe</label><div class="importe"><span class="peso">$</span><input class="amount" id="importe" inputmode="decimal" placeholder="0" autocomplete="off"></div></div>
+        <div class="fila-imp" id="filaImp">
+          <div><label for="importe" id="lblImporte">Importe</label><div class="importe"><span class="peso">$</span><input class="amount" id="importe" inputmode="decimal" placeholder="0" autocomplete="off"></div></div>
+          <div id="alicBox"><label for="alicuota">Alícuota de IVA</label><select id="alicuota"></select></div>
           <div><label for="pago">Condición de venta</label><select id="pago"></select><p id="pagoHint" class="hint"></p></div>
         </div>
+        <div class="calc" id="calc" hidden></div>
         <div class="acciones-form">
           <a class="btn sec" href="#home">Cancelar</a>
           <button class="btn" type="button" id="btnEmitir">Emitir factura</button>
