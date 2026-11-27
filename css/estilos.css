@@ -102,7 +102,7 @@
     .section-heading h2 { font-family: Georgia, 'Times New Roman', serif; font-size: clamp(2rem, 3.4vw, 3rem); font-weight: 500; margin: 12px 0; }
     .section-heading p { color: var(--muted); margin: 0; }
     .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 55px; align-items: center; }
-    .about-mark { min-height: 320px; display: flex; align-items: center; justify-content: center; background: var(--cream); border: 1px solid var(--line); padding: 35px; }
+    .about-mark { min-height: 320px; display: flex; align-items: center; justify-content: center; padding: 35px; }
     .about-mark img { width: min(230px, 70%); border-radius: 50%; box-shadow: 0 14px 35px rgba(0,0,0,.08); }
     .about-copy h2 { font-family: Georgia, serif; font-size: clamp(2rem, 3vw, 2.7rem); font-weight: 500; margin: 12px 0 20px; }
     .about-copy p { color: var(--muted); }

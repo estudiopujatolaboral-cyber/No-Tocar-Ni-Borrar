@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="logo.png">
+<title>Facturá Fácil · Estudio Quacquarini</title>
+<link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+<div class="topbar">
+  <div class="topbar-inner">
+    <strong>Estudio Contable José A. Quacquarini y Asoc.</strong>
+    <span class="topbar-prueba">Versión de prueba · sin conexión con ARCA</span>
+  </div>
+</div>
+
+<header>
+  <div class="header-inner">
+    <a class="brand" href="#home" aria-label="Facturá Fácil - Inicio">
+      <img src="logo.png" width="56" height="56" alt="Logo del Estudio José A. Quacquarini y Asoc.">
+      <span class="brand-name"><strong>Facturá Fácil</strong><span>Estudio José A. Quacquarini y Asoc.</span></span>
+    </a>
+    <nav id="nav" aria-label="Menú principal" hidden>
+      <a href="#home" data-nav="home">Inicio</a>
+      <a href="#historial" data-nav="historial">Mis facturas</a>
+      <a href="#nueva" data-nav="nueva" class="nav-cta">+ Nueva factura</a>
+    </nav>
+    <button class="cuenta-btn" id="usuario" type="button" data-sheet="cuenta" aria-label="Mi cuenta" hidden>
+      <img src="logo.png" alt=""><span><b id="uNombre"></b><small id="uCuit"></small></span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <section class="vista" id="v-cargando"><div class="spin"></div></section>
+
+  <!-- Ingreso -->
+  <section class="vista login" id="v-login" hidden>
+    <div class="login-hero">
+      <div class="contenedor login-grid">
+        <div class="login-intro">
+          <span class="eyebrow">Servicio exclusivo para clientes</span>
+          <h1>Facturá Fácil</h1>
+          <p>El facturador de los clientes del Estudio Quacquarini. Emití tu Factura C en 3 pasos, desde la computadora o el celular.</p>
+          <p class="nota-fiscal">No compartís tu clave fiscal: el estudio factura por vos con la autorización que das en ARCA.</p>
+        </div>
+        <form class="panel login-form" id="fLogin">
+          <h2>Ingresar</h2>
+          <label for="lCuit">CUIT</label><input id="lCuit" inputmode="numeric" autocomplete="username" placeholder="20-12345678-9" required>
+          <label for="lPw">Contraseña</label><input id="lPw" type="password" autocomplete="current-password" required>
+          <button class="btn bloque" type="submit">Ingresar</button>
+          <p class="demo">Versión de prueba · CUIT <b>20-12345678-6</b> · clave <b>inicio123</b></p>
+          <p class="center mut chico">¿Todavía no tenés acceso? <a class="lnk" href="https://estudioquacquarini.com.ar/contacto.html" target="_blank" rel="noopener">Pedíselo al estudio</a></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Inicio -->
+  <section class="vista" id="v-home" hidden>
+    <div class="contenedor">
+      <div class="saludo"><small>Hola,</small><h1 id="hNombre"></h1><span class="badge" id="hBadge"></span></div>
+      <div class="aviso" id="aviso" hidden></div>
+      <div class="grid-2">
+        <button class="big" type="button" data-go="nueva"><span><b>Nueva factura</b><small>Emitila en 3 pasos</small></span><span class="plus">+</span></button>
+        <div class="card meter" id="meterCard">
+          <div class="meter-h"><span>Facturado últimos 12 meses</span><b id="fact12"></b></div>
+          <div class="bar"><i id="barra"></i></div>
+          <div class="meter-f" id="meterTxt"></div>
+        </div>
+      </div>
+      <div class="sect">Últimas facturas <a class="lnk" href="#historial">Ver todas</a></div>
+      <div class="card list" id="ultimas"></div>
+    </div>
+  </section>
+
+  <!-- Nueva factura -->
+  <section class="vista" id="v-nueva" hidden>
+    <div class="contenedor">
+      <div class="titulo"><a class="volver" href="#home">← Inicio</a><h1>Nueva factura C</h1></div>
+      <div class="panel form-factura">
+        <label>¿A quién le facturás?</label>
+        <div class="seg" id="segCli"><button class="on" type="button" data-v="cf">Consumidor final</button><button type="button" data-v="doc">Con CUIT / DNI</button></div>
+        <div id="docBox" hidden>
+          <div class="chips" id="frecuentes"></div>
+          <div class="fila-doc">
+            <div><label for="docTipo">Documento</label><select id="docTipo"><option value="80">CUIT</option><option value="96">DNI</option><option value="86">CUIL</option></select></div>
+            <div><label for="docNro">Número</label><input id="docNro" inputmode="numeric" placeholder="Número"></div>
+          </div>
+          <div class="fila-2">
+            <div><label for="recNombre">Nombre o razón social</label><input id="recNombre" placeholder="Nombre o razón social"></div>
+            <div><label for="condIva">Condición frente al IVA del cliente</label><select id="condIva"></select></div>
+          </div>
+        </div>
+        <label for="detalle">Concepto</label>
+        <input id="detalle" placeholder="Ej.: Honorarios profesionales" maxlength="500">
+        <div class="chips" id="conceptos"></div>
+        <div class="fila-2">
+          <div><label for="importe">Importe</label><div class="importe"><span class="peso">$</span><input class="amount" id="importe" inputmode="decimal" placeholder="0" autocomplete="off"></div></div>
+          <div><label for="pago">Condición de venta</label><select id="pago"></select><p id="pagoHint" class="hint"></p></div>
+        </div>
+        <div class="acciones-form">
+          <a class="btn sec" href="#home">Cancelar</a>
+          <button class="btn" type="button" id="btnEmitir">Emitir factura</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Factura -->
+  <section class="vista" id="v-factura" hidden>
+    <div class="contenedor">
+      <a class="volver" href="#historial">← Mis facturas</a>
+      <div class="emitida" id="okBox" hidden><div class="okc">✓</div><div><h1>¡Factura emitida!</h1><p class="mut">ARCA aprobó tu comprobante</p></div></div>
+      <h1 class="titulo-factura" id="fTitulo"></h1>
+      <div class="factura-grid">
+        <div class="inv" id="inv"></div>
+        <div class="panel acciones-factura">
+          <button class="btn wa" type="button" id="btnCompartir">Compartir PDF</button>
+          <button class="btn sec" type="button" id="btnVerPdf">Ver / descargar PDF</button>
+          <a class="btn sec" href="#nueva">Emitir otra factura</a>
+          <a class="btn sec" href="#home">Volver al inicio</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mis facturas -->
+  <section class="vista" id="v-historial" hidden>
+    <div class="contenedor">
+      <div class="titulo-fila">
+        <div><h1>Mis facturas</h1><p class="mut" id="tResumen"></p></div>
+        <a class="btn" href="#nueva">+ Nueva factura</a>
+      </div>
+      <div class="panel tabla-wrap">
+        <table class="tabla">
+          <thead><tr><th>Fecha</th><th>Comprobante</th><th>Cliente</th><th class="col-detalle">Concepto</th><th>Estado</th><th class="num">Importe</th></tr></thead>
+          <tbody id="todas"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <span>Facturá Fácil · Estudio Contable José A. Quacquarini y Asoc.</span>
+    <span><a href="#" data-sheet="terminos">Términos de uso</a> · <a href="https://estudioquacquarini.com.ar" target="_blank" rel="noopener">estudioquacquarini.com.ar</a></span>
+  </div>
+</footer>
+
+<!-- Ventanas (en el orden en que se apilan) -->
+<div class="sheet" id="cuenta"><div class="in">
+  <h3>Mi cuenta</h3>
+  <p id="cuentaTxt"></p>
+  <div class="pila">
+    <button class="btn sec" type="button" id="btnCambiarClave">Cambiar contraseña</button>
+    <button class="btn peligro" type="button" id="btnSalir">Cerrar sesión</button>
+  </div>
+  <button class="reset" type="button" id="btnReiniciar">Reiniciar los datos de prueba</button>
+</div></div>
+
+<div class="sheet" id="clave"><div class="in">
+  <form id="fClave">
+    <h3>Cambiar contraseña</h3>
+    <p id="claveTxt"></p>
+    <label for="cAct">Contraseña actual</label><input id="cAct" type="password" autocomplete="current-password" required>
+    <label for="cNue">Nueva contraseña (mín. 8)</label><input id="cNue" type="password" minlength="8" autocomplete="new-password" required>
+    <label class="chk" id="terminosBox"><input type="checkbox" id="cTer"> <span>Acepto los <a class="lnk" data-sheet="terminos">términos de uso</a> y autorizo al estudio a emitir comprobantes en mi nombre y a acceder a ellos.</span></label>
+    <div class="pila separada">
+      <button class="btn" type="submit">Guardar</button>
+      <button class="btn sec" type="button" id="claveCancelar" data-close>Cancelar</button>
+    </div>
+  </form>
+</div></div>
+
+<div class="sheet" id="terminos"><div class="in">
+  <h3>Términos de uso</h3>
+  <p class="ph">BORRADOR — el estudio debe revisar y completar este texto.</p>
+  <p>1. Facturá Fácil es un servicio gratuito del Estudio José A. Quacquarini para sus clientes.</p>
+  <p>2. Para usarlo, delegás en ARCA el servicio "Facturación Electrónica" al estudio. El estudio emite los comprobantes en tu nombre con los datos que cargás vos.</p>
+  <p>3. Sos responsable de la veracidad de los datos de cada comprobante (receptor, importe, concepto).</p>
+  <p>4. El estudio tiene acceso a los comprobantes emitidos para cumplir con sus tareas profesionales (liquidación de impuestos, recategorización, etc.).</p>
+  <p>5. Podés dar de baja el servicio en cualquier momento revocando la delegación en ARCA y avisando al estudio.</p>
+  <button class="btn bloque" type="button" data-close>Entendido</button>
+</div></div>
+
+<div class="load" id="load"><div class="spin"></div><div id="loadTxt">Conectando con ARCA…</div></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="simulador.js" charset="utf-8"></script>
+<script src="app.js" charset="utf-8"></script>
+</body>
+</html>
